@@ -3,34 +3,30 @@
 @theme inline {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-bg: #080C14;
+  --color-surface: #0F1422;
+  --color-surface-2: #161D30;
+  --color-primary: #6366F1;
+  --color-primary-glow: rgba(99, 102, 241, 0.15);
+  --color-secondary: #F59E0B;
+  --color-text-primary: #F1F5F9;
+  --color-text-secondary: #94A3B8;
+  --color-border: rgba(255, 255, 255, 0.06);
+  --color-border-hover: rgba(99, 102, 241, 0.4);
 }
 
 :root {
-  --bg-primary: #060608;
-  --bg-secondary: #0a0a0f;
-  --bg-tertiary: #111118;
-  --text-primary: #ffffff;
-  --text-secondary: #a1a1aa;
-  --text-muted: #71717a;
-  --accent-blue: #00d4ff;
-  --accent-green: #00ff88;
-  --accent-orange: #ff6b35;
-  --accent-purple: #7c3aed;
-  --border: rgba(255, 255, 255, 0.06);
-  --border-strong: rgba(255, 255, 255, 0.10);
-  --glass-bg: rgba(255, 255, 255, 0.03);
-}
-
-.light {
-  --bg-primary: #f5f5f7;
-  --bg-secondary: #ffffff;
-  --bg-tertiary: #f0f0f2;
-  --text-primary: #18181b;
-  --text-secondary: #52525b;
-  --text-muted: #a1a1aa;
-  --border: rgba(0, 0, 0, 0.06);
-  --border-strong: rgba(0, 0, 0, 0.10);
-  --glass-bg: rgba(0, 0, 0, 0.02);
+  --bg-primary: #080C14;
+  --bg-secondary: #0F1422;
+  --bg-tertiary: #161D30;
+  --text-primary: #F1F5F9;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  --accent-indigo: #6366F1;
+  --accent-amber: #F59E0B;
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(99, 102, 241, 0.4);
+  --glass-bg: rgba(15, 20, 34, 0.6);
 }
 
 body {
@@ -49,42 +45,89 @@ body {
 
 /* Selection */
 ::selection {
-  background: rgba(0, 212, 255, 0.25);
+  background: rgba(99, 102, 241, 0.25);
   color: #ffffff;
 }
 
-/* Glow utilities */
-.glow-blue {
-  background: radial-gradient(circle at center, rgba(0, 212, 255, 0.12), transparent 70%);
-}
-.glow-green {
-  background: radial-gradient(circle at center, rgba(0, 255, 136, 0.10), transparent 70%);
-}
-.glow-purple {
-  background: radial-gradient(circle at center, rgba(124, 58, 237, 0.12), transparent 70%);
+/* Noise texture overlay */
+.noise::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 1;
 }
 
-/* Glass card */
+/* Glass card base */
 .glass {
   background: var(--glass-bg);
-  border: 1px solid var(--border);
-  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-subtle);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
-/* Text gradient */
+/* Text gradients */
 .text-gradient {
-  background: linear-gradient(135deg, #00d4ff, #7c3aed);
+  background: linear-gradient(135deg, #F1F5F9 0%, #94A3B8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Animated border */
-@keyframes border-glow {
-  0%, 100% { border-color: rgba(0, 212, 255, 0.15); }
-  50% { border-color: rgba(0, 212, 255, 0.40); }
+.text-gradient-indigo {
+  background: linear-gradient(135deg, #818CF8 0%, #6366F1 50%, #4F46E5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.border-glow {
-  animation: border-glow 3s ease-in-out infinite;
+/* Gradient border */
+.gradient-border {
+  position: relative;
+  background: linear-gradient(#0F1422, #0F1422) padding-box,
+              linear-gradient(135deg, #6366F1, #F59E0B) border-box;
+  border: 1px solid transparent;
+}
+
+/* Marquee animation */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Pulse glow */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.2); }
+  50% { box-shadow: 0 0 40px rgba(99, 102, 241, 0.4); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Focus rings */
+.focus-ring:focus-visible {
+  outline: none;
+  ring: 2px;
+  ring-color: #6366F1;
+  ring-offset: 2px;
+  ring-offset-color: #080C14;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-pulse-glow {
+    animation: none;
+  }
 }
