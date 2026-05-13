@@ -1,0 +1,42 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - link "FlowForges" [ref=e6] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e7]
+          - generic [ref=e10]: FlowForges
+        - button [ref=e11]:
+          - img [ref=e12]
+      - navigation [ref=e14]:
+        - link "Command Center" [ref=e15] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e16]
+          - generic [ref=e21]: Command Center
+        - link "Analytics" [ref=e22] [cursor=pointer]:
+          - /url: /dashboard/analytics
+          - img [ref=e23]
+          - generic [ref=e25]: Analytics
+        - link "Blog" [ref=e26] [cursor=pointer]:
+          - /url: /dashboard/blog
+          - img [ref=e27]
+          - generic [ref=e30]: Blog
+        - link "Activity" [ref=e31] [cursor=pointer]:
+          - /url: /dashboard/activity
+          - img [ref=e32]
+          - generic [ref=e34]: Activity
+        - link "Settings" [ref=e35] [cursor=pointer]:
+          - /url: /dashboard/settings
+          - img [ref=e36]
+          - generic [ref=e39]: Settings
+      - generic [ref=e40]:
+        - generic [ref=e41]:
+          - generic [ref=e42]: Ayush Kumar Sharma
+          - generic [ref=e43]: ayushkumarsharma013@gmail.com
+          - generic [ref=e44]: super_admin
+        - button "Sign Out" [ref=e45]:
+          - img [ref=e46]
+          - generic [ref=e49]: Sign Out
+    - main [ref=e50]:
+      - img [ref=e53]
+  - alert [ref=e55]

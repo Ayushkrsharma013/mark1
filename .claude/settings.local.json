@@ -24,7 +24,21 @@
       "mcp__plugin_playwright_playwright__browser_navigate",
       "mcp__plugin_playwright_playwright__browser_take_screenshot",
       "Bash(vercel --yes --prod)",
-      "mcp__plugin_playwright_playwright__browser_click"
+      "mcp__plugin_playwright_playwright__browser_click",
+      "Bash(scripts/start-server.sh *)",
+      "Bash(git commit *)",
+      "Bash(pnpm tsc *)",
+      "Bash(pnpm list *)",
+      "Bash(findstr /E \"fiber drei three\")",
+      "Bash(findstr \"@react-three\")",
+      "Bash(findstr version *)",
+      "Bash(findstr \"line\")",
+      "Bash(findstr \"bufferAttribute\")",
+      "Bash(findstr \"BufferAttribute\")",
+      "Bash(findstr \"constructor\")",
+      "Bash(Select-Object -First 10 FullName)",
+      "Bash(npx tsc *)",
+      "Bash(Remove-Item *)"
     ]
   },
   "enableAllProjectMcpServers": true,
