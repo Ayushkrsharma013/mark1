@@ -1,0 +1,206 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e3]:
+      - link "FlowForges" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e5]: FlowForges
+      - generic [ref=e6]:
+        - link "Products" [ref=e7] [cursor=pointer]:
+          - /url: /products
+        - link "Services" [ref=e8] [cursor=pointer]:
+          - /url: /services
+        - link "Case Studies" [ref=e9] [cursor=pointer]:
+          - /url: /case-studies
+        - link "Blog" [ref=e10] [cursor=pointer]:
+          - /url: /blog
+      - link "Get in Touch" [ref=e12] [cursor=pointer]:
+        - /url: /contact
+  - main [ref=e13]:
+    - generic [ref=e15]:
+      - generic [ref=e17]:
+        - img [ref=e18]
+        - text: AI-Powered Automation Agency
+      - heading "We build intelligence into your business" [level=1] [ref=e21]:
+        - text: We build intelligence
+        - text: into your business
+      - paragraph [ref=e22]: From AI-powered lead generation to workflow automation, we ship productized services that give your business an unfair advantage.
+      - generic [ref=e23]:
+        - link "Explore Products" [ref=e24] [cursor=pointer]:
+          - /url: /products
+          - text: Explore Products
+          - img [ref=e25]
+        - link "View Services" [ref=e27] [cursor=pointer]:
+          - /url: /services
+    - generic [ref=e29]:
+      - generic [ref=e30]:
+        - generic [ref=e31]: What We Do
+        - heading "Full-stack AI automation, end to end" [level=2] [ref=e32]
+        - paragraph [ref=e33]: From strategy to deployment, we cover every layer of the AI stack so you don't have to stitch together five different vendors.
+      - generic [ref=e34]:
+        - generic [ref=e35]:
+          - img [ref=e37]
+          - heading "AI Agents & Chatbots" [level=3] [ref=e40]
+          - paragraph [ref=e41]: Custom AI agents that handle customer support, lead qualification, and scheduling — 24/7, without human intervention.
+        - generic [ref=e42]:
+          - img [ref=e44]
+          - heading "Workflow Automation" [level=3] [ref=e48]
+          - paragraph [ref=e49]: End-to-end automation of repetitive business processes. From data entry to multi-step approval chains.
+        - generic [ref=e50]:
+          - img [ref=e52]
+          - heading "Predictive Analytics" [level=3] [ref=e54]
+          - paragraph [ref=e55]: Turn your data into forecasts. ICP scoring, churn prediction, and revenue modeling powered by machine learning.
+        - generic [ref=e56]:
+          - img [ref=e58]
+          - heading "Custom AI Development" [level=3] [ref=e62]
+          - paragraph [ref=e63]: Bespoke solutions built on Claude, GPT, and open-source models. Tailored to your exact business logic and workflows.
+        - generic [ref=e64]:
+          - img [ref=e66]
+          - heading "Productized Services" [level=3] [ref=e69]
+          - paragraph [ref=e70]: Ready-to-use AI tools like Prospecting OS — plug in your API keys and start generating pipeline in minutes.
+        - generic [ref=e71]:
+          - img [ref=e73]
+          - heading "AI Strategy & Consulting" [level=3] [ref=e75]
+          - paragraph [ref=e76]: Not sure where to start? We audit your operations and build a phased AI adoption roadmap that actually ships.
+    - generic [ref=e78]:
+      - generic [ref=e79]:
+        - generic [ref=e80]: Flagship Product
+        - heading "Prospecting OS" [level=2] [ref=e81]
+        - paragraph [ref=e82]: Find, score, message, and manage B2B leads from LinkedIn, Google Maps, and Amazon — all in one workspace. The first productized service from FlowForges.
+      - generic [ref=e83]:
+        - generic [ref=e85]:
+          - generic [ref=e86]:
+            - img [ref=e87]
+            - generic [ref=e92]: 10K+
+            - generic [ref=e93]: Leads Scraped
+          - generic [ref=e94]:
+            - img [ref=e95]
+            - generic [ref=e99]: 94%
+            - generic [ref=e100]: ICP Match Rate
+          - generic [ref=e101]:
+            - img [ref=e102]
+            - generic [ref=e110]: 100%
+            - generic [ref=e111]: AI Personalization
+          - generic [ref=e112]:
+            - img [ref=e113]
+            - generic [ref=e115]: 15hr/wk
+            - generic [ref=e116]: Time Saved
+        - generic [ref=e117]:
+          - generic [ref=e118]:
+            - heading "Everything a sales team needs" [level=3] [ref=e119]
+            - list [ref=e120]:
+              - listitem [ref=e121]:
+                - generic [ref=e122]: •
+                - text: Multi-source lead scraping (LinkedIn, Google Maps, Amazon)
+              - listitem [ref=e123]:
+                - generic [ref=e124]: •
+                - text: AI-powered ICP scoring with reasoning breakdown
+              - listitem [ref=e125]:
+                - generic [ref=e126]: •
+                - text: AI message lab — personalized outreach at scale
+              - listitem [ref=e127]:
+                - generic [ref=e128]: •
+                - text: Kanban pipeline with drag-and-drop deal tracking
+              - listitem [ref=e129]:
+                - generic [ref=e130]: •
+                - text: Built-in analytics with 7/30/90-day filters
+          - link "Try Prospecting OS" [ref=e131] [cursor=pointer]:
+            - /url: https://lead-engine-henna.vercel.app
+            - text: Try Prospecting OS
+            - img [ref=e132]
+    - generic [ref=e136]:
+      - generic [ref=e137]:
+        - generic [ref=e138]: Testimonials
+        - heading "Trusted by founders and operators" [level=2] [ref=e139]
+        - paragraph [ref=e140]: We don't just ship code. We ship outcomes. Here's what our clients say.
+      - generic [ref=e141]:
+        - blockquote [ref=e142]:
+          - generic [ref=e143]:
+            - img [ref=e144]
+            - img [ref=e146]
+            - img [ref=e148]
+            - img [ref=e150]
+            - img [ref=e152]
+          - paragraph [ref=e154]: “FlowForges built our entire lead generation pipeline. We went from cold outreach to a system that books 20+ qualified meetings per week.”
+          - generic [ref=e155]:
+            - generic [ref=e156]: Rajesh Kumar
+            - generic [ref=e157]: Founder, ScaleUp India
+        - blockquote [ref=e158]:
+          - generic [ref=e159]:
+            - img [ref=e160]
+            - img [ref=e162]
+            - img [ref=e164]
+            - img [ref=e166]
+            - img [ref=e168]
+          - paragraph [ref=e170]: “The AI chatbot they deployed handles 70% of our support tickets automatically. Our response time dropped from hours to seconds.”
+          - generic [ref=e171]:
+            - generic [ref=e172]: Priya Sharma
+            - generic [ref=e173]: Head of Ops, FinStack
+        - blockquote [ref=e174]:
+          - generic [ref=e175]:
+            - img [ref=e176]
+            - img [ref=e178]
+            - img [ref=e180]
+            - img [ref=e182]
+            - img [ref=e184]
+          - paragraph [ref=e186]: “We brought them a messy spreadsheet workflow. They shipped a custom AI pipeline that reduced processing time by 90%.”
+          - generic [ref=e187]:
+            - generic [ref=e188]: Michael Chen
+            - generic [ref=e189]: CTO, DataBridge
+    - generic [ref=e192]:
+      - heading "Ready to automate your competitive edge?" [level=2] [ref=e193]:
+        - text: Ready to automate
+        - text: your competitive edge?
+      - paragraph [ref=e194]: Tell us what you're building. We'll tell you how AI can make it faster, cheaper, and smarter.
+      - link "Start a Conversation" [ref=e196] [cursor=pointer]:
+        - /url: /contact
+        - text: Start a Conversation
+        - img [ref=e197]
+  - contentinfo [ref=e199]:
+    - generic [ref=e200]:
+      - generic [ref=e201]:
+        - generic [ref=e202]:
+          - link "FlowForges" [ref=e203] [cursor=pointer]:
+            - /url: /
+          - paragraph [ref=e204]: AI-powered automation agency. We build products that transform how businesses operate.
+        - generic [ref=e205]:
+          - heading "Products" [level=3] [ref=e206]
+          - list [ref=e207]:
+            - listitem [ref=e208]:
+              - link "Prospecting OS" [ref=e209] [cursor=pointer]:
+                - /url: /products
+            - listitem [ref=e210]:
+              - link "Coming Soon" [ref=e211] [cursor=pointer]:
+                - /url: /products
+        - generic [ref=e212]:
+          - heading "Company" [level=3] [ref=e213]
+          - list [ref=e214]:
+            - listitem [ref=e215]:
+              - link "Services" [ref=e216] [cursor=pointer]:
+                - /url: /services
+            - listitem [ref=e217]:
+              - link "Case Studies" [ref=e218] [cursor=pointer]:
+                - /url: /case-studies
+            - listitem [ref=e219]:
+              - link "Blog" [ref=e220] [cursor=pointer]:
+                - /url: /blog
+            - listitem [ref=e221]:
+              - link "Contact" [ref=e222] [cursor=pointer]:
+                - /url: /contact
+        - generic [ref=e223]:
+          - heading "Legal" [level=3] [ref=e224]
+          - list [ref=e225]:
+            - listitem [ref=e226]:
+              - link "Privacy Policy" [ref=e227] [cursor=pointer]:
+                - /url: /legal/privacy
+            - listitem [ref=e228]:
+              - link "Terms of Service" [ref=e229] [cursor=pointer]:
+                - /url: /legal/terms
+            - listitem [ref=e230]:
+              - link "Refund Policy" [ref=e231] [cursor=pointer]:
+                - /url: /legal/refund
+      - generic [ref=e232]:
+        - paragraph [ref=e233]: © 2026 FlowForges. All rights reserved.
+        - paragraph [ref=e234]: Built with ambition by Ayush Kumar Sharma
+  - button "Open chat" [ref=e235]:
+    - img [ref=e236]
+  - alert [ref=e239]

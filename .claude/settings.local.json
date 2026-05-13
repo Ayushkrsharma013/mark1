@@ -13,7 +13,18 @@
       "mcp__supabase__execute_sql",
       "mcp__supabase__get_advisors",
       "mcp__supabase__list_tables",
-      "Bash(git commit -m ' *)"
+      "Bash(git commit -m ' *)",
+      "PowerShell(vercel *)",
+      "PowerShell(npm i *)",
+      "Bash(vercel env *)",
+      "PowerShell(vercel env *)",
+      "PowerShell($url = \"https://otxifqcvgmxoxemmgbjd.supabase.co\"; $key = \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im90eGlmcWN2Z214b3hlbW1nYmpkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg2NjcwMzQsImV4cCI6MjA5NDI0MzAzNH0.CDg6vglvxSal98LK9B-z61aQEY0K7-y8SqEbUMh2tes\"; & vercel env add NEXT_PUBLIC_SUPABASE_URL preview --value $url --yes; & vercel env add NEXT_PUBLIC_SUPABASE_ANON_KEY preview --value $key --yes)",
+      "mcp__plugin_vercel_vercel__deploy_to_vercel",
+      "Bash(vercel --yes)",
+      "mcp__plugin_playwright_playwright__browser_navigate",
+      "mcp__plugin_playwright_playwright__browser_take_screenshot",
+      "Bash(vercel --yes --prod)",
+      "mcp__plugin_playwright_playwright__browser_click"
     ]
   },
   "enableAllProjectMcpServers": true,

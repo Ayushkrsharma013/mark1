@@ -1,0 +1,11 @@
+[   87077ms] [ERROR] TypeError: Failed to execute 'fetch' on 'Window': Failed to read the 'headers' property from 'RequestInit': String contains non ISO-8859-1 code point.
+    at https://mark1-eta.vercel.app/_next/static/chunks/0_.h-bh9-hihw.js:24:37682
+    at t9 (https://mark1-eta.vercel.app/_next/static/chunks/0_.h-bh9-hihw.js:24:43069)
+    at t4 (https://mark1-eta.vercel.app/_next/static/chunks/0_.h-bh9-hihw.js:24:42597)
+    at rM.signInWithPassword (https://mark1-eta.vercel.app/_next/static/chunks/0_.h-bh9-hihw.js:24:75764)
+    at S (https://mark1-eta.vercel.app/_next/static/chunks/03qmv~h_7d56g.js:1:4393)
+    at sJ (https://mark1-eta.vercel.app/_next/static/chunks/0rliqmdz-itj..js:1:162752)
+    at https://mark1-eta.vercel.app/_next/static/chunks/0rliqmdz-itj..js:1:168648
+    at tD (https://mark1-eta.vercel.app/_next/static/chunks/0rliqmdz-itj..js:1:30682)
+    at s4 (https://mark1-eta.vercel.app/_next/static/chunks/0rliqmdz-itj..js:1:163985)
+    at fz (https://mark1-eta.vercel.app/_next/static/chunks/0rliqmdz-itj..js:1:200721) @ https://mark1-eta.vercel.app/_next/static/chunks/0_.h-bh9-hihw.js:23
