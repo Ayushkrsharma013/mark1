@@ -1,5 +1,5 @@
 import { createSupabaseServerClient } from "./supabase/server";
-import { cookies } from "next/headers";
+import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
 export type Role = "super_admin" | "client" | "user";
@@ -24,10 +24,40 @@ function isValidRole(role: string): role is Role {
   return VALID_ROLES.includes(role as Role);
 }
 
+// Read user from middleware-set headers (no Supabase call needed)
+export async function getUserFromHeaders(): Promise<AuthUser | null> {
+  try {
+    const h = await headers();
+    const id = h.get("x-user-id");
+    const email = h.get("x-user-email");
+    const fullName = h.get("x-user-name");
+    const role = h.get("x-user-role");
+    const avatarUrl = h.get("x-user-avatar");
+
+    if (!id || !email) return null;
+    if (!isValidRole(role || "")) return null;
+
+    return {
+      id,
+      email,
+      full_name: fullName || "",
+      role: role as Role,
+      avatar_url: avatarUrl || undefined,
+      created_at: "",
+    };
+  } catch {
+    return null;
+  }
+}
+
+// Full session check via Supabase (for API routes and server actions)
 export async function getSession(): Promise<AuthSession | null> {
   try {
     const supabase = await createSupabaseServerClient();
-    const { data: { session }, error } = await supabase.auth.getSession();
+    const {
+      data: { session },
+      error,
+    } = await supabase.auth.getSession();
 
     if (error || !session) return null;
 
@@ -60,23 +90,22 @@ export async function getSession(): Promise<AuthSession | null> {
 }
 
 export async function getCurrentUser(): Promise<AuthUser | null> {
-  const session = await getSession();
-  return session?.user || null;
+  return getUserFromHeaders();
 }
 
 export async function isAuthenticated(): Promise<boolean> {
-  const session = await getSession();
-  return !!session;
+  const user = await getCurrentUser();
+  return !!user;
 }
 
 export async function hasRole(required: Role | Role[]): Promise<boolean> {
-  const session = await getSession();
-  if (!session) return false;
+  const user = await getCurrentUser();
+  if (!user) return false;
 
   if (Array.isArray(required)) {
-    return required.includes(session.user.role);
+    return required.includes(user.role);
   }
-  return session.user.role === required;
+  return user.role === required;
 }
 
 export async function isSuperAdmin(): Promise<boolean> {
@@ -84,60 +113,32 @@ export async function isSuperAdmin(): Promise<boolean> {
 }
 
 export async function requireAuth(redirectTo = "/login") {
-  const session = await getSession();
-  if (!session) redirect(redirectTo);
-  return session;
+  const user = await getCurrentUser();
+  if (!user) redirect(redirectTo);
+  return user;
 }
 
 export async function requireRole(required: Role | Role[], redirectTo = "/unauthorized") {
-  const session = await requireAuth("/login");
+  const user = await requireAuth("/login");
   const hasRequiredRole = Array.isArray(required)
-    ? required.includes(session.user.role)
-    : session.user.role === required;
+    ? required.includes(user.role)
+    : user.role === required;
 
   if (!hasRequiredRole) redirect(redirectTo);
-  return session;
+  return user;
 }
 
 export async function requireSuperAdmin(redirectTo = "/unauthorized") {
   return requireRole("super_admin", redirectTo);
 }
 
+// API route helpers still use Supabase directly
 export async function getApiSession(): Promise<AuthSession | null> {
-  try {
-    const supabase = await createSupabaseServerClient();
-    const { data: { user }, error } = await supabase.auth.getUser();
-    if (error || !user) return null;
-
-    const { data: profile } = await supabase
-      .from("profiles")
-      .select("*")
-      .eq("id", user.id)
-      .single();
-
-    if (!profile) return null;
-
-    const role = profile.role || "client";
-    if (!isValidRole(role)) return null;
-
-    return {
-      user: {
-        id: profile.id,
-        email: profile.email || user.email || "",
-        full_name: profile.full_name || "",
-        role,
-        avatar_url: profile.avatar_url,
-        created_at: profile.created_at,
-      },
-      expires: new Date().toISOString(),
-    };
-  } catch {
-    return null;
-  }
+  return getSession();
 }
 
 export async function requireAuthApi(): Promise<AuthSession> {
-  const session = await getApiSession();
+  const session = await getSession();
   if (!session) throw new Error("Authentication required");
   return session;
 }

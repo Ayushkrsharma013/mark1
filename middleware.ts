@@ -4,6 +4,7 @@ import { createServerClient } from "@supabase/ssr";
 
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
+  const path = req.nextUrl.pathname;
 
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -23,7 +24,33 @@ export async function middleware(req: NextRequest) {
   );
 
   const { data: { user } } = await supabase.auth.getUser();
-  const path = req.nextUrl.pathname;
+
+  // If authenticated, fetch profile and set user info in headers
+  if (user) {
+    try {
+      const { data: profile } = await supabase
+        .from("profiles")
+        .select("id, email, full_name, role, avatar_url")
+        .eq("id", user.id)
+        .single();
+
+      if (profile) {
+        res.headers.set("x-user-id", profile.id);
+        res.headers.set("x-user-email", profile.email || "");
+        res.headers.set("x-user-name", profile.full_name || "");
+        res.headers.set("x-user-role", profile.role || "client");
+        if (profile.avatar_url) {
+          res.headers.set("x-user-avatar", profile.avatar_url);
+        }
+      }
+    } catch {
+      // Fallback to user_metadata
+      res.headers.set("x-user-id", user.id);
+      res.headers.set("x-user-email", user.email || "");
+      res.headers.set("x-user-name", user.user_metadata?.full_name || "");
+      res.headers.set("x-user-role", user.user_metadata?.role || "client");
+    }
+  }
 
   // Public routes
   const publicRoutes = [
@@ -49,9 +76,7 @@ export async function middleware(req: NextRequest) {
   const isStaticAsset = /\.(ico|png|jpg|jpeg|gif|svg|css|js|woff|woff2|ttf|eot)$/.test(path);
   const isApiRoute = path.startsWith("/api/");
 
-  // Allow public routes, blog posts, static assets, API routes
   if (isPublicRoute || isBlogPost || isStaticAsset || isApiRoute) {
-    // Redirect authenticated users away from /login
     if (user && path === "/login") {
       return NextResponse.redirect(new URL("/dashboard", req.url));
     }

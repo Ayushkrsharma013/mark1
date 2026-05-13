@@ -9,9 +9,9 @@ export default async function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await requireAuth("/login");
+  const user = await requireAuth("/login");
 
-  if (!session) {
+  if (!user) {
     redirect("/login");
   }
 
@@ -19,10 +19,10 @@ export default async function DashboardLayout({
     <div className="flex h-screen bg-[#060608]">
       <Sidebar
         user={{
-          full_name: session.user.full_name,
-          email: session.user.email,
-          role: session.user.role,
-          avatar_url: session.user.avatar_url,
+          full_name: user.full_name,
+          email: user.email,
+          role: user.role,
+          avatar_url: user.avatar_url,
         }}
       />
       <main className="flex-1 overflow-y-auto">
