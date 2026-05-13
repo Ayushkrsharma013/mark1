@@ -9,6 +9,36 @@ export interface BlogPost {
   readTime: string;
 }
 
+export interface BlogPostRow {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  category: string;
+  author: string;
+  read_time: string;
+  published: boolean;
+  published_at: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export function mapSupabasePost(row: BlogPostRow): BlogPost {
+  return {
+    slug: row.slug,
+    title: row.title,
+    excerpt: row.excerpt,
+    content: row.content,
+    category: row.category,
+    author: row.author,
+    date: row.published_at
+      ? new Date(row.published_at).toISOString().split("T")[0]
+      : new Date(row.created_at).toISOString().split("T")[0],
+    readTime: row.read_time,
+  };
+}
+
 export const blogPosts: BlogPost[] = [
   {
     slug: "why-every-business-needs-an-ai-agent-in-2026",

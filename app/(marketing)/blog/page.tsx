@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { BlogCard } from "@/components/blog/BlogCard";
 import { AsciiBackground } from "@/components/ui/AsciiBackground";
-import { blogPosts } from "@/lib/blog-data";
+import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { mapSupabasePost, blogPosts } from "@/lib/blog-data";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -10,7 +11,26 @@ export const metadata: Metadata = {
     "Thoughts on AI, automation, and building products that matter. By the team at FlowForges.",
 };
 
-export default function BlogPage() {
+export const revalidate = 60;
+
+export default async function BlogPage() {
+  let posts = blogPosts;
+
+  try {
+    const supabase = await createSupabaseServerClient();
+    const { data } = await supabase
+      .from("blog_posts")
+      .select("*")
+      .eq("published", true)
+      .order("created_at", { ascending: false });
+
+    if (data && data.length > 0) {
+      posts = data.map(mapSupabasePost);
+    }
+  } catch {
+    // Fallback to static data
+  }
+
   return (
     <div className="pt-24">
       <section className="relative py-24 px-6 overflow-hidden">
@@ -26,7 +46,7 @@ export default function BlogPage() {
 
       <section className="py-16 px-6 border-t border-[rgba(255,255,255,0.04)]">
         <div className="mx-auto max-w-4xl grid gap-6 md:grid-cols-2">
-          {blogPosts.map((post) => (
+          {posts.map((post) => (
             <BlogCard key={post.slug} post={post} />
           ))}
         </div>

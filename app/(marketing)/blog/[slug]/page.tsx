@@ -3,19 +3,33 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { AsciiBackground } from "@/components/ui/AsciiBackground";
-import { getPostBySlug, blogPosts } from "@/lib/blog-data";
+import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { mapSupabasePost, getPostBySlug } from "@/lib/blog-data";
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
-export function generateStaticParams() {
-  return blogPosts.map((post) => ({ slug: post.slug }));
+async function getPost(slug: string) {
+  try {
+    const supabase = await createSupabaseServerClient();
+    const { data } = await supabase
+      .from("blog_posts")
+      .select("*")
+      .eq("slug", slug)
+      .eq("published", true)
+      .single();
+
+    if (data) return mapSupabasePost(data);
+  } catch {
+    // Fall through to static
+  }
+  return getPostBySlug(slug);
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPost(slug);
   if (!post) return { title: "Not Found" };
 
   return {
@@ -30,9 +44,74 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+function renderParagraph(paragraph: string, i: number) {
+  // Headings
+  if (paragraph.startsWith("### ")) {
+    return (
+      <h3 key={i} className="text-xl font-bold text-white mt-8 mb-3">
+        {paragraph.replace("### ", "")}
+      </h3>
+    );
+  }
+  if (paragraph.startsWith("## ")) {
+    return (
+      <h2 key={i} className="text-2xl font-bold text-white mt-10 mb-4">
+        {paragraph.replace("## ", "")}
+      </h2>
+    );
+  }
+
+  // Blockquote
+  if (paragraph.startsWith("> ")) {
+    const lines = paragraph.split("\n").map((l) => l.replace(/^> /, "")).join(" ");
+    return (
+      <blockquote key={i} className="border-l-2 border-[#00d4ff] pl-4 text-[#a1a1aa] italic my-4">
+        {lines}
+      </blockquote>
+    );
+  }
+
+  // Ordered lists
+  if (/^\d+\.\s/.test(paragraph)) {
+    const items = paragraph.split("\n").filter(Boolean);
+    return (
+      <ol key={i} className="list-decimal list-inside space-y-2 my-4 text-[#a1a1aa] leading-relaxed">
+        {items.map((item, j) => (
+          <li key={j}>{item.replace(/^\d+\.\s/, "")}</li>
+        ))}
+      </ol>
+    );
+  }
+
+  // Bullet lists
+  if (paragraph.startsWith("- ")) {
+    const items = paragraph.split("\n").filter(Boolean);
+    return (
+      <ul key={i} className="list-disc list-inside space-y-2 my-4 text-[#a1a1aa] leading-relaxed">
+        {items.map((item, j) => (
+          <li key={j}>{item.replace(/^- /, "")}</li>
+        ))}
+      </ul>
+    );
+  }
+
+  // Regular paragraph with inline formatting
+  const html = paragraph
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+    .replace(/`([^`]+)`/g, "<code class=\"text-[#00d4ff] bg-[rgba(0,212,255,0.06)] rounded px-1 py-0.5 text-sm\">$1</code>");
+
+  return (
+    <p
+      key={i}
+      className="text-[#a1a1aa] leading-relaxed my-4"
+      dangerouslySetInnerHTML={{ __html: html }}
+    />
+  );
+}
+
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPost(slug);
 
   if (!post) notFound();
 
@@ -78,33 +157,9 @@ export default async function BlogPostPage({ params }: Props) {
 
         {/* Content */}
         <div className="prose prose-invert prose-lg max-w-none">
-          {post.content.split("\n\n").map((paragraph, i) => {
-            if (paragraph.startsWith("## ")) {
-              return (
-                <h2
-                  key={i}
-                  className="text-2xl font-bold text-white mt-10 mb-4"
-                >
-                  {paragraph.replace("## ", "")}
-                </h2>
-              );
-            }
-            if (paragraph.startsWith("1. ") || paragraph.startsWith("2. ") || paragraph.startsWith("3. ")) {
-              const items = paragraph.split("\n").filter(Boolean);
-              return (
-                <ol key={i} className="list-decimal list-inside space-y-2 my-4 text-[#a1a1aa] leading-relaxed">
-                  {items.map((item, j) => (
-                    <li key={j}>{item.replace(/^\d+\.\s/, "")}</li>
-                  ))}
-                </ol>
-              );
-            }
-            return (
-              <p key={i} className="text-[#a1a1aa] leading-relaxed my-4">
-                {paragraph}
-              </p>
-            );
-          })}
+          {post.content.split("\n\n").map((paragraph, i) =>
+            renderParagraph(paragraph, i)
+          )}
         </div>
 
         <div className="mt-16 pt-8 border-t border-[rgba(255,255,255,0.06)]">

@@ -9,6 +9,7 @@ import {
   BarChart3,
   Settings,
   Activity,
+  FileText,
   LogOut,
   ChevronLeft,
   ChevronRight,
@@ -30,6 +31,7 @@ interface Props {
 const navItems = [
   { href: "/dashboard", label: "Command Center", icon: LayoutDashboard },
   { href: "/dashboard/analytics", label: "Analytics", icon: BarChart3 },
+  { href: "/dashboard/blog", label: "Blog", icon: FileText },
   { href: "/dashboard/activity", label: "Activity", icon: Activity },
   { href: "/dashboard/settings", label: "Settings", icon: Settings },
 ];

@@ -1,0 +1,153 @@
+- generic [active] [ref=e1]:
+  - alert [ref=e85]
+  - generic [ref=e86]:
+    - generic [ref=e88]:
+      - generic [ref=e89]:
+        - link "FlowForges" [ref=e90] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e91]
+          - generic [ref=e94]: FlowForges
+        - button [ref=e95]:
+          - img [ref=e96]
+      - navigation [ref=e98]:
+        - link "Command Center" [ref=e99] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e100]
+          - generic [ref=e105]: Command Center
+        - link "Analytics" [ref=e106] [cursor=pointer]:
+          - /url: /dashboard/analytics
+          - img [ref=e107]
+          - generic [ref=e109]: Analytics
+        - link "Activity" [ref=e110] [cursor=pointer]:
+          - /url: /dashboard/activity
+          - img [ref=e111]
+          - generic [ref=e113]: Activity
+        - link "Settings" [ref=e114] [cursor=pointer]:
+          - /url: /dashboard/settings
+          - img [ref=e115]
+          - generic [ref=e118]: Settings
+      - generic [ref=e119]:
+        - generic [ref=e120]:
+          - generic [ref=e121]: Ayush Kumar Sharma
+          - generic [ref=e122]: ayushkumarsharma013@gmail.com
+          - generic [ref=e123]: super_admin
+        - button "Sign Out" [ref=e124]:
+          - img [ref=e125]
+          - generic [ref=e128]: Sign Out
+    - main [ref=e129]:
+      - generic [ref=e130]:
+        - generic [ref=e131]:
+          - heading "Welcome back, Ayush" [level=1] [ref=e132]
+          - paragraph [ref=e133]: Here's what's happening across your command center.
+        - generic [ref=e134]:
+          - generic [ref=e135]:
+            - generic [ref=e136]:
+              - generic [ref=e137]:
+                - generic [ref=e138]: Active Agents
+                - generic [ref=e139]: "12"
+              - img [ref=e141]
+            - generic [ref=e144]:
+              - generic [ref=e145]: ↑ +2
+              - generic [ref=e146]: vs last month
+          - generic [ref=e147]:
+            - generic [ref=e148]:
+              - generic [ref=e149]:
+                - generic [ref=e150]: Workflows Run
+                - generic [ref=e151]: 1,847
+              - img [ref=e153]
+            - generic [ref=e157]:
+              - generic [ref=e158]: ↑ +23%
+              - generic [ref=e159]: vs last month
+          - generic [ref=e160]:
+            - generic [ref=e161]:
+              - generic [ref=e162]:
+                - generic [ref=e163]: Leads Generated
+                - generic [ref=e164]: 3,240
+              - img [ref=e166]
+            - generic [ref=e171]:
+              - generic [ref=e172]: ↑ +18%
+              - generic [ref=e173]: vs last month
+          - generic [ref=e174]:
+            - generic [ref=e175]:
+              - generic [ref=e176]:
+                - generic [ref=e177]: Avg Response Time
+                - generic [ref=e178]: 1.2s
+              - img [ref=e180]
+            - generic [ref=e183]:
+              - generic [ref=e184]: ↑ -0.3s
+              - generic [ref=e185]: vs last month
+        - generic [ref=e186]:
+          - generic [ref=e187]:
+            - generic [ref=e188]:
+              - heading "Quick Actions" [level=2] [ref=e189]
+              - generic [ref=e190]:
+                - link "View Analytics" [ref=e191] [cursor=pointer]:
+                  - /url: /dashboard/analytics
+                  - img [ref=e193]
+                  - generic [ref=e195]: View Analytics
+                  - img [ref=e196]
+                - link "Check Activity" [ref=e199] [cursor=pointer]:
+                  - /url: /dashboard/activity
+                  - img [ref=e201]
+                  - generic [ref=e203]: Check Activity
+                  - img [ref=e204]
+                - link "Prospecting OS" [ref=e207] [cursor=pointer]:
+                  - /url: https://lead-engine-henna.vercel.app
+                  - img [ref=e209]
+                  - generic [ref=e212]: Prospecting OS
+                  - img [ref=e213]
+                - link "Account Settings" [ref=e216] [cursor=pointer]:
+                  - /url: /dashboard/settings
+                  - img [ref=e218]
+                  - generic [ref=e221]: Account Settings
+                  - img [ref=e222]
+            - generic [ref=e225]:
+              - heading "System Status" [level=2] [ref=e226]
+              - generic [ref=e227]:
+                - generic [ref=e228]:
+                  - generic [ref=e229]: Prospecting OS
+                  - generic [ref=e232]: Operational
+                - generic [ref=e233]:
+                  - generic [ref=e234]: AI Agents
+                  - generic [ref=e237]: Operational
+                - generic [ref=e238]:
+                  - generic [ref=e239]: Email Service (Resend)
+                  - generic [ref=e242]: Operational
+                - generic [ref=e243]:
+                  - generic [ref=e244]: Supabase Database
+                  - generic [ref=e247]: Operational
+                - generic [ref=e248]:
+                  - generic [ref=e249]: API Endpoints
+                  - generic [ref=e252]: Degraded
+          - generic [ref=e253]:
+            - heading "Recent Activity" [level=2] [ref=e254]
+            - generic [ref=e255]:
+              - generic [ref=e256]:
+                - img [ref=e258]
+                - generic [ref=e263]:
+                  - paragraph [ref=e264]: New lead batch scraped — 142 leads from LinkedIn
+                  - text: 12 min ago
+              - generic [ref=e265]:
+                - img [ref=e267]
+                - generic [ref=e270]:
+                  - paragraph [ref=e271]: AI agent 'SupportBot' resolved 23 tickets
+                  - text: 1 hour ago
+              - generic [ref=e272]:
+                - img [ref=e274]
+                - generic [ref=e277]:
+                  - paragraph [ref=e278]: Campaign 'Q2 Outreach' sent to 500 contacts
+                  - text: 3 hours ago
+              - generic [ref=e279]:
+                - img [ref=e281]
+                - generic [ref=e283]:
+                  - paragraph [ref=e284]: Workflow 'Invoice Processing' completed
+                  - text: 5 hours ago
+              - generic [ref=e285]:
+                - img [ref=e287]
+                - generic [ref=e292]:
+                  - paragraph [ref=e293]: New client onboarded — DataBridge Inc.
+                  - text: Yesterday
+            - link "View all activity" [ref=e294] [cursor=pointer]:
+              - /url: /dashboard/activity
+              - text: View all activity
+              - img [ref=e295]
