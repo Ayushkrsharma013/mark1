@@ -10,25 +10,33 @@ export async function middleware(req: NextRequest) {
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
-        get: (name: string) => req.cookies.get(name)?.value,
-        set: (name: string, value: string, options: any) => {
-          res.cookies.set({ name, value, ...options });
+        getAll() {
+          return req.cookies.getAll();
         },
-        remove: (name: string, options: any) => {
-          res.cookies.set({ name, value: "", maxAge: 0, ...options });
+        setAll(cookiesToSet) {
+          cookiesToSet.forEach(({ name, value, options }) =>
+            res.cookies.set(name, value, options)
+          );
         },
       },
     }
   );
 
   const { data: { user } } = await supabase.auth.getUser();
-
   const path = req.nextUrl.pathname;
 
   // Public routes
   const publicRoutes = [
-    "/", "/login", "/products", "/services", "/case-studies",
-    "/blog", "/contact", "/legal/privacy", "/legal/terms", "/legal/refund",
+    "/",
+    "/login",
+    "/products",
+    "/services",
+    "/case-studies",
+    "/blog",
+    "/contact",
+    "/legal/privacy",
+    "/legal/terms",
+    "/legal/refund",
   ];
 
   const isPublicRoute = publicRoutes.some((route) => {
@@ -37,7 +45,7 @@ export async function middleware(req: NextRequest) {
     return path === route;
   });
 
-  const isBlogPost = /^\/blog\/[^\/]+$/.test(path);
+  const isBlogPost = /^\/blog\/[^/]+$/.test(path);
   const isStaticAsset = /\.(ico|png|jpg|jpeg|gif|svg|css|js|woff|woff2|ttf|eot)$/.test(path);
   const isApiRoute = path.startsWith("/api/");
 
@@ -45,9 +53,7 @@ export async function middleware(req: NextRequest) {
   if (isPublicRoute || isBlogPost || isStaticAsset || isApiRoute) {
     // Redirect authenticated users away from /login
     if (user && path === "/login") {
-      const role = user.user_metadata?.role || "client";
-      const target = role === "super_admin" ? "/dashboard" : "/dashboard";
-      return NextResponse.redirect(new URL(target, req.url));
+      return NextResponse.redirect(new URL("/dashboard", req.url));
     }
     return res;
   }
