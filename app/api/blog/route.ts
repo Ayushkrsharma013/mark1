@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
-import { supabaseAdmin } from "@/lib/supabase/admin";
+import { createSupabaseServerClientForApi } from "@/lib/supabase/admin";
 import { requireSuperAdminApi } from "@/lib/auth";
 
 export async function GET(req: Request) {
@@ -45,7 +45,8 @@ export async function POST(req: Request) {
       );
     }
 
-    const { data, error } = await supabaseAdmin
+    const supabase = await createSupabaseServerClientForApi();
+    const { data, error } = await supabase
       .from("blog_posts")
       .insert({
         slug,

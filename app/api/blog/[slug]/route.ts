@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
-import { supabaseAdmin } from "@/lib/supabase/admin";
+import { createSupabaseServerClientForApi } from "@/lib/supabase/admin";
 import { requireSuperAdminApi } from "@/lib/auth";
 
 export async function GET(
@@ -51,9 +51,11 @@ export async function PUT(
       }
     }
 
+    const supabase = await createSupabaseServerClientForApi();
+
     // If publishing, set published_at unless it already exists
     if (updateData.published === true) {
-      const { data: existing } = await supabaseAdmin
+      const { data: existing } = await supabase
         .from("blog_posts")
         .select("published_at, published")
         .eq("slug", slug)
@@ -64,7 +66,7 @@ export async function PUT(
       }
     }
 
-    const { data, error } = await supabaseAdmin
+    const { data, error } = await supabase
       .from("blog_posts")
       .update(updateData)
       .eq("slug", slug)
@@ -105,7 +107,8 @@ export async function DELETE(
     await requireSuperAdminApi();
     const { slug } = await params;
 
-    const { error } = await supabaseAdmin
+    const supabase = await createSupabaseServerClientForApi();
+    const { error } = await supabase
       .from("blog_posts")
       .delete()
       .eq("slug", slug);
