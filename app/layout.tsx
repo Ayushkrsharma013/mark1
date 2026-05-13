@@ -14,24 +14,33 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "FlowForges — AI Automation Agency",
+    default: "FlowForges — AI Automation Agency for Digital & Creative Agencies",
     template: "%s | FlowForges",
   },
   description:
-    "We build AI-powered products that transform how businesses operate. From lead generation to workflow automation, we ship intelligence.",
-  metadataBase: new URL("https://flowforges.com"),
+    "FlowForges builds AI agents and automation systems for digital agencies. From lead generation to workflow automation, we ship productized services in 14 days.",
+  metadataBase: new URL("https://mark1-eta.vercel.app"),
   openGraph: {
     title: "FlowForges — AI Automation Agency",
     description:
-      "We build AI-powered products that transform how businesses operate.",
+      "FlowForges builds AI agents and automation systems for digital agencies. From lead generation to workflow automation, we ship productized services in 14 days.",
+    url: "https://mark1-eta.vercel.app",
     siteName: "FlowForges",
     type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "FlowForges — AI Automation Agency",
     description:
-      "We build AI-powered products that transform how businesses operate.",
+      "FlowForges builds AI agents and automation systems for digital agencies.",
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,

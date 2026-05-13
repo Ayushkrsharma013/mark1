@@ -1,5 +1,5 @@
-import { Navbar } from "@/components/shell/Navbar";
-import { Footer } from "@/components/shell/Footer";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
 import { ChatWidget } from "@/components/chat/ChatWidget";
 
 export default function MarketingLayout({
