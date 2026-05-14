@@ -54,15 +54,23 @@ app/                        # Next.js App Router
 │   ├── pipeline/route.ts       # Real pipeline data from DB
 │   └── activity/route.ts       # Real activity from DB
 ├── blog/[slug]/page.tsx    # Blog post (SSG from DB)
-├── products/, services/, case-studies/, contact/
-└── legal/privacy/, terms/, refund/
+├── products/, services/, pricing/, case-studies/
+├── contact/page.tsx         # Conversational AI agent (Gemini-powered chat)
+└── legal/
+    ├── page.tsx             # Legal hub — index of all 6 policies
+    ├── privacy/page.tsx     # Privacy Policy (9 sections)
+    ├── terms/page.tsx       # Terms of Service (13 sections)
+    ├── refund/page.tsx      # Refund Policy (5 sections)
+    ├── shipping/page.tsx    # Shipping Policy (digital delivery)
+    ├── cancellation/page.tsx # Cancellation Policy
+    └── payment-disclosure/page.tsx  # Payment methods, GSTIN, taxes
 
 components/
-├── shell/                  # Navbar, MobileNav, Footer
-├── ui/                     # Button, Card, SectionHeading, GlowOrb
-├── home/                   # HeroSection, ServicesGrid, etc.
+├── shell/                  # Navbar (floating pill on scroll), MobileNav, Footer
+├── ui/                     # Button, Card, SectionHeading, GlowOrb, AsciiBackground (8 modes)
+├── home/                   # HeroSection, ServicesGrid, ProductsPreview, Testimonials, CTASection
 ├── blog/                   # BlogCard
-├── chat/                   # ChatWidget (floating AI assistant)
+├── chat/                   # ChatWidget (floating AI assistant, hidden on /contact)
 ├── auth/                   # LoginForm
 ├── agents/                 # AgentChat, AgentBuilderChat, AgentCard
 ├── command-center/         # Sidebar, Topbar, StatCard, panels
@@ -93,7 +101,7 @@ lib/
 │   ├── metric.ts           # LiveMetrics, PipelineDay types
 │   └── activity.ts         # ActivityItem type
 ├── blog-data.ts            # Blog Post type + static fallback data
-├── nav.ts                  # Navigation config
+├── nav.ts                  # Navigation config (navLinks + footerLinks with 7 legal items)
 └── utils.ts                # cn() helper (clsx + tailwind-merge)
 
 hooks/
@@ -176,9 +184,13 @@ pnpm start      # Start production server
 ## Key Patterns
 
 - **No ORM** — direct Supabase client calls; migrations via MCP `apply_migration`
-- **Dark UI** — dark background (#060608), cyan accent (#00d4ff), glass-morphism borders
+- **Dark UI** — dark background (#04040a), cyan accent (#00d4ff), green (#00ff88), amber (#ffb347), purple (#7c3aed), glass-morphism borders
+- **Floating pill navbar** — full-width transparent on load, shrinks to centered rounded-2xl glass pill on scroll (>50px)
+- **ASCII animation canvas** — every marketing page and homepage section has a themed falling-character background (8 modes: home, products, services, case-studies, blog, contact, legal, testimonials)
+- **Conversational contact** — `/contact` is a full-page Gemini-powered AI agent that qualifies leads; `/api/chat` supports `context: "contact"` for sales-oriented system prompt
 - **Force dynamic** — all dashboard pages use `export const dynamic = "force-dynamic"` since they read auth
 - **Skills composition** — agents are built from static skill modules in `lib/skills/registry.ts`
 - **Auto-seed** — `/api/agents` seeds 10 prebuilt AI employees on first fetch
 - **Apify integration** — `/api/leads/scrape` starts actor, `/api/leads/import` imports dataset into `leads` table
 - **Shared database** — Lead Engine and FlowForges both point to the same Supabase project
+- **Public assets** — logo-icon.png (navbar), Dark_Header_Logo.png (footer), Logo.png (OG images), favicons + webmanifest
