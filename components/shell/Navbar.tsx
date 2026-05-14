@@ -56,9 +56,11 @@ export function Navbar() {
 
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 flex-shrink-0 group">
-            <div className="w-7 h-7 rounded-lg bg-[#00d4ff]/10 border border-[#00d4ff]/25 flex items-center justify-center transition-all duration-200 group-hover:bg-[#00d4ff]/15 group-hover:border-[#00d4ff]/40">
-              <div className="w-2 h-2 rounded-sm bg-[#00d4ff]" />
-            </div>
+            <img
+              src="/logo-icon.png"
+              alt="Flow-Forges"
+              className="w-7 h-7 rounded-lg"
+            />
             <span className="text-[15px] font-semibold tracking-tight">
               <span className="text-[#00d4ff]">Flow</span>
               <span className="text-white">Forges</span>

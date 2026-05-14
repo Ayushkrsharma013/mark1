@@ -7,9 +7,12 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-6 py-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           <div className="col-span-2 md:col-span-1">
-            <Link href="/" className="text-xl font-bold tracking-tight">
-              <span className="text-[#00d4ff]">Flow</span>
-              <span className="text-white">Forges</span>
+            <Link href="/" className="flex items-center gap-2.5 group">
+              <img
+                src="/Dark_Header_Logo.png"
+                alt="Flow-Forges"
+                className="h-8 w-auto"
+              />
             </Link>
             <p className="mt-3 text-sm text-[#71717a] leading-relaxed">
               AI-powered automation agency. We build products that transform how businesses operate.

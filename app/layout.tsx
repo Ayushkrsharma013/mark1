@@ -21,18 +21,28 @@ export const metadata: Metadata = {
   description:
     "We build AI-powered products that transform how businesses operate. From lead generation to workflow automation, we ship intelligence.",
   metadataBase: new URL("https://flowforges.com"),
+  icons: {
+    icon: [
+      { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+      { url: "/favicon.ico", sizes: "48x48" },
+    ],
+    apple: { url: "/apple-touch-icon.png", type: "image/png" },
+  },
+  manifest: "/site.webmanifest",
   openGraph: {
     title: "FlowForges — AI Automation Agency",
     description:
       "We build AI-powered products that transform how businesses operate.",
     siteName: "FlowForges",
     type: "website",
+    images: [{ url: "/Logo.png", width: 512, height: 512 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "FlowForges — AI Automation Agency",
     description:
       "We build AI-powered products that transform how businesses operate.",
+    images: ["/Logo.png"],
   },
   robots: {
     index: true,
