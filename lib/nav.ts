@@ -1,8 +1,8 @@
 export const navLinks = [
-  { href: "/products", label: "Products" },
-  { href: "/services", label: "Services" },
-  { href: "/case-studies", label: "Case Studies" },
-  { href: "/blog", label: "Blog" },
+  { href: "/products", name: "Products" },
+  { href: "/services", name: "Services" },
+  { href: "/case-studies", name: "Case Studies" },
+  { href: "/blog", name: "Blog" },
 ] as const;
 
 export const footerLinks = {
@@ -17,8 +17,12 @@ export const footerLinks = {
     { href: "/contact", label: "Contact" },
   ],
   legal: [
+    { href: "/legal", label: "Legal Center" },
     { href: "/legal/privacy", label: "Privacy Policy" },
     { href: "/legal/terms", label: "Terms of Service" },
     { href: "/legal/refund", label: "Refund Policy" },
+    { href: "/legal/shipping", label: "Shipping Policy" },
+    { href: "/legal/cancellation", label: "Cancellation Policy" },
+    { href: "/legal/payment-disclosure", label: "Payment Disclosure" },
   ],
 } as const;
