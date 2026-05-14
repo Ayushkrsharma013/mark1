@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Send, Sparkles } from "lucide-react";
 
@@ -17,7 +18,11 @@ const SUGGESTIONS = [
 ];
 
 export function ChatWidget() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
+
+  // Don't render on /contact — the page itself is the conversational agent
+  if (pathname === "/contact") return null;
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
