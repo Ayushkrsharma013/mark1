@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
-import { Sidebar } from "@/components/dashboard/Sidebar";
+import { Sidebar } from "./Sidebar";
+import { Topbar } from "./Topbar";
 
 interface User {
   id: string;
@@ -12,10 +14,11 @@ interface User {
   avatar_url?: string;
 }
 
-export function DashboardShell({ children }: { children: React.ReactNode }) {
+export function CommandCenterShell({ children }: { children: React.ReactNode }) {
+  const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     const supabase = createClient();
@@ -24,7 +27,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
       .getSession()
       .then(({ data: { session } }) => {
         if (!session?.user) {
-          setError("No session. Please log in.");
+          router.push("/login");
           setLoading(false);
           return;
         }
@@ -35,9 +38,6 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
           .single()
           .then(({ data: profile, error: profileError }) => {
             if (profileError || !profile) {
-              setError(
-                "Profile not found: " + (profileError?.message || "no data")
-              );
               setLoading(false);
               return;
             }
@@ -51,62 +51,51 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
             setLoading(false);
           });
       })
-      .catch((e) => {
-        setError("Error: " + (e?.message || "unknown"));
+      .catch(() => {
         setLoading(false);
       });
-  }, []);
+  }, [router]);
 
   if (loading) {
     return (
-      <div
-        style={{
-          height: "100vh",
-          background: "#060608",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <p style={{ color: "#00d4ff", fontSize: "16px" }}>Loading dashboard...</p>
+      <div className="h-screen bg-[#080C14] flex items-center justify-center">
+        <div className="flex flex-col items-center gap-3">
+          <div className="h-8 w-8 rounded-lg bg-[#6366F1] animate-pulse" />
+          <p className="text-sm text-[#475569]">Loading Command Center...</p>
+        </div>
       </div>
     );
   }
 
-  if (error) {
-    return (
-      <div
-        style={{
-          height: "100vh",
-          background: "#060608",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          flexDirection: "column",
-          gap: "16px",
-        }}
-      >
-        <p style={{ color: "red", fontSize: "14px" }}>{error}</p>
-        <a href="/login" style={{ color: "#00d4ff" }}>
-          Go to Login
-        </a>
-      </div>
-    );
+  if (!user) {
+    return null;
   }
-
-  if (!user) return null;
 
   return (
-    <div className="flex h-screen bg-[#060608]">
+    <div className="flex h-screen bg-[#080C14]">
       <Sidebar
+        mobileOpen={mobileOpen}
+        onMobileOpenChange={setMobileOpen}
         user={{
-          full_name: user.full_name,
+          name: user.full_name,
           email: user.email,
           role: user.role,
-          avatar_url: user.avatar_url,
+          avatar: user.avatar_url,
         }}
       />
-      <main className="flex-1 overflow-y-auto">{children}</main>
+      <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
+        <Topbar
+          user={{
+            name: user.full_name,
+            avatar: user.avatar_url,
+          }}
+          onNewAgent={() => router.push("/dashboard/agent-builder")}
+          onMenuToggle={() => setMobileOpen(true)}
+        />
+        <main className="flex-1 overflow-y-auto">
+          {children}
+        </main>
+      </div>
     </div>
   );
 }

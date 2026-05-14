@@ -1,16 +1,24 @@
 # mark1 — FlowForges Agency Website
 
-Next.js 16 App Router site for FlowForges, an AI automation agency. Public-facing pages + authenticated dashboard.
+Next.js 16 App Router site for FlowForges, an AI automation agency. Public-facing pages + authenticated dashboard with AI Employee Workforce and integrated lead pipeline.
+
+Repo: `github.com/Ayushkrsharma013/mark1`  
+Live: deployed via Vercel
+
+---
 
 ## Stack
 
 - **Framework**: Next.js 16.2 (Turbopack, App Router)
 - **UI**: React 19, Tailwind CSS 4, Framer Motion, Lucide Icons
 - **Auth**: Supabase Auth with SSR cookies (`@supabase/ssr`)
-- **Database**: Supabase Postgres (project: `mark1-flowforges`)
-- **AI**: Gemini 2.5 Flash (`/api/chat`)
+- **Database**: Supabase Postgres (project: `mark1-flowforges` — shared with Lead Engine)
+- **AI**: Gemini 2.5 Flash (`/api/chat`, `/api/agent-chat`, `/api/agent-builder`)
 - **Email**: Resend (`/api/contact`)
+- **Lead Scraping**: Apify actor `x_guru~Leads-Scraper-apollo-zoominfo`
 - **Package manager**: pnpm
+
+---
 
 ## Directory Structure
 
@@ -19,29 +27,86 @@ app/                        # Next.js App Router
 ├── layout.tsx              # Root layout (fonts, metadata)
 ├── page.tsx                # Homepage
 ├── login/page.tsx          # Auth login
-├── dashboard/              # Protected dashboard (layout + pages)
-├── api/chat/route.ts       # Gemini-powered chat widget API
-├── api/contact/route.ts    # Contact form → Resend email
+├── dashboard/              # Protected dashboard
+│   ├── agents/page.tsx         # AI Employee grid
+│   ├── agents/[id]/page.tsx    # Agent chat
+│   ├── agent-builder/page.tsx  # Chat-based agent creation wizard
+│   ├── pipeline/page.tsx       # Lead pipeline Kanban
+│   ├── blog/page.tsx           # Blog management
+│   ├── analytics/page.tsx      # Dashboard analytics
+│   ├── activity/page.tsx       # Activity feed
+│   ├── settings/page.tsx       # User settings
+│   └── integrations/page.tsx   # Integrations
+├── api/
+│   ├── chat/route.ts           # Public chat widget API (Gemini)
+│   ├── contact/route.ts        # Contact form → Resend
+│   ├── agents/route.ts         # AI Employee CRUD + auto-seed
+│   ├── agents/[id]/route.ts    # Update/delete agent
+│   ├── agent-chat/route.ts     # Chat with agent + history
+│   ├── agent-builder/route.ts  # Wizard chat for creating agents
+│   ├── agent-tasks/[id]/run/route.ts  # Execute agent task
+│   ├── cron/run-agents/route.ts       # Vercel Cron — spawn tasks
+│   ├── leads/route.ts          # Lead CRUD (search, filter, patch, delete)
+│   ├── leads/scrape/route.ts   # Apify actor proxy (start + poll)
+│   ├── leads/import/route.ts   # Import from Apify run into DB
+│   ├── skills/route.ts         # List available skills
+│   ├── metrics/route.ts        # Real metrics from DB
+│   ├── pipeline/route.ts       # Real pipeline data from DB
+│   └── activity/route.ts       # Real activity from DB
 ├── blog/[slug]/page.tsx    # Blog post (SSG from DB)
 ├── products/, services/, case-studies/, contact/
 └── legal/privacy/, terms/, refund/
 
 components/
 ├── shell/                  # Navbar, MobileNav, Footer
-├── ui/                     # Button, Card, SectionHeading, GlowOrb, AsciiBackground
-├── home/                   # HeroSection, ServicesGrid, ProductsPreview, Testimonials, CTASection
+├── ui/                     # Button, Card, SectionHeading, GlowOrb
+├── home/                   # HeroSection, ServicesGrid, etc.
 ├── blog/                   # BlogCard
 ├── chat/                   # ChatWidget (floating AI assistant)
 ├── auth/                   # LoginForm
-└── dashboard/              # Sidebar, StatCard
+├── agents/                 # AgentChat, AgentBuilderChat, AgentCard
+├── command-center/         # Sidebar, Topbar, StatCard, panels
+└── pipeline/               # KanbanBoard, KanbanColumn, LeadCard, PipelineClient
 
 lib/
-├── auth.ts                 # Session helpers, role checks, type guards
-├── supabase/               # server.ts (SSR), client.ts (browser), admin.ts (service_role)
+├── auth.ts                 # Session helpers, role checks
+├── supabase/
+│   ├── server.ts           # SSR client (RLS-aware)
+│   ├── client.ts           # Browser client
+│   └── admin.ts            # Service role client (RLS bypass)
+├── skills/
+│   ├── types.ts            # Skill, SkillCategory types
+│   ├── registry.ts         # 12 skill definitions with system prompts
+│   └── composer.ts         # Compose agent system prompt from skills
+├── leads/
+│   ├── types.ts            # Lead, LeadStatus, LeadSource types
+│   └── storage.ts          # sanitizeLead, apifyItemToLead, stableLeadId, generateCSV
+├── api/
+│   ├── agents.ts           # Agent API wrappers
+│   ├── ai-employees.ts     # AI Employee fetch/create/update/delete
+│   ├── leads.ts            # Lead API wrappers (fetch, update, delete, scrape, import)
+│   ├── metrics.ts          # Metrics fetch with cache
+│   ├── pipeline.ts         # Pipeline fetch with cache
+│   └── activity.ts         # Activity fetch with cache
+├── types/
+│   ├── agent.ts            # Agent, AIEmployee, AgentTask, AgentConversation types
+│   ├── metric.ts           # LiveMetrics, PipelineDay types
+│   └── activity.ts         # ActivityItem type
 ├── blog-data.ts            # Blog Post type + static fallback data
 ├── nav.ts                  # Navigation config
 └── utils.ts                # cn() helper (clsx + tailwind-merge)
+
+hooks/
+├── useAIEmployees.ts       # Fetch + mutate AI employees
+├── useAgentChat.ts         # Agent chat state + send messages
+├── useAgentBuilderChat.ts  # Wizard chat state
+├── useLeads.ts             # Lead CRUD + scrape + import hooks
+├── useLiveMetrics.ts       # Dashboard metrics polling
+├── usePipelineData.ts      # Pipeline chart data
+└── useActivityFeed.ts      # Activity feed polling
 ```
+
+---
 
 ## Auth Model
 
@@ -52,23 +117,51 @@ lib/
 - Middleware (`middleware.ts`) protects dashboard routes, redirects `/login` if already authed
 - All RLS policies are role-aware (super admins see all, users see own)
 
+---
+
 ## Database (Supabase)
 
-Project: `mark1-flowforges` (`otxifqcvgmxoxemmgbjd`), region ap-south-1
+**Project**: `mark1-flowforges` (`otxifqcvgmxoxemmgbjd`), region ap-south-1  
+**Shared with**: Lead Engine (Prospecting OS)
 
-Tables: `profiles`, `contact_messages`, `blog_posts`, `activity_log`, `api_keys`, `notification_preferences`
+### Core Tables
+| Table | Purpose |
+|---|---|
+| `profiles` | Auth user profiles (id, email, full_name, role) |
+| `agents` | AI Employees (name, role, skills, system_prompt, status, auto_run) |
+| `agent_conversations` | Chat history per agent (role, content) |
+| `agent_tasks` | Scheduled/manual/chat tasks (status, result, trigger) |
+| `leads` | Scraped/enriched leads (shared with Lead Engine) |
+| `messages` | AI-generated outreach messages per lead |
+| `sequences` | Outreach sequences (steps JSONB) |
+| `campaigns` | Campaigns (lead_ids JSONB, status) |
+| `clients` | Client manager entries |
+| `activity_log` | Generic activity feed |
+| `lead_activity_log` | Lead-specific activity |
+| `email_captures` | Landing page email collection |
+| `appointments` | Book-a-demo scheduling |
+| `blog_posts` | CMS blog posts |
+| `contact_messages` | Contact form submissions |
+| `api_keys` | API key management |
+| `notification_preferences` | User notification settings |
 
-All tables have RLS enabled. See Supabase dashboard for full schema.
+### RLS
+All tables have RLS enabled. Leads use `user_id = auth.uid()` policies. Agent tables use `user_id` scoped access.
+
+---
 
 ## Environment Variables
 
 ```
 NEXT_PUBLIC_SUPABASE_URL       # Supabase project URL
 NEXT_PUBLIC_SUPABASE_ANON_KEY  # Supabase anon key (safe for client)
-SUPABASE_SERVICE_ROLE_KEY      # Supabase service_role key (server-only)
-GEMINI_API_KEY                 # Google Gemini API key for /api/chat
+SUPABASE_SERVICE_ROLE_KEY      # Supabase service_role key (server-only) — REQUIRED for cron + task runner
+GEMINI_API_KEY                 # Google Gemini API key
+APIFY_API_KEY                  # Apify API key for lead scraping
 RESEND_API_KEY                 # Resend API key for /api/contact (optional)
 ```
+
+---
 
 ## Running Locally
 
@@ -78,11 +171,14 @@ pnpm build      # Production build
 pnpm start      # Start production server
 ```
 
+---
+
 ## Key Patterns
 
 - **No ORM** — direct Supabase client calls; migrations via MCP `apply_migration`
 - **Dark UI** — dark background (#060608), cyan accent (#00d4ff), glass-morphism borders
-- **Chat fallback** — `/api/chat` works without API key (keyword-matching fallback)
-- **Contact resilience** — `/api/contact` logs to console if Resend is not configured
 - **Force dynamic** — all dashboard pages use `export const dynamic = "force-dynamic"` since they read auth
-- **Blog SSG** — blog posts are statically generated from DB content
+- **Skills composition** — agents are built from static skill modules in `lib/skills/registry.ts`
+- **Auto-seed** — `/api/agents` seeds 10 prebuilt AI employees on first fetch
+- **Apify integration** — `/api/leads/scrape` starts actor, `/api/leads/import` imports dataset into `leads` table
+- **Shared database** — Lead Engine and FlowForges both point to the same Supabase project

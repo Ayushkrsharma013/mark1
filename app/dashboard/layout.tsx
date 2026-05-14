@@ -1,4 +1,4 @@
-import { DashboardShell } from "@/components/dashboard/DashboardShell";
+import { CommandCenterShell } from "@/components/command-center/CommandCenterShell";
 
 export const dynamic = "force-dynamic";
 
@@ -7,5 +7,5 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <DashboardShell>{children}</DashboardShell>;
+  return <CommandCenterShell>{children}</CommandCenterShell>;
 }
