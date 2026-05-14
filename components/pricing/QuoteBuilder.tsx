@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
@@ -11,7 +11,7 @@ import {
   Code2,
   BarChart3,
   Shield,
-  Globe,
+  GlobeIcon,
   Users,
   Clock,
   Mail,
@@ -20,53 +20,69 @@ import {
   Sparkles,
   Loader2,
 } from "lucide-react";
+import { type CurrencyCode, CURRENCIES, convertINR, formatCurrency } from "@/lib/currency";
 
 const STEPS = ["Services", "Scale", "Timeline", "Estimate"];
 
-const SERVICES = [
-  {
-    id: "ai-agent",
-    icon: Bot,
-    label: "AI Agent / Chatbot",
-    desc: "Custom conversational AI for support, sales, or scheduling",
-    price: "From ₹50,000",
-  },
-  {
-    id: "workflow-automation",
-    icon: Workflow,
-    label: "Workflow Automation",
-    desc: "End-to-end process automation across your stack",
-    price: "From ₹80,000",
-  },
-  {
-    id: "custom-ai",
-    icon: Code2,
-    label: "Custom AI Development",
-    desc: "Bespoke ML models, custom pipelines, deployment",
-    price: "From ₹1,50,000",
-  },
-  {
-    id: "analytics",
-    icon: BarChart3,
-    label: "AI Analytics",
-    desc: "Predictive dashboards, churn forecasting, revenue modeling",
-    price: "From ₹60,000",
-  },
-  {
-    id: "strategy",
-    icon: Shield,
-    label: "AI Strategy & Consulting",
-    desc: "Operations audit, opportunity sizing, phased roadmap",
-    price: "From ₹3,000",
-  },
-  {
-    id: "productized-service",
-    icon: Globe,
-    label: "Productized Service",
-    desc: "Prospecting OS — subscription-based lead generation",
-    price: "Subscription",
-  },
-];
+const SERVICE_BASE_INR: Record<string, number> = {
+  "ai-agent": 50000,
+  "workflow-automation": 80000,
+  "custom-ai": 150000,
+  analytics: 60000,
+  strategy: 3000,
+  "productized-service": 0, // Special case — subscription
+};
+
+function getServices(currency: CurrencyCode) {
+  const fmt = currency === "INR"
+    ? (n: number) => `From ₹${n.toLocaleString("en-IN")}`
+    : (n: number) => `From ${formatCurrency(convertINR(n, currency), currency)}`;
+
+  return [
+    {
+      id: "ai-agent",
+      icon: Bot,
+      label: "AI Agent / Chatbot",
+      desc: "Custom conversational AI for support, sales, or scheduling",
+      price: fmt(50000),
+    },
+    {
+      id: "workflow-automation",
+      icon: Workflow,
+      label: "Workflow Automation",
+      desc: "End-to-end process automation across your stack",
+      price: fmt(80000),
+    },
+    {
+      id: "custom-ai",
+      icon: Code2,
+      label: "Custom AI Development",
+      desc: "Bespoke ML models, custom pipelines, deployment",
+      price: fmt(150000),
+    },
+    {
+      id: "analytics",
+      icon: BarChart3,
+      label: "AI Analytics",
+      desc: "Predictive dashboards, churn forecasting, revenue modeling",
+      price: fmt(60000),
+    },
+    {
+      id: "strategy",
+      icon: Shield,
+      label: "AI Strategy & Consulting",
+      desc: "Operations audit, opportunity sizing, phased roadmap",
+      price: fmt(3000),
+    },
+    {
+      id: "productized-service",
+      icon: GlobeIcon,
+      label: "Productized Service",
+      desc: "Prospecting OS — subscription-based lead generation",
+      price: "Subscription",
+    },
+  ];
+}
 
 const TEAM_SIZES = [
   { id: "1-10", label: "1–10", desc: "Solo / micro team" },
@@ -91,7 +107,7 @@ interface QuoteData {
   company: string;
 }
 
-export function QuoteBuilder() {
+export function QuoteBuilder({ currency }: { currency: CurrencyCode }) {
   const [step, setStep] = useState(0);
   const [data, setData] = useState<QuoteData>({
     services: [],
@@ -108,6 +124,8 @@ export function QuoteBuilder() {
   } | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
+
+  const SERVICES = useMemo(() => getServices(currency), [currency]);
 
   function toggleService(id: string) {
     setData((prev) => ({
@@ -150,8 +168,8 @@ export function QuoteBuilder() {
     }
   }
 
-  function formatINR(n: number) {
-    return `₹${n.toLocaleString("en-IN")}`;
+  function formatRange(min: number, max: number) {
+    return `${formatCurrency(min, currency)} – ${formatCurrency(max, currency)}`;
   }
 
   return (
@@ -196,11 +214,11 @@ export function QuoteBuilder() {
               </h3>
               <div className="inline-flex items-baseline gap-2 mt-3">
                 <span className="text-4xl font-bold text-white">
-                  {estimate ? formatINR(estimate.min) : "..."}
+                  {estimate ? formatCurrency(estimate.min, currency) : "..."}
                 </span>
                 <span className="text-[#52525b]">–</span>
                 <span className="text-4xl font-bold text-white">
-                  {estimate ? formatINR(estimate.max) : "..."}
+                  {estimate ? formatCurrency(estimate.max, currency) : "..."}
                 </span>
               </div>
               <p className="mt-3 text-sm text-[#a1a1aa]">

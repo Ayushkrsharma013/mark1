@@ -1,5 +1,11 @@
 import { NextResponse } from "next/server";
 import { getAdminClient } from "@/lib/supabase/admin";
+import {
+  getCurrencyConfig,
+  getCurrencyFromCountry,
+  convertPriceString,
+  type CurrencyCode,
+} from "@/lib/currency";
 
 const FALLBACK_TIERS = [
   {
@@ -75,14 +81,35 @@ async function fetchTiers() {
   }
 }
 
-export async function GET() {
+export async function GET(req: Request) {
+  // Detect country from Vercel geo header
+  const country = req.headers.get("x-vercel-ip-country");
+  const currency = getCurrencyFromCountry(country);
   const tiers = await fetchTiers();
 
-  if (tiers) {
-    return NextResponse.json({ tiers });
+  function convertTier(tier: any) {
+    return {
+      ...tier,
+      price: convertPriceString(tier.price, currency),
+      features:
+        typeof tier.features === "string"
+          ? JSON.parse(tier.features)
+          : tier.features,
+    };
   }
 
-  return NextResponse.json({ tiers: FALLBACK_TIERS, fallback: true });
+  if (tiers) {
+    return NextResponse.json({
+      tiers: tiers.map(convertTier),
+      currency,
+    });
+  }
+
+  return NextResponse.json({
+    tiers: FALLBACK_TIERS.map(convertTier),
+    currency,
+    fallback: true,
+  });
 }
 
 export async function POST(req: Request) {

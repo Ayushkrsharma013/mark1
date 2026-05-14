@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { AsciiBackground } from "@/components/ui/AsciiBackground";
 import { QuoteBuilder } from "@/components/pricing/QuoteBuilder";
+import type { CurrencyCode } from "@/lib/currency";
 import {
   ArrowRight,
   Check,
@@ -14,6 +14,7 @@ import {
   Truck,
   Ban,
   CreditCard,
+  Globe,
 } from "lucide-react";
 
 interface Tier {
@@ -152,17 +153,27 @@ const faqs = [
 
 export function PricingContent() {
   const [tiers, setTiers] = useState<Tier[]>(FALLBACK_TIERS);
+  const [currency, setCurrency] = useState<CurrencyCode>("USD");
 
   useEffect(() => {
     fetch("/api/pricing/tiers")
       .then((res) => res.json())
       .then((data) => {
+        if (data.currency) {
+          setCurrency(data.currency);
+        }
         if (data.tiers && !data.fallback) {
-          setTiers(data.tiers);
+          const normalized = data.tiers.map((t: any) => ({
+            ...t,
+            features: typeof t.features === "string"
+              ? JSON.parse(t.features)
+              : t.features,
+          }));
+          setTiers(normalized);
         }
       })
       .catch(() => {
-        // Use fallback tiers already set
+        // Use fallback tiers already set (default USD)
       });
   }, []);
 
@@ -180,6 +191,12 @@ export function PricingContent() {
             Custom AI automation — scoped to your business, priced for your
             scale. No templates. No hidden fees.
           </p>
+          {currency !== "INR" && (
+            <div className="inline-flex items-center gap-1.5 mt-3 rounded-full border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.03)] px-3 py-1 text-xs text-[#a1a1aa]">
+              <Globe className="w-3 h-3" />
+              Showing prices in {currency} for your region
+            </div>
+          )}
         </div>
       </div>
 
@@ -246,7 +263,7 @@ export function PricingContent() {
               personalized estimate in under 60 seconds.
             </p>
           </div>
-          <QuoteBuilder />
+          <QuoteBuilder currency={currency} />
         </div>
 
         {/* Legal trust strip */}

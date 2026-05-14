@@ -1,6 +1,12 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { getAdminClient } from "@/lib/supabase/admin";
+import {
+  getCurrencyConfig,
+  convertINR,
+  formatCurrency,
+  type CurrencyCode,
+} from "@/lib/currency";
 
 const resend = process.env.RESEND_API_KEY
   ? new Resend(process.env.RESEND_API_KEY)
@@ -34,6 +40,11 @@ export async function POST(req: Request) {
     const { services, teamSize, timeline, email, name, company } =
       await req.json();
 
+    // Detect currency from country header
+    const country = req.headers.get("x-vercel-ip-country");
+    const config = getCurrencyConfig(country);
+    const currency = config.code;
+
     if (!services?.length || !teamSize || !timeline || !email) {
       return NextResponse.json(
         { error: "services, teamSize, timeline, and email are required" },
@@ -41,15 +52,19 @@ export async function POST(req: Request) {
       );
     }
 
-    // Calculate estimate
+    // Calculate estimate in INR, then convert
     let baseTotal = 0;
     for (const svc of services) {
       baseTotal += SERVICE_PRICES[svc] || 0;
     }
     const teamMult = TEAM_MULTIPLIER[teamSize] || 1;
     const timeMult = TIMELINE_MULTIPLIER[timeline] || 1;
-    const estimateMin = Math.round(baseTotal * teamMult * timeMult * 0.8);
-    const estimateMax = Math.round(baseTotal * teamMult * timeMult * 1.2);
+    const inrMin = Math.round(baseTotal * teamMult * timeMult * 0.8);
+    const inrMax = Math.round(baseTotal * teamMult * timeMult * 1.2);
+
+    // Convert to detected currency
+    const estimateMin = convertINR(inrMin, currency);
+    const estimateMax = convertINR(inrMax, currency);
 
     const selectedServices = services
       .map((s: string) => {
@@ -78,7 +93,9 @@ export async function POST(req: Request) {
       flexible: "Flexible",
     };
 
-    // Store in Supabase
+    const priceFormatted = `${formatCurrency(estimateMin, currency)} – ${formatCurrency(estimateMax, currency)}`;
+
+    // Store in Supabase (keep INR for consistency)
     try {
       const supabase = getAdminClient();
       await (supabase as any).from("quote_requests").insert({
@@ -88,6 +105,8 @@ export async function POST(req: Request) {
         services,
         team_size: teamSize,
         timeline,
+        country: country || null,
+        currency,
         estimate_min: estimateMin,
         estimate_max: estimateMax,
       });
@@ -101,7 +120,7 @@ export async function POST(req: Request) {
         await resend.emails.send({
           from: "FlowForges <hello@flowforges.com>",
           to: "hello@flowforges.com",
-          subject: `New quote request — ${selectedServices}`,
+          subject: `New quote request — ${selectedServices} (${currency})`,
           replyTo: email,
           html: `
             <div style="font-family: sans-serif; max-width: 500px; margin: 0 auto;">
@@ -109,12 +128,14 @@ export async function POST(req: Request) {
               <p><strong>Name:</strong> ${name || "Not provided"}</p>
               <p><strong>Email:</strong> ${email}</p>
               ${company ? `<p><strong>Company:</strong> ${company}</p>` : ""}
+              <p><strong>Country:</strong> ${country || "Unknown"}</p>
+              <p><strong>Currency:</strong> ${currency}</p>
               <p><strong>Services:</strong> ${selectedServices}</p>
               <p><strong>Team Size:</strong> ${teamLabels[teamSize] || teamSize}</p>
               <p><strong>Timeline:</strong> ${timelineLabels[timeline] || timeline}</p>
-              <p><strong>Estimate Range:</strong> ₹${estimateMin.toLocaleString("en-IN")} – ₹${estimateMax.toLocaleString("en-IN")}</p>
+              <p><strong>Estimate Range:</strong> ${priceFormatted}</p>
               <hr style="margin: 20px 0; border: none; border-top: 1px solid #e2e2e0;" />
-              <p style="color: #6b6b80; font-size: 12px;">This is an automated estimate. Actual pricing depends on project scope and requirements.</p>
+              <p style="color: #6b6b80; font-size: 12px;">This is an automated estimate in ${currency}. Actual pricing depends on project scope and requirements.</p>
             </div>
           `,
         });
@@ -126,6 +147,7 @@ export async function POST(req: Request) {
     return NextResponse.json({
       success: true,
       estimate: { min: estimateMin, max: estimateMax },
+      currency,
     });
   } catch (error) {
     console.error("Quote request error:", error);
