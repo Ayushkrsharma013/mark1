@@ -1,6 +1,7 @@
 export const navLinks = [
   { href: "/products", name: "Products" },
   { href: "/services", name: "Services" },
+  { href: "/pricing", name: "Pricing" },
   { href: "/case-studies", name: "Case Studies" },
   { href: "/blog", name: "Blog" },
 ] as const;
@@ -8,6 +9,7 @@ export const navLinks = [
 export const footerLinks = {
   products: [
     { href: "/products", label: "Prospecting OS" },
+    { href: "/pricing", label: "Pricing" },
     { href: "/products", label: "Coming Soon" },
   ],
   company: [
