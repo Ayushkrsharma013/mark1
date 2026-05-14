@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { AsciiBackground } from "@/components/ui/AsciiBackground";
 
 const testimonials = [
   {
@@ -27,8 +28,9 @@ const testimonials = [
 
 export function Testimonials() {
   return (
-    <section className="py-24 px-6 border-t border-[rgba(255,255,255,0.04)]">
-      <div className="mx-auto max-w-7xl">
+    <section className="relative py-24 px-6 border-t border-[rgba(255,255,255,0.04)] overflow-hidden">
+      <AsciiBackground mode="testimonials" className="absolute inset-0 w-full h-full opacity-50" />
+      <div className="relative z-10 mx-auto max-w-7xl">
         <SectionHeading
           label="Testimonials"
           title="Trusted by founders and operators"

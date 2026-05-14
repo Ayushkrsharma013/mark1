@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Bot, Workflow, BarChart3, Code2, Globe, Shield } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { AsciiBackground } from "@/components/ui/AsciiBackground";
 
 const services = [
   {
@@ -45,8 +46,9 @@ const services = [
 
 export function ServicesGrid() {
   return (
-    <section className="py-24 px-6">
-      <div className="mx-auto max-w-7xl">
+    <section className="relative py-24 px-6 overflow-hidden">
+      <AsciiBackground mode="services" className="absolute inset-0 w-full h-full opacity-50" />
+      <div className="relative z-10 mx-auto max-w-7xl">
         <SectionHeading
           label="What We Do"
           title="Full-stack AI automation, end to end"

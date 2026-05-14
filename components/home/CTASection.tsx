@@ -4,10 +4,12 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { GlowOrb } from "@/components/ui/GlowOrb";
+import { AsciiBackground } from "@/components/ui/AsciiBackground";
 
 export function CTASection() {
   return (
     <section className="relative py-24 px-6 overflow-hidden border-t border-[rgba(255,255,255,0.04)]">
+      <AsciiBackground mode="home" className="absolute inset-0 w-full h-full opacity-50" />
       <GlowOrb color="purple" size="md" className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-40" />
 
       <div className="relative z-10 mx-auto max-w-2xl text-center">

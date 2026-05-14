@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, Users, Target, Brain, Zap } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { GlowOrb } from "@/components/ui/GlowOrb";
+import { AsciiBackground } from "@/components/ui/AsciiBackground";
 import { Button } from "@/components/ui/Button";
 
 const metrics = [
@@ -16,6 +17,7 @@ const metrics = [
 export function ProductsPreview() {
   return (
     <section className="relative py-24 px-6 overflow-hidden">
+      <AsciiBackground mode="products" className="absolute inset-0 w-full h-full opacity-50" />
       <GlowOrb color="green" size="md" className="top-1/2 right-0 opacity-30" />
 
       <div className="relative z-10 mx-auto max-w-7xl">

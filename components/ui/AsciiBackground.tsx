@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-type Mode = "home" | "products" | "services" | "case-studies" | "blog" | "contact" | "legal";
+type Mode = "home" | "products" | "services" | "case-studies" | "blog" | "contact" | "legal" | "testimonials";
 
 interface CharStream {
   x: number;
@@ -71,6 +71,14 @@ const modeConfig: Record<Mode, { chars: string; color: string; glowColor: string
     density: 70,
     baseSpeed: 0.1,
     fontSize: 13,
+  },
+  testimonials: {
+    chars: "\"'“”‘’★☆❤♥♦♣♠•·…⁂⋆✶✷✵",
+    color: "rgba(255, 179, 71, OPACITY)",
+    glowColor: "rgba(255, 179, 71, 0.04)",
+    density: 60,
+    baseSpeed: 0.12,
+    fontSize: 14,
   },
 };
 
