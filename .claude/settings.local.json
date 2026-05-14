@@ -27,7 +27,9 @@
       "mcp__plugin_playwright_playwright__browser_click",
       "Bash(pnpm dev *)",
       "mcp__supabase__get_project",
-      "mcp__supabase__list_migrations"
+      "mcp__supabase__list_migrations",
+      "WebFetch(domain:mark1-eta.vercel.app)",
+      "WebFetch(domain:lead-engine-henna.vercel.app)"
     ]
   },
   "enableAllProjectMcpServers": true,

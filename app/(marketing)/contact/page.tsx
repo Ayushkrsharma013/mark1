@@ -218,7 +218,7 @@ export default function ContactPage() {
                     Ready to talk to our team directly?
                   </p>
                   <Link
-                    href="/home/book-demo"
+                    href="/book"
                     className="flex-shrink-0 inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#00d4ff] text-[#04040a] text-sm font-semibold hover:bg-[#00d4ff]/90 transition-all hover:shadow-[0_0_20px_rgba(0,212,255,0.2)]"
                   >
                     Book a Demo

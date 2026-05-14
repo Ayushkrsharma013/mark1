@@ -44,7 +44,7 @@ const FALLBACK_TIERS: Tier[] = [
     ],
     highlighted: false,
     cta: "Book a Call",
-    href: "/home/book-demo",
+    href: "/book",
   },
   {
     name: "Growth",
@@ -62,7 +62,7 @@ const FALLBACK_TIERS: Tier[] = [
     ],
     highlighted: true,
     cta: "Book a Demo",
-    href: "/home/book-demo",
+    href: "/book",
   },
   {
     name: "Enterprise",
@@ -328,7 +328,7 @@ export function PricingContent() {
         <div className="mt-16 text-center">
           <p className="text-[#a1a1aa] text-sm">Ready to scope your project?</p>
           <Link
-            href="/home/book-demo"
+            href="/book"
             className="inline-flex items-center gap-2 mt-3 px-6 py-3 rounded-full bg-[#00d4ff] text-[#04040a] font-semibold text-sm hover:bg-[#00d4ff]/90 hover:shadow-[0_0_24px_rgba(0,212,255,0.25)] transition-all duration-200"
           >
             Book a Demo

@@ -23,7 +23,7 @@ const FALLBACK_TIERS = [
     ],
     highlighted: false,
     cta: "Book a Call",
-    href: "/home/book-demo",
+    href: "/book",
   },
   {
     name: "Growth",
@@ -41,7 +41,7 @@ const FALLBACK_TIERS = [
     ],
     highlighted: true,
     cta: "Book a Demo",
-    href: "/home/book-demo",
+    href: "/book",
   },
   {
     name: "Enterprise",
@@ -127,7 +127,7 @@ export async function POST(req: Request) {
         features: body.features,
         highlighted: body.highlighted ?? false,
         cta: body.cta ?? "Book a Call",
-        href: body.href ?? "/home/book-demo",
+        href: body.href ?? "/book",
         sort_order: body.sort_order ?? 0,
         active: body.active ?? true,
       })
