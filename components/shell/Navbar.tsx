@@ -91,10 +91,10 @@ export function Navbar() {
               Sign in
             </Link>
             <Link
-              href="/contact"
-              className="text-sm font-semibold px-5 py-2 rounded-full bg-white text-[#06060a] hover:bg-white/90 transition-all duration-200 hover:shadow-[0_0_24px_rgba(255,255,255,0.12)]"
+              href="/book"
+              className="text-sm font-semibold px-5 py-2 rounded-full bg-[#00d4ff] text-[#04040a] hover:bg-[#00d4ff]/90 transition-all duration-200 hover:shadow-[0_0_24px_rgba(0,212,255,0.25)]"
             >
-              Get Started
+              Book a Demo
             </Link>
           </div>
 
@@ -184,11 +184,11 @@ export function Navbar() {
             )}
           >
             <Link
-              href="/contact"
+              href="/book"
               onClick={() => setOpen(false)}
-              className="w-full max-w-xs text-center py-3.5 rounded-2xl bg-white text-[#06060a] font-semibold text-[15px] hover:bg-white/90 transition-all"
+              className="w-full max-w-xs text-center py-3.5 rounded-2xl bg-[#00d4ff] text-[#04040a] font-semibold text-[15px] hover:bg-[#00d4ff]/90 transition-all"
             >
-              Get Started
+              Book a Demo
             </Link>
             <Link
               href="/login"
