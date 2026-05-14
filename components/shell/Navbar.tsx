@@ -13,7 +13,7 @@ export function Navbar() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 24);
+    const handler = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handler, { passive: true });
     return () => window.removeEventListener("scroll", handler);
   }, []);
@@ -27,32 +27,21 @@ export function Navbar() {
 
   return (
     <>
-      <header
-        className={cn(
-          "fixed top-0 left-0 right-0 z-50",
-          scrolled
-            ? "border-b border-white/[0.06] shadow-[0_1px_40px_rgba(0,0,0,0.4)]"
-            : "border-b border-transparent"
-        )}
-        style={{
-          backgroundColor: scrolled ? "rgba(4, 4, 6, 0.84)" : "rgba(4, 4, 6, 0)",
-          backdropFilter: scrolled ? "blur(24px) saturate(180%)" : "blur(0px)",
-          WebkitBackdropFilter: scrolled ? "blur(24px) saturate(180%)" : "blur(0px)",
-          transition:
-            "background-color 0.5s ease, backdrop-filter 0.5s ease, -webkit-backdrop-filter 0.5s ease, border-color 0.4s ease, box-shadow 0.5s ease",
-        }}
-      >
-        <div
-          className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#00d4ff]/15 to-transparent transition-opacity duration-500"
-          style={{ opacity: scrolled ? 1 : 0 }}
-        />
-
+      <header className="fixed top-0 left-0 right-0 z-50 w-full px-2">
+        {/* Floating pill container */}
         <div
           className={cn(
-            "mx-auto max-w-7xl px-6 flex items-center gap-8 transition-[height] duration-500 ease-out",
-            scrolled ? "h-14" : "h-20"
+            "mx-auto flex items-center gap-8 transition-all duration-500 ease-out",
+            scrolled
+              ? "mt-2 max-w-5xl h-14 rounded-2xl border border-white/[0.06] bg-[#04040a]/80 backdrop-blur-2xl shadow-[0_1px_40px_rgba(0,0,0,0.4)] px-6"
+              : "mt-0 max-w-7xl h-20 rounded-none border-transparent bg-transparent backdrop-blur-0 px-6"
           )}
         >
+          {/* Top edge glow line — only visible on scroll */}
+          <div
+            className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#00d4ff]/15 to-transparent transition-opacity duration-500"
+            style={{ opacity: scrolled ? 1 : 0 }}
+          />
 
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 flex-shrink-0 group">
