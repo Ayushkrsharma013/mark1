@@ -57,7 +57,7 @@ export function MobileNav({ open, onClose }: Props) {
                         : "text-[#a1a1aa] hover:text-white"
                     )}
                   >
-                    {link.label}
+                    {link.name}
                   </Link>
                 </motion.div>
               ))}
