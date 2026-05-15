@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import { Toaster } from "sonner";
+import StarField from "@/components/StarField";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -11,6 +12,26 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space-grotesk",
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+  weight: ["400", "500"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -58,17 +79,68 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} antialiased`}
     >
-      <body className="min-h-screen flex flex-col bg-[var(--bg-primary)] text-[var(--text-primary)]">
-        {children}
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "FlowForges",
+              url: "https://flow-forges.com",
+              logo: "https://flowforges.com/Logo.png",
+              description:
+                "FlowForges is an AI automation agency that builds productized AI agents and workflow automation systems for digital and creative agencies.",
+              foundingDate: "2024",
+              serviceType: [
+                "AI Automation",
+                "Workflow Automation",
+                "AI Agents",
+                "Lead Generation",
+              ],
+              areaServed: ["US", "GB", "AU"],
+              contactPoint: {
+                "@type": "ContactPoint",
+                contactType: "sales",
+                url: "https://flow-forges.com/book",
+              },
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "FlowForges",
+              url: "https://flow-forges.com",
+            }),
+          }}
+        />
+      </head>
+      <body className="min-h-screen flex flex-col bg-[var(--bg-void)] text-[var(--text-primary)]">
+        <StarField />
+        <div
+          style={{
+            position: "relative",
+            zIndex: 1,
+            display: "flex",
+            flexDirection: "column",
+            minHeight: "100vh",
+          }}
+        >
+          {children}
+        </div>
         <Toaster
           position="bottom-right"
           toastOptions={{
             style: {
-              background: '#161D30',
-              border: '1px solid rgba(255,255,255,0.06)',
-              color: '#F1F5F9',
+              background: "#161D30",
+              border: "1px solid rgba(255,255,255,0.06)",
+              color: "#F1F5F9",
             },
           }}
         />
