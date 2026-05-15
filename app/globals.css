@@ -1,11 +1,36 @@
 @import "tailwindcss";
 
 @theme inline {
+  /* ── New deep-space font aliases ── */
+  --font-display: var(--font-space-grotesk), system-ui, sans-serif;
+  --font-body: var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), 'Courier New', monospace;
+  /* ── Existing aliases (keep — used by dashboard) ── */
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-mono-geist: var(--font-geist-mono);
+
+  /* ── New deep-space Tailwind color tokens ── */
+  --color-bg-void: #00020A;
+  --color-bg-surface: #040810;
+  --color-bg-elevated: #080F1E;
+  --color-accent-cyan: #38BDF8;
+  --color-accent-electric: #7DF9FF;
+  --color-text-primary: #F0F9FF;
+  --color-text-secondary: #7EAABF;
+  --color-text-muted: #3A5A6E;
 }
 
 :root {
+  /* ── New deep-space CSS variables ── */
+  --bg-void: #00020A;
+  --bg-surface: #040810;
+  --bg-elevated: #080F1E;
+  --border-dim: rgba(99, 179, 237, 0.08);
+  --border-glow: rgba(99, 179, 237, 0.25);
+  --accent-cyan: #38BDF8;
+  --accent-electric: #7DF9FF;
+
+  /* ── Existing variables (keep — used by all pages) ── */
   --bg-primary: #060608;
   --bg-secondary: #0a0a0f;
   --bg-tertiary: #111118;
@@ -44,12 +69,49 @@
   --glass-bg: rgba(0, 0, 0, 0.02);
 }
 
-body {
-  background-color: var(--bg-primary);
+html, body {
+  background-color: var(--bg-void);
   color: var(--text-primary);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ── Scroll reveal ── */
+.reveal-item {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal-item.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal-item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+.reveal-delay-100 { transition-delay: 100ms; }
+.reveal-delay-200 { transition-delay: 200ms; }
+.reveal-delay-300 { transition-delay: 300ms; }
+.reveal-delay-400 { transition-delay: 400ms; }
+.reveal-delay-500 { transition-delay: 500ms; }
+
+/* ── Section divider scan line ── */
+.scan-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--border-glow) 50%, transparent 100%);
+  width: 100%;
+}
+
+/* ── Dot grid texture ── */
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(56, 189, 248, 0.08) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
 /* Scrollbar */
@@ -95,7 +157,6 @@ body {
   0%, 100% { border-color: rgba(0, 212, 255, 0.15); }
   50% { border-color: rgba(0, 212, 255, 0.40); }
 }
-
 .border-glow {
   animation: border-glow 3s ease-in-out infinite;
 }
@@ -111,7 +172,6 @@ body {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
-
 .animate-spin-slow {
   animation: spin-slow 3s linear infinite;
 }
