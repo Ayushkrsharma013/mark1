@@ -14,7 +14,7 @@ Live: deployed via Vercel
 - **Auth**: Supabase Auth with SSR cookies (`@supabase/ssr`)
 - **Database**: Supabase Postgres (project: `mark1-flowforges` — shared with Lead Engine)
 - **AI**: Gemini 2.5 Flash (`/api/chat`, `/api/agent-chat`, `/api/agent-builder`)
-- **Email**: Resend (`/api/contact`)
+- **Email**: Resend + Resend MCP server (send, templates, broadcasts, contacts, domains)
 - **Lead Scraping**: Apify actor `x_guru~Leads-Scraper-apollo-zoominfo`
 - **Package manager**: pnpm
 
@@ -36,10 +36,14 @@ app/                        # Next.js App Router
 │   ├── analytics/page.tsx      # Dashboard analytics
 │   ├── activity/page.tsx       # Activity feed
 │   ├── settings/page.tsx       # User settings
+│   ├── pricing/page.tsx        # Pricing tiers CMS admin (edit tiers in DB)
 │   └── integrations/page.tsx   # Integrations
 ├── api/
-│   ├── chat/route.ts           # Public chat widget API (Gemini)
+│   ├── chat/route.ts           # Public chat widget API (Gemini, supports context: "contact")
 │   ├── contact/route.ts        # Contact form → Resend
+│   ├── appointments/route.ts   # GET/POST appointments (shared table with lead-engine)
+│   ├── pricing/tiers/route.ts  # GET/POST/PUT pricing tiers (country-aware currency conversion)
+│   ├── pricing/quote/route.ts  # POST quote requests → Resend email + Supabase store
 │   ├── agents/route.ts         # AI Employee CRUD + auto-seed
 │   ├── agents/[id]/route.ts    # Update/delete agent
 │   ├── agent-chat/route.ts     # Chat with agent + history
@@ -55,6 +59,7 @@ app/                        # Next.js App Router
 │   └── activity/route.ts       # Real activity from DB
 ├── blog/[slug]/page.tsx    # Blog post (SSG from DB)
 ├── products/, services/, pricing/, case-studies/
+├── book/page.tsx            # 4-step booking wizard (calendar → time → details → confirmed)
 ├── contact/page.tsx         # Conversational AI agent (Gemini-powered chat)
 └── legal/
     ├── page.tsx             # Legal hub — index of all 6 policies
@@ -69,6 +74,8 @@ components/
 ├── shell/                  # Navbar (floating pill on scroll), MobileNav, Footer
 ├── ui/                     # Button, Card, SectionHeading, GlowOrb, AsciiBackground (8 modes)
 ├── home/                   # HeroSection, ServicesGrid, ProductsPreview, Testimonials, CTASection
+├── book/                   # BookingFlow (4-step wizard), BookingChat (conversational bot), BookPageContent
+├── pricing/                # PricingContent (dynamic tiers), QuoteBuilder (multi-step calculator), PricingAdmin
 ├── blog/                   # BlogCard
 ├── chat/                   # ChatWidget (floating AI assistant, hidden on /contact)
 ├── auth/                   # LoginForm
@@ -101,6 +108,9 @@ lib/
 │   ├── metric.ts           # LiveMetrics, PipelineDay types
 │   └── activity.ts         # ActivityItem type
 ├── blog-data.ts            # Blog Post type + static fallback data
+├── booking-chat.ts         # Conversational booking state machine (7 states)
+├── currency.ts             # Country→currency mapping, conversion rates, locale formatting
+├── google-calendar.ts      # Google Calendar OAuth2 — create events, refresh tokens
 ├── nav.ts                  # Navigation config (navLinks + footerLinks with 7 legal items)
 └── utils.ts                # cn() helper (clsx + tailwind-merge)
 
@@ -150,6 +160,8 @@ hooks/
 | `appointments` | Book-a-demo scheduling |
 | `blog_posts` | CMS blog posts |
 | `contact_messages` | Contact form submissions |
+| `pricing_tiers` | CMS-driven pricing tiers (name, price, features JSONB, sort_order, active) |
+| `quote_requests` | Quote builder submissions (services, team size, timeline, estimate, country, currency) |
 | `api_keys` | API key management |
 | `notification_preferences` | User notification settings |
 
@@ -188,6 +200,12 @@ pnpm start      # Start production server
 - **Floating pill navbar** — full-width transparent on load, shrinks to centered rounded-2xl glass pill on scroll (>50px)
 - **ASCII animation canvas** — every marketing page and homepage section has a themed falling-character background (8 modes: home, products, services, case-studies, blog, contact, legal, testimonials)
 - **Conversational contact** — `/contact` is a full-page Gemini-powered AI agent that qualifies leads; `/api/chat` supports `context: "contact"` for sales-oriented system prompt
+- **CMS-driven pricing** — tiers stored in Supabase `pricing_tiers` table, editable via `/dashboard/pricing` admin panel. Static fallback if DB unavailable.
+- **Multi-currency pricing** — detects country from Vercel `x-vercel-ip-country` header, converts INR → USD/EUR/GBP/CAD/AUD using `lib/currency.ts`. Western-first default (USD).
+- **Interactive quote builder** — multi-step "Scope Your Project" widget on `/pricing`: services → team size → timeline → estimate range + email capture → Resend notification.
+- **4-step booking flow** — `/book`: calendar date picker → time slots (30-min) → details form → confirmation. Posts to `/api/appointments` (shared table with lead-engine). Conversational booking chat bot sidebar with 7-state machine.
+- **Google Calendar integration** — OAuth2 refresh token flow, auto-creates calendar events for booked appointments (30-min duration, Asia/Kolkata TZ, email+popup reminders).
+- **Resend MCP server** — full email platform via MCP: send/receive emails, manage contacts, broadcasts, templates, domains, API keys, webhooks. Configured in `~/.claude.json`.
 - **Force dynamic** — all dashboard pages use `export const dynamic = "force-dynamic"` since they read auth
 - **Skills composition** — agents are built from static skill modules in `lib/skills/registry.ts`
 - **Auto-seed** — `/api/agents` seeds 10 prebuilt AI employees on first fetch
