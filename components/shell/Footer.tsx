@@ -3,79 +3,81 @@ import { footerLinks } from "@/lib/nav";
 
 export function Footer() {
   return (
-    <footer className="border-t border-[rgba(255,255,255,0.06)] bg-[#0a0a0f]">
-      <div className="mx-auto max-w-7xl px-6 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          <div className="col-span-2 md:col-span-1">
-            <Link href="/" className="flex items-center gap-2.5 group">
-              <img
-                src="/Dark_Header_Logo.png"
-                alt="Flow-Forges"
-                className="h-8 w-auto"
-              />
-            </Link>
-            <p className="mt-3 text-sm text-[#71717a] leading-relaxed">
-              AI-powered automation agency. We build products that transform how businesses operate.
-            </p>
-          </div>
+    <footer
+      className="relative z-10 px-6 py-16 border-t"
+      style={{ background: 'var(--bg-surface)', borderColor: 'var(--border-dim)' }}
+      aria-label="Site footer"
+    >
+      <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-10 mb-12">
 
-          <div>
-            <h3 className="text-sm font-semibold text-white mb-4">Products</h3>
-            <ul className="space-y-3">
-              {footerLinks.products.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-[#71717a] hover:text-white transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-sm font-semibold text-white mb-4">Company</h3>
-            <ul className="space-y-3">
-              {footerLinks.company.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-[#71717a] hover:text-white transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-sm font-semibold text-white mb-4">Legal</h3>
-            <ul className="space-y-3">
-              {footerLinks.legal.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-[#71717a] hover:text-white transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+        <div className="col-span-2 md:col-span-1">
+          <Link href="/" className="font-display text-lg font-bold mb-3 block" style={{ color: 'var(--text-primary)' }}>
+            FlowForges
+          </Link>
+          <p className="text-[13px] italic leading-relaxed mb-4" style={{ color: 'var(--text-muted)' }}>
+            Built for digital agencies who want to ship more and operate less.
+          </p>
+          <Link href="/login" className="text-[12px]" style={{ color: 'var(--text-muted)' }}>
+            Sign in
+          </Link>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-[rgba(255,255,255,0.06)] flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-[#52525b]">
-            &copy; {new Date().getFullYear()} FlowForges. All rights reserved.
-          </p>
-          <p className="text-sm text-[#52525b]">
-            Built with ambition by Ayush Kumar Sharma
-          </p>
+        <div>
+          <div className="text-[11px] uppercase tracking-widest mb-4 font-mono" style={{ color: 'var(--text-muted)' }}>Products</div>
+          <nav aria-label="Products navigation">
+            <ul className="space-y-2">
+              {footerLinks.products.map(l => (
+                <li key={l.label}>
+                  <Link href={l.href} className="text-[13px] transition-colors hover:text-[var(--accent-cyan)]" style={{ color: 'var(--text-secondary)' }}>
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
+
+        <div>
+          <div className="text-[11px] uppercase tracking-widest mb-4 font-mono" style={{ color: 'var(--text-muted)' }}>Company</div>
+          <nav aria-label="Company navigation">
+            <ul className="space-y-2">
+              {footerLinks.company.map(l => (
+                <li key={l.href}>
+                  <Link href={l.href} className="text-[13px] transition-colors hover:text-[var(--accent-cyan)]" style={{ color: 'var(--text-secondary)' }}>
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
+
+        <div>
+          <div className="text-[11px] uppercase tracking-widest mb-4 font-mono" style={{ color: 'var(--text-muted)' }}>Legal</div>
+          <nav aria-label="Legal navigation">
+            <ul className="space-y-2">
+              {footerLinks.legal.map(l => (
+                <li key={l.href}>
+                  <Link href={l.href} className="text-[13px] transition-colors hover:text-[var(--accent-cyan)]" style={{ color: 'var(--text-secondary)' }}>
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+      <div
+        className="border-t pt-8 flex flex-col md:flex-row items-center justify-between gap-4"
+        style={{ borderColor: 'var(--border-dim)' }}
+      >
+        <p className="text-[12px]" style={{ color: 'var(--text-muted)' }}>
+          © 2026 FlowForges. All rights reserved.
+        </p>
+        <p className="text-[12px]" style={{ color: 'var(--text-muted)' }}>
+          Built with ambition by Ayush Kumar Sharma
+        </p>
       </div>
     </footer>
   );
