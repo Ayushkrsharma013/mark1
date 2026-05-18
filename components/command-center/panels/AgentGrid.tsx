@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Play, Pause, MoreHorizontal, Bot, ArrowRight } from 'lucide-react';
+import { Play, Pause, MoreHorizontal, Bot, ArrowRight, FileText } from 'lucide-react';
 import Link from 'next/link';
 import { useAIEmployees } from '@/hooks/useAIEmployees';
 import { LiveDot } from '../shared/LiveDot';
@@ -51,7 +51,37 @@ export function AgentGrid() {
             action={{ label: 'Open Agent Builder', onClick: () => {} }}
           />
         ) : (
-          agents.map((agent) => (
+          <>
+            {/* Blog Writer Agent Card */}
+            <div className="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-[rgba(255,255,255,0.02)] border border-[var(--cc-border)] mb-1">
+              <div className="relative">
+                <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center">
+                  <FileText className="h-4 w-4 text-white/70" />
+                </div>
+                <div className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-white border-2 border-[#0A0A0A]"
+                     style={{ boxShadow: '0 0 6px rgba(255,255,255,0.4)' }} />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-medium text-white truncate">Blog Writer</p>
+                <div className="flex items-center gap-2 mt-0.5">
+                  <span className="text-[10px] font-medium uppercase tracking-wide text-[var(--cc-text-muted)] bg-[rgba(255,255,255,0.04)] rounded px-1.5 py-0.5">
+                    Content AI
+                  </span>
+                  <span className="text-[10px] text-[var(--cc-text-muted)]">
+                    SEO + AEO
+                  </span>
+                </div>
+              </div>
+              <div className="flex items-center gap-2 shrink-0">
+                <span className="text-[10px] font-mono text-[var(--cc-text-muted)]">
+                  1/day
+                </span>
+                <span className="inline-flex items-center text-[10px] font-medium rounded-md px-2 py-0.5 uppercase tracking-wide bg-[rgba(255,255,255,0.06)] text-white/70">
+                  active
+                </span>
+              </div>
+            </div>
+            {agents.map((agent) => (
             <motion.div
               key={agent.id}
               onMouseEnter={() => setHoveredId(agent.id)}
@@ -109,7 +139,8 @@ export function AgentGrid() {
                 )}
               </AnimatePresence>
             </motion.div>
-          ))
+          ))}
+          </>
         )}
       </div>
 

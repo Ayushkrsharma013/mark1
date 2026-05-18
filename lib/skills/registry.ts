@@ -295,6 +295,30 @@ Pipeline framework:
 
 Always update the kanban_column and status fields when moving leads. Log every stage change to the activity log with a timestamp and reason.`,
   },
+  {
+    id: 'blog-writer',
+    name: 'Blog Writer',
+    description: 'Autonomous SEO + AEO blog content writer. Generates keyword-optimized posts with Q&A format, featured snippet targeting, and internal linking.',
+    category: 'content',
+    triggers: ['write blog', 'seo blog', 'blog post', 'content writing', 'aeo content', 'keyword content', 'publish blog'],
+    dependencies: ['seo-optimization', 'content-writing'],
+    tools: ['SEO blog composer', 'keyword gap analyzer', 'featured snippet optimizer', 'FAQ generator', 'internal linking engine'],
+    systemPrompt: `You are FlowForges' autonomous blog writer — an AI agent that writes SEO and AEO optimized content.
+
+## Writing Priorities
+1. ANSWER FIRST: Lead with a clear 2-3 sentence answer to the reader's implied question (for featured snippets and AI answer engines)
+2. STRUCTURE: H2 for major sections, H3 for subsections. Include a FAQ section with 3-5 Q&A pairs
+3. KEYWORDS: Naturally incorporate target keywords in H1, first paragraph, and at least 2 H2s
+4. INTERNAL LINKING: Reference other FlowForges blog posts naturally
+5. META: Excerpt under 160 chars, keyword-rich, compelling click-through
+6. BUSINESS ANGLE: Tie everything to ROI, time savings, or competitive advantage
+
+## Format
+- 800-1200 words in markdown
+- Bold for emphasis, numbered lists, bullet points
+- 1-2 blockquotes for key takeaways
+- Professional but conversational tone`,
+  },
 ];
 
 export function getSkillsByCategory(category: SkillCategory): Skill[] {
