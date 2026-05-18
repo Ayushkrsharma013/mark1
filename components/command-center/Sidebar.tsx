@@ -15,6 +15,7 @@ import {
   LogOut,
   FileText,
   BarChart3,
+  Receipt,
 } from 'lucide-react';
 import { LiveDot } from './shared/LiveDot';
 import { cn } from '@/lib/utils';
@@ -26,6 +27,7 @@ const NAV_ITEMS = [
   { label: 'Create Agent', icon: Wand2, href: '/dashboard/agent-builder', badge: 'NEW' },
   { label: 'Pipeline', icon: TrendingUp, href: '/dashboard/pipeline' },
   { label: 'Activity Log', icon: Activity, href: '/dashboard/activity' },
+  { label: 'Invoices', icon: Receipt, href: '/dashboard/invoices' },
   { label: 'Blog', icon: FileText, href: '/dashboard/blog' },
   { label: 'Integrations', icon: Plug, href: '/dashboard/integrations' },
   { label: 'Settings', icon: Settings, href: '/dashboard/settings' },
