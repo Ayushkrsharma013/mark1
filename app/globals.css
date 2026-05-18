@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* ── New deep-space font aliases ── */
+  /* ── Deep-space font aliases ── */
   --font-display: var(--font-space-grotesk), system-ui, sans-serif;
   --font-body: var(--font-inter), system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), 'Courier New', monospace;
@@ -9,7 +9,7 @@
   --font-sans: var(--font-geist-sans);
   --font-mono-geist: var(--font-geist-mono);
 
-  /* ── New deep-space Tailwind color tokens ── */
+  /* ── Deep-space Tailwind color tokens ── */
   --color-bg-void: #00020A;
   --color-bg-surface: #040810;
   --color-bg-elevated: #080F1E;
@@ -18,10 +18,18 @@
   --color-text-primary: #F0F9FF;
   --color-text-secondary: #7EAABF;
   --color-text-muted: #3A5A6E;
+  /* ── Forge-orange cinematic tokens ── */
+  --color-forge-bg: #050816;
+  --color-forge-orange: #FF6B00;
+  --color-forge-orange-glow: #FF9A3C;
+  --color-forge-plasma: #F8FAFC;
+  --color-forge-surface: #0A0F1E;
+  --color-forge-border: rgba(255, 107, 0, 0.12);
+  --color-forge-border-glow: rgba(255, 107, 0, 0.3);
 }
 
 :root {
-  /* ── New deep-space CSS variables ── */
+  /* ── Deep-space CSS variables ── */
   --bg-void: #00020A;
   --bg-surface: #040810;
   --bg-elevated: #080F1E;
@@ -44,6 +52,17 @@
   --border: rgba(255, 255, 255, 0.06);
   --border-strong: rgba(255, 255, 255, 0.10);
   --glass-bg: rgba(255, 255, 255, 0.03);
+
+  /* ── Forge-orange cinematic variables ── */
+  --forge-bg: #050816;
+  --forge-surface: #0A0F1E;
+  --forge-orange: #FF6B00;
+  --forge-orange-glow: #FF9A3C;
+  --forge-plasma: #F8FAFC;
+  --forge-border: rgba(255, 107, 0, 0.12);
+  --forge-border-glow: rgba(255, 107, 0, 0.3);
+  --forge-glow-shadow: 0 0 30px rgba(255, 107, 0, 0.3);
+  --forge-glow-shadow-lg: 0 0 60px rgba(255, 107, 0, 0.4);
 
   /* Command Center design system */
   --cc-bg-primary: #080C14;
@@ -126,7 +145,7 @@ html, body {
   color: #ffffff;
 }
 
-/* Glow utilities */
+/* Glow utilities (legacy cyan) */
 .glow-blue {
   background: radial-gradient(circle at center, rgba(0, 212, 255, 0.12), transparent 70%);
 }
@@ -137,6 +156,17 @@ html, body {
   background: radial-gradient(circle at center, rgba(124, 58, 237, 0.12), transparent 70%);
 }
 
+/* ── Forge-orange glow utilities ── */
+.glow-forge {
+  background: radial-gradient(circle at center, rgba(255, 107, 0, 0.15), transparent 70%);
+}
+.glow-forge-intense {
+  background: radial-gradient(circle at center, rgba(255, 107, 0, 0.25), transparent 55%);
+}
+.glow-ember {
+  background: radial-gradient(circle at center, rgba(255, 154, 60, 0.2), transparent 65%);
+}
+
 /* Glass card */
 .glass {
   background: var(--glass-bg);
@@ -144,7 +174,14 @@ html, body {
   backdrop-filter: blur(20px);
 }
 
-/* Text gradient */
+/* Forge glass card */
+.forge-glass {
+  background: rgba(10, 15, 30, 0.8);
+  border: 1px solid var(--forge-border);
+  backdrop-filter: blur(24px);
+}
+
+/* Text gradient (legacy cyan-purple) */
 .text-gradient {
   background: linear-gradient(135deg, #00d4ff, #7c3aed);
   -webkit-background-clip: text;
@@ -152,7 +189,36 @@ html, body {
   background-clip: text;
 }
 
-/* Animated border */
+/* Forge text gradient */
+.text-gradient-forge {
+  background: linear-gradient(135deg, #FF6B00, #FF9A3C, #FFB347);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Cinematic keyframes ── */
+
+@keyframes forge-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(255, 107, 0, 0.3), 0 0 60px rgba(255, 107, 0, 0.1); }
+  50% { box-shadow: 0 0 40px rgba(255, 107, 0, 0.5), 0 0 100px rgba(255, 107, 0, 0.2); }
+}
+.forge-pulse {
+  animation: forge-pulse 3s ease-in-out infinite;
+}
+
+@keyframes ember-drift {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-100vh) translateX(20px); opacity: 0; }
+}
+
+@keyframes holographic-scan {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 0% 200%; }
+}
+
 @keyframes border-glow {
   0%, 100% { border-color: rgba(0, 212, 255, 0.15); }
   50% { border-color: rgba(0, 212, 255, 0.40); }
@@ -161,19 +227,94 @@ html, body {
   animation: border-glow 3s ease-in-out infinite;
 }
 
-/* Live pulse animation */
+@keyframes border-glow-forge {
+  0%, 100% { border-color: rgba(255, 107, 0, 0.15); }
+  50% { border-color: rgba(255, 107, 0, 0.5); }
+}
+.border-glow-forge {
+  animation: border-glow-forge 3s ease-in-out infinite;
+}
+
 @keyframes live-pulse {
   0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
   50% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
 }
 
-/* Spin slow */
+@keyframes live-pulse-orange {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 107, 0, 0.6); }
+  50% { box-shadow: 0 0 0 6px rgba(255, 107, 0, 0); }
+}
+
 @keyframes spin-slow {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 .animate-spin-slow {
   animation: spin-slow 3s linear infinite;
+}
+
+@keyframes scan-line-sweep {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes typing-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes data-flow {
+  0% { stroke-dashoffset: 1000; }
+  100% { stroke-dashoffset: 0; }
+}
+
+/* ── Cinematic utility classes ── */
+
+.holographic-border {
+  position: relative;
+  overflow: hidden;
+}
+.holographic-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(255, 107, 0, 0.3) 50%,
+    transparent 100%
+  );
+  background-size: 100% 200%;
+  animation: holographic-scan 3s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.scanlines {
+  position: relative;
+}
+.scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+.forge-glow-text {
+  text-shadow: 0 0 40px rgba(255, 107, 0, 0.5), 0 0 80px rgba(255, 107, 0, 0.2);
+}
+
+.ember-glow-text {
+  text-shadow: 0 0 30px rgba(255, 154, 60, 0.6), 0 0 60px rgba(255, 107, 0, 0.3);
 }
 
 /* React Flow dark overrides */
