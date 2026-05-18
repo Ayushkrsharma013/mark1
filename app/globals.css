@@ -65,15 +65,16 @@
   --forge-glow-shadow-lg: 0 0 60px rgba(255, 107, 0, 0.4);
 
   /* Command Center design system */
-  --cc-bg-primary: #080C14;
-  --cc-bg-surface: #0F1422;
-  --cc-bg-surface-2: #161D30;
-  --cc-bg-surface-3: #1C2540;
-  --cc-primary: #6366F1;
-  --cc-secondary: #F59E0B;
-  --cc-success: #10B981;
-  --cc-danger: #EF4444;
-  --cc-warning: #F59E0B;
+  --cc-bg-primary: #000000;
+  --cc-bg-surface: #0A0A0A;
+  --cc-bg-surface-2: #111111;
+  --cc-bg-surface-3: #1A1A1A;
+  --cc-text-primary: #FAFAFA;
+  --cc-text-secondary: #999999;
+  --cc-text-muted: #555555;
+  --cc-border: rgba(255, 255, 255, 0.06);
+  --cc-border-hover: rgba(255, 255, 255, 0.15);
+  --cc-glow: 0 0 40px rgba(255, 255, 255, 0.04);
 }
 
 .light {
@@ -266,6 +267,11 @@ html, body {
 @keyframes data-flow {
   0% { stroke-dashoffset: 1000; }
   100% { stroke-dashoffset: 0; }
+}
+
+@keyframes white-glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.04); }
+  50% { box-shadow: 0 0 40px rgba(255, 255, 255, 0.08); }
 }
 
 /* ── Cinematic utility classes ── */
