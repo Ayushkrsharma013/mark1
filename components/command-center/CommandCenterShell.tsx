@@ -58,10 +58,10 @@ export function CommandCenterShell({ children }: { children: React.ReactNode }) 
 
   if (loading) {
     return (
-      <div className="h-screen bg-[#080C14] flex items-center justify-center">
+      <div className="h-screen bg-black flex items-center justify-center">
         <div className="flex flex-col items-center gap-3">
-          <div className="h-8 w-8 rounded-lg bg-[#6366F1] animate-pulse" />
-          <p className="text-sm text-[#475569]">Loading Command Center...</p>
+          <div className="h-8 w-8 rounded-lg bg-white/10 animate-pulse" />
+          <p className="text-sm text-[var(--cc-text-muted)]">Loading Command Center...</p>
         </div>
       </div>
     );
@@ -72,7 +72,7 @@ export function CommandCenterShell({ children }: { children: React.ReactNode }) 
   }
 
   return (
-    <div className="flex h-screen bg-[#080C14]">
+    <div className="flex h-screen bg-black">
       <Sidebar
         mobileOpen={mobileOpen}
         onMobileOpenChange={setMobileOpen}
@@ -92,7 +92,7 @@ export function CommandCenterShell({ children }: { children: React.ReactNode }) 
           onNewAgent={() => router.push("/dashboard/agent-builder")}
           onMenuToggle={() => setMobileOpen(true)}
         />
-        <main className="flex-1 overflow-y-auto">
+        <main className="flex-1 overflow-y-auto bg-black">
           {children}
         </main>
       </div>
