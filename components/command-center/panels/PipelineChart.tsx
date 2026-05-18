@@ -13,10 +13,10 @@ import { EmptyState } from '../shared/EmptyState';
 import { TrendingUp } from 'lucide-react';
 
 const STAGES = [
-  { key: 'scraped', label: 'Scraped', color: '#6366F1' },
-  { key: 'qualified', label: 'Qualified', color: '#10B981' },
-  { key: 'contacted', label: 'Contacted', color: '#F59E0B' },
-  { key: 'responded', label: 'Responded', color: '#94A3B8' },
+  { key: 'scraped', label: 'Scraped', color: '#FFFFFF' },
+  { key: 'qualified', label: 'Qualified', color: '#CCCCCC' },
+  { key: 'contacted', label: 'Contacted', color: '#999999' },
+  { key: 'responded', label: 'Responded', color: '#666666' },
 ];
 
 export function PipelineChart() {
@@ -37,11 +37,11 @@ export function PipelineChart() {
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35, delay: 0.16 }}
-      className="rounded-[14px] border border-[rgba(255,255,255,0.06)] bg-[#0F1422] p-6 h-full flex flex-col"
+      className="rounded-[14px] border border-[var(--cc-border)] bg-[#0A0A0A] p-6 h-full flex flex-col"
     >
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
-        <h3 className="text-base font-semibold text-[#F1F5F9]">
+        <h3 className="text-base font-semibold text-white">
           Lead Pipeline — Last 7 Days
         </h3>
         <div className="flex flex-wrap items-center gap-2">
@@ -51,8 +51,8 @@ export function PipelineChart() {
                 className="h-2.5 w-2.5 rounded-sm"
                 style={{ backgroundColor: stage.color }}
               />
-              <span className="text-[11px] text-[#94A3B8]">
-                {stage.label} <span className="text-[#F1F5F9] font-medium">{stage.total}</span>
+              <span className="text-[11px] text-[var(--cc-text-secondary)]">
+                {stage.label} <span className="text-white font-medium">{stage.total}</span>
               </span>
             </div>
           ))}
@@ -77,15 +77,15 @@ export function PipelineChart() {
                 dataKey="day"
                 axisLine={false}
                 tickLine={false}
-                tick={{ fill: '#475569', fontSize: 12 }}
+                tick={{ fill: '#555555', fontSize: 12 }}
               />
               <Tooltip
                 cursor={{ fill: 'rgba(255,255,255,0.03)' }}
                 content={({ payload, label }) => {
                   if (!payload?.length) return null;
                   return (
-                    <div className="bg-[#161D30] border border-[rgba(255,255,255,0.06)] rounded-lg px-3 py-2 shadow-xl">
-                      <p className="text-xs font-medium text-[#F1F5F9] mb-1.5">{label}</p>
+                    <div className="bg-[#1A1A1A] border border-white/10 rounded-lg px-3 py-2 shadow-xl">
+                      <p className="text-xs font-medium text-white mb-1.5">{label}</p>
                       {payload.map((p, idx) => (
                         <div key={`${p.name}-${idx}`} className="flex items-center justify-between gap-4 text-xs">
                           <div className="flex items-center gap-1.5">
@@ -93,9 +93,9 @@ export function PipelineChart() {
                               className="h-2 w-2 rounded-full"
                               style={{ backgroundColor: p.color }}
                             />
-                            <span className="text-[#94A3B8]">{p.name}</span>
+                            <span className="text-[var(--cc-text-secondary)]">{p.name}</span>
                           </div>
-                          <span className="text-[#F1F5F9] font-medium">{p.value}</span>
+                          <span className="text-white font-medium">{p.value}</span>
                         </div>
                       ))}
                     </div>

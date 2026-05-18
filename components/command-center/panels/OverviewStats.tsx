@@ -28,7 +28,7 @@ export function OverviewStats() {
       delta: metrics?.leads_generated.delta ?? 0,
       trend: metrics?.leads_generated.trend ?? [0, 0, 0, 0, 0, 0, 0],
       icon: Users,
-      iconColor: '#6366F1',
+      iconColor: '#FFFFFF',
     },
     {
       label: 'Active Agents',
@@ -36,7 +36,7 @@ export function OverviewStats() {
       delta: metrics?.active_agents.delta ?? 0,
       trend: metrics?.active_agents.trend ?? [0, 0, 0, 0, 0, 0, 0],
       icon: Bot,
-      iconColor: '#10B981',
+      iconColor: '#CCCCCC',
     },
     {
       label: 'Tasks Completed',
@@ -44,7 +44,7 @@ export function OverviewStats() {
       delta: metrics?.tasks_completed.delta ?? 0,
       trend: metrics?.tasks_completed.trend ?? [0, 0, 0, 0, 0, 0, 0],
       icon: CheckCircle2,
-      iconColor: '#F59E0B',
+      iconColor: '#AAAAAA',
     },
     {
       label: 'Hours Saved',
@@ -52,7 +52,7 @@ export function OverviewStats() {
       delta: metrics?.hours_saved.delta ?? 0,
       trend: metrics?.hours_saved.trend ?? [0, 0, 0, 0, 0, 0, 0],
       icon: Clock,
-      iconColor: '#EC4899',
+      iconColor: '#999999',
       suffix: 'h',
     },
   ];

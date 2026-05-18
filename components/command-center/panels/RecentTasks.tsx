@@ -92,17 +92,17 @@ export function RecentTasks() {
   });
 
   const priorityColor = (p: Task['priority']) =>
-    p === 'high' ? 'bg-[#EF4444]' : p === 'medium' ? 'bg-[#F59E0B]' : 'bg-[#10B981]';
+    p === 'high' ? 'bg-white' : p === 'medium' ? 'bg-white/60' : 'bg-white/30';
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35, delay: 0.4 }}
-      className="rounded-[14px] border border-[rgba(255,255,255,0.06)] bg-[#0F1422] p-6 h-full flex flex-col"
+      className="rounded-[14px] border border-[var(--cc-border)] bg-[#0A0A0A] p-6 h-full flex flex-col"
     >
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-base font-semibold text-[#F1F5F9]">Recent Tasks</h3>
+        <h3 className="text-base font-semibold text-white">Recent Tasks</h3>
         <div className="flex items-center gap-1">
           {FILTERS.map((f) => (
             <button
@@ -111,8 +111,8 @@ export function RecentTasks() {
               className={cn(
                 'text-[10px] font-medium rounded-md px-2 py-1 transition-colors',
                 filter === f
-                  ? 'bg-[rgba(99,102,241,0.12)] text-[#6366F1]'
-                  : 'text-[#475569] hover:text-[#94A3B8]'
+                  ? 'bg-[rgba(255,255,255,0.06)] text-white'
+                  : 'text-[var(--cc-text-muted)] hover:text-[var(--cc-text-secondary)]'
               )}
             >
               {f}
@@ -128,31 +128,31 @@ export function RecentTasks() {
             onClick={() => toggleTask(task.id)}
             className={cn(
               'flex items-center gap-3 px-2 py-2 rounded-lg cursor-pointer transition-colors group',
-              'hover:bg-[#1C2540]'
+              'hover:bg-[#111111]'
             )}
           >
             {task.completed ? (
-              <CheckCircle2 className="h-4 w-4 text-[#6366F1] shrink-0" />
+              <CheckCircle2 className="h-4 w-4 text-white/50 shrink-0" />
             ) : (
-              <Circle className="h-4 w-4 text-[#475569] group-hover:text-[#6366F1] shrink-0 transition-colors" />
+              <Circle className="h-4 w-4 text-[var(--cc-text-muted)] group-hover:text-white shrink-0 transition-colors" />
             )}
             <div className="flex-1 min-w-0">
               <p
                 className={cn(
                   'text-sm truncate',
-                  task.completed ? 'text-[#475569] line-through' : 'text-[#F1F5F9]'
+                  task.completed ? 'text-[var(--cc-text-muted)] line-through' : 'text-white'
                 )}
               >
                 {task.title}
               </p>
               <div className="flex items-center gap-2 mt-0.5">
-                <span className="text-[10px] text-[#475569] bg-[rgba(255,255,255,0.04)] rounded px-1.5 py-0">
+                <span className="text-[10px] text-[var(--cc-text-muted)] bg-[rgba(255,255,255,0.04)] rounded px-1.5 py-0">
                   {task.agent}
                 </span>
                 <span
                   className={cn(
                     'text-[10px] flex items-center gap-1',
-                    isOverdue(task) ? 'text-[#EF4444]' : 'text-[#475569]'
+                    isOverdue(task) ? 'text-[var(--cc-text-muted)]' : 'text-[var(--cc-text-muted)]'
                   )}
                 >
                   <Calendar className="h-3 w-3" />
@@ -185,11 +185,11 @@ export function RecentTasks() {
                   if (e.key === 'Escape') setAdding(false);
                 }}
                 placeholder="Task name..."
-                className="flex-1 bg-[#161D30] border border-[rgba(255,255,255,0.06)] rounded-lg px-3 py-2 text-sm text-[#F1F5F9] placeholder-[#475569] outline-none focus:border-[rgba(99,102,241,0.4)]"
+                className="flex-1 bg-[#111111] border border-[var(--cc-border)] rounded-lg px-3 py-2 text-sm text-white placeholder-[var(--cc-text-muted)] outline-none focus:border-white/30"
               />
               <button
                 onClick={addTask}
-                className="px-3 py-2 rounded-lg bg-[#6366F1] text-white text-xs font-medium hover:bg-[#4F46E5] transition-colors"
+                className="px-3 py-2 rounded-lg bg-white text-black text-xs font-medium hover:bg-white/90 transition-colors"
               >
                 Add
               </button>
@@ -200,7 +200,7 @@ export function RecentTasks() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             onClick={() => setAdding(true)}
-            className="mt-2 flex items-center justify-center gap-1.5 w-full py-2 rounded-lg text-xs font-medium text-[#6366F1] hover:text-[#818CF8] hover:bg-[rgba(99,102,241,0.06)] transition-colors"
+            className="mt-2 flex items-center justify-center gap-1.5 w-full py-2 rounded-lg text-xs font-medium text-white/70 hover:text-white hover:bg-[rgba(255,255,255,0.04)] transition-colors"
           >
             <Plus className="h-3.5 w-3.5" />
             Add Task

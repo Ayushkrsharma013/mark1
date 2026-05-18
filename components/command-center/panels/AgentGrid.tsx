@@ -27,11 +27,11 @@ export function AgentGrid() {
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35, delay: 0.24 }}
-      className="rounded-[14px] border border-[rgba(255,255,255,0.06)] bg-[#0F1422] p-6 h-full flex flex-col"
+      className="rounded-[14px] border border-[var(--cc-border)] bg-[#0A0A0A] p-6 h-full flex flex-col"
     >
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-base font-semibold text-[#F1F5F9]">My Agents</h3>
-        <span className="text-xs text-[#475569]">{agents.length} total</span>
+        <h3 className="text-base font-semibold text-white">My Agents</h3>
+        <span className="text-xs text-[var(--cc-text-muted)]">{agents.length} total</span>
       </div>
 
       <div className="flex-1 overflow-y-auto -mx-2 px-2 space-y-1"
@@ -40,7 +40,7 @@ export function AgentGrid() {
         {isLoading ? (
           <div className="space-y-2">
             {Array.from({ length: 4 }).map((_, i) => (
-              <div key={i} className="h-14 rounded-lg bg-[rgba(255,255,255,0.03)] animate-pulse" />
+              <div key={i} className="h-14 rounded-lg bg-[rgba(255,255,255,0.02)] animate-pulse" />
             ))}
           </div>
         ) : agents.length === 0 ? (
@@ -58,24 +58,24 @@ export function AgentGrid() {
               onMouseLeave={() => setHoveredId(null)}
               className={cn(
                 'flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors cursor-default',
-                hoveredId === agent.id ? 'bg-[#1C2540]' : 'bg-transparent'
+                hoveredId === agent.id ? 'bg-[#111111]' : 'bg-transparent'
               )}
             >
               <LiveDot status={agent.status} size={8} />
 
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-[#F1F5F9] truncate">{agent.name}</p>
+                <p className="text-sm font-medium text-white truncate">{agent.name}</p>
                 <div className="flex items-center gap-2 mt-0.5">
-                  <span className="text-[10px] font-medium uppercase tracking-wide text-[#475569] bg-[rgba(255,255,255,0.04)] rounded px-1.5 py-0.5">
+                  <span className="text-[10px] font-medium uppercase tracking-wide text-[var(--cc-text-muted)] bg-[rgba(255,255,255,0.04)] rounded px-1.5 py-0.5">
                     {agent.role}
                   </span>
-                  <span className="text-[10px] text-[#475569]">
+                  <span className="text-[10px] text-[var(--cc-text-muted)]">
                     {agent.skills.length} skills
                   </span>
                 </div>
               </div>
 
-              <div className="hidden sm:flex items-center gap-3 text-xs text-[#94A3B8] shrink-0">
+              <div className="hidden sm:flex items-center gap-3 text-xs text-[var(--cc-text-secondary)] shrink-0">
                 <AgentStatusBadge status={agent.status} />
               </div>
 
@@ -115,7 +115,7 @@ export function AgentGrid() {
 
       <Link
         href="/dashboard/agent-builder"
-        className="mt-3 flex items-center justify-center gap-1.5 text-xs font-medium text-[#6366F1] hover:text-[#818CF8] transition-colors py-2 rounded-lg hover:bg-[rgba(99,102,241,0.06)]"
+        className="mt-3 flex items-center justify-center gap-1.5 text-xs font-medium text-white/70 hover:text-white transition-colors py-2 rounded-lg hover:bg-[rgba(255,255,255,0.04)]"
       >
         <span>New Agent</span>
         <ArrowRight className="h-3 w-3" />
