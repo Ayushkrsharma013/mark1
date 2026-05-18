@@ -9,10 +9,10 @@ interface LiveDotProps {
 
 export function LiveDot({ status, size = 8 }: LiveDotProps) {
   const colors = {
-    active: '#10B981',
-    paused: '#F59E0B',
-    error: '#EF4444',
-    building: '#6366F1',
+    active: '#FFFFFF',
+    paused: '#888888',
+    error: '#555555',
+    building: '#AAAAAA',
   };
 
   const color = colors[status];

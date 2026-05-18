@@ -9,10 +9,10 @@ interface AgentStatusBadgeProps {
 
 export function AgentStatusBadge({ status }: AgentStatusBadgeProps) {
   const styles: Record<AgentStatus, string> = {
-    active: 'bg-[rgba(16,185,129,0.12)] text-[#10B981]',
-    paused: 'bg-[rgba(245,158,11,0.12)] text-[#F59E0B]',
-    error: 'bg-[rgba(239,68,68,0.12)] text-[#EF4444]',
-    building: 'bg-[rgba(99,102,241,0.12)] text-[#6366F1]',
+    active: 'bg-[rgba(255,255,255,0.06)] text-white/80',
+    paused: 'bg-[rgba(255,255,255,0.04)] text-[var(--cc-text-secondary)]',
+    error: 'bg-[rgba(255,255,255,0.04)] text-[var(--cc-text-muted)]',
+    building: 'bg-[rgba(255,255,255,0.06)] text-white/70',
   };
 
   return (

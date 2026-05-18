@@ -8,7 +8,7 @@ interface SparklineProps {
   height?: number;
 }
 
-export function SparklineChart({ data, color = '#6366F1', height = 48 }: SparklineProps) {
+export function SparklineChart({ data, color = '#FFFFFF', height = 48 }: SparklineProps) {
   const chartData = data.map((value, i) => ({ i, value }));
   const gradientId = `gradient-${color.replace('#', '')}`;
 
@@ -33,7 +33,7 @@ export function SparklineChart({ data, color = '#6366F1', height = 48 }: Sparkli
         <Tooltip
           content={({ payload }) =>
             payload?.[0] ? (
-              <div className="bg-[#161D30] border border-[rgba(255,255,255,0.06)] text-xs px-2 py-1 rounded-md text-[#F1F5F9]">
+              <div className="bg-[#1A1A1A] border border-white/10 text-xs px-2 py-1 rounded-md text-white">
                 {payload[0].value}
               </div>
             ) : null
