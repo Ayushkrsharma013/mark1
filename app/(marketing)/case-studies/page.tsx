@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   description:
     "Real results from FlowForges AI automation. See how agencies and e-commerce brands use AI to save time and generate revenue.",
 };
+
+
+export const revalidate = 0;
 
 export default function CaseStudiesPage() {
   return (

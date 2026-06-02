@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { AsciiBackground } from "@/components/ui/AsciiBackground";
 import { ArrowRight } from "lucide-react";
@@ -47,6 +47,9 @@ const legalPages = [
     href: "/legal/payment-disclosure",
   },
 ] as const;
+
+
+export const revalidate = 0;
 
 export default function LegalPage() {
   return (

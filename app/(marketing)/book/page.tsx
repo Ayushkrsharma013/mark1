@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { BookPageContent } from "@/components/book/BookPageContent";
 
 export const metadata: Metadata = {
@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   description:
     "Schedule a 30-minute demo with our AI experts. Pick a date, choose a time, and get confirmed instantly.",
 };
+
+
+export const revalidate = 0;
 
 export default function BookPage() {
   return <BookPageContent />;

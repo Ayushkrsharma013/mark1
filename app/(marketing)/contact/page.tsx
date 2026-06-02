@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -17,6 +17,9 @@ const SUGGESTIONS = [
   "What are your pricing plans?",
   "I want to book a demo call",
 ];
+
+
+export const revalidate = 0;
 
 export default function ContactPage() {
   const [messages, setMessages] = useState<Message[]>([
@@ -280,7 +283,7 @@ export default function ContactPage() {
           <a href="tel:+919630798404" className="hover:text-white transition-colors">
             +91 9630798404
           </a>
-          <span>Raipur, Chhattisgarh, India</span>
+          <span>Bhilai, Chhattisgarh 490023, India</span>
         </div>
       </div>
     </div>

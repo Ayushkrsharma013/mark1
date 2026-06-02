@@ -109,6 +109,9 @@ function renderParagraph(paragraph: string, i: number) {
   );
 }
 
+
+export const revalidate = 0;
+
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
   const post = await getPost(slug);

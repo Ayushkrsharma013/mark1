@@ -79,7 +79,8 @@ export default function TermsPage() {
             </h2>
             <p>
               Paid plans automatically renew at the end of each billing period
-              unless cancelled. Fees are charged in Indian Rupees (INR).
+              unless cancelled. International clients are billed in USD;
+              Indian clients may be billed in INR where applicable.
               Applicable taxes (including GST) may be added to the stated price.
               By subscribing, you authorize our payment processor (e.g., Paddle) to charge your designated payment method for all
               amounts due.
@@ -189,7 +190,7 @@ export default function TermsPage() {
               These Terms shall be governed by and construed in accordance with
               the laws of India. Any disputes arising out of or relating to
               these Terms shall be subject to the exclusive jurisdiction of the
-              courts in Raipur, Chhattisgarh 490023, India, unless mandatory
+              courts in Bhilai, Chhattisgarh 490023, India, unless mandatory
               provisions of your local law provide otherwise.
             </p>
           </section>
@@ -213,7 +214,7 @@ export default function TermsPage() {
             <p>
               FlowForges (operated by AKS Forge Lab)
               <br />
-              Raipur, Chhattisgarh, India
+              Bhilai, Chhattisgarh 490023, India
               <br />
               Email:{" "}
               <a

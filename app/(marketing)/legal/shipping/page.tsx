@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { AsciiBackground } from "@/components/ui/AsciiBackground";
 
 export const metadata: Metadata = {
@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   description:
     "Flow-Forges digital delivery policy — instant access, timelines, and support.",
 };
+
+
+export const revalidate = 0;
 
 export default function ShippingPage() {
   return (

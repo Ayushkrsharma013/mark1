@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { PricingContent } from "@/components/pricing/PricingContent";
 
 export const metadata: Metadata = {
@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   description:
     "Transparent pricing for AI automation. AI agents from $299/month or custom builds from $3,000. All prices in USD. No hidden fees.",
 };
+
+
+export const revalidate = 0;
 
 export default function PricingPage() {
   return <PricingContent />;

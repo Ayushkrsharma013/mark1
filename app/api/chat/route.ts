@@ -12,7 +12,7 @@ About FlowForges:
 
 Products page: /products — showcases Prospecting OS and upcoming products
 Services page: /services — details all six service offerings with pricing
-Pricing page: /pricing — three tiers from ₹3K to ₹1.5L+
+Pricing page: /pricing — productized agents from $299/mo, custom builds from $3,000 USD
 Case Studies: /case-studies — three detailed case studies with real metrics
 Blog: /blog — articles about AI, automation, and engineering
 Contact: /contact — form to reach us
@@ -29,9 +29,9 @@ const CONTACT_SYSTEM_PROMPT = `You are the FlowForges Contact Agent. Your job is
 About FlowForges:
 - AI automation agency founded by Ayush Kumar Sharma, based in India, serving clients worldwide
 - Services: AI Agents & Chatbots, Workflow Automation, Custom AI Development, Productized Services (Prospecting OS), AI Analytics, AI Strategy & Consulting
-- Pricing: Starter from ₹3,000 (strategy audit), Growth from ₹50,000 (custom AI agents), Enterprise from ₹1,50,000 (full AI workforce)
-- Contact: hello@flowforges.com | +91 9630798404
-- Address: Raipur, Chhattisgarh, India
+- Pricing: Strategy audit from $3,000 · AI agents from $5,000 · Custom dev from $15,000 · Prospecting OS $499/mo · Remi $299/mo
+- Contact: support@flow-forges.com | +91 9630798404
+- Address: Bhilai, Chhattisgarh 490023, India
 
 Your goals in order:
 1. Make them feel heard — acknowledge what they say before asking the next question

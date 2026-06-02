@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   description:
     "Plug-and-play AI products. Prospecting OS and Remi — deployed in days, results from day one.",
 };
+
+
+export const revalidate = 0;
 
 export default function ProductsPage() {
   return (

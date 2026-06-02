@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { AsciiBackground } from "@/components/ui/AsciiBackground";
 
 export const metadata: Metadata = {
@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   description:
     "How to cancel your Flow-Forges subscription, data retention, and reactivation.",
 };
+
+
+export const revalidate = 0;
 
 export default function CancellationPage() {
   return (

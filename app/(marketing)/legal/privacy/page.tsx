@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { AsciiBackground } from "@/components/ui/AsciiBackground";
 
 export const metadata: Metadata = {
@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   description:
     "How Flow-Forges collects, uses, discloses, and protects your personal data.",
 };
+
+
+export const revalidate = 0;
 
 export default function PrivacyPage() {
   return (
@@ -52,9 +55,9 @@ export default function PrivacyPage() {
               </li>
               <li>
                 <strong className="text-white">Payment Data:</strong> handled
-                exclusively by our PCI-DSS compliant payment processors (e.g.,
-                Stripe, Razorpay). We store limited metadata (last four digits
-                of card, card brand, expiry date) but never full card numbers.
+                exclusively by Paddle, our PCI-DSS Level 1 compliant Merchant
+                of Record. FlowForges does not store, process, or transmit card
+                numbers or full payment data.
               </li>
               <li>
                 <strong className="text-white">Integrations:</strong> if you
@@ -196,7 +199,7 @@ export default function PrivacyPage() {
             <p>
               FlowForges (operated by AKS Forge Lab)
               <br />
-              Raipur, Chhattisgarh, India
+              Bhilai, Chhattisgarh 490023, India
               <br />
               Email:{" "}
               <a
