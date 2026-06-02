@@ -18,9 +18,6 @@ const SUGGESTIONS = [
   "I want to book a demo call",
 ];
 
-
-export const revalidate = 0;
-
 export default function ContactPage() {
   const [messages, setMessages] = useState<Message[]>([
     {
