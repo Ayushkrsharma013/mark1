@@ -81,8 +81,7 @@ export default function TermsPage() {
               Paid plans automatically renew at the end of each billing period
               unless cancelled. Fees are charged in Indian Rupees (INR).
               Applicable taxes (including GST) may be added to the stated price.
-              By subscribing, you authorize our payment processor (e.g., Stripe
-              or Paddle) to charge your designated payment method for all
+              By subscribing, you authorize our payment processor (e.g., Paddle) to charge your designated payment method for all
               amounts due.
             </p>
           </section>
