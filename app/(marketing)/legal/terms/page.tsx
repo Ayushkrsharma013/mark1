@@ -28,8 +28,8 @@ export default function TermsPage() {
           <p>
             These Terms of Service (&ldquo;Terms&rdquo;) govern your access to
             and use of the website, applications, and services (collectively,
-            the &ldquo;Services&rdquo;) provided by Flow‑Forges, Inc.
-            (&ldquo;Flow‑Forges&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;). By
+            the &ldquo;Services&rdquo;) provided by FlowForges (operated by AKS Forge Lab)
+            (&ldquo;FlowForges&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;). By
             accessing or using the Services, you agree to be bound by these
             Terms. If you do not agree, do not use the Services.
           </p>
@@ -80,7 +80,7 @@ export default function TermsPage() {
               unless cancelled. Fees are charged in Indian Rupees (INR).
               Applicable taxes (including GST) may be added to the stated price.
               By subscribing, you authorize our payment processor (e.g., Stripe
-              or Razorpay) to charge your designated payment method for all
+              or Paddle) to charge your designated payment method for all
               amounts due.
             </p>
           </section>
@@ -155,13 +155,13 @@ export default function TermsPage() {
               9. Limitation of Liability
             </h2>
             <p>
-              To the maximum extent permitted by applicable law, Flow‑Forges
+              To the maximum extent permitted by applicable law, FlowForges (operated by AKS Forge Lab)
               shall not be liable for any indirect, incidental, special,
               consequential, or punitive damages, or any loss of profits,
               revenue, or data, whether in contract, tort (including
               negligence), or otherwise. Our aggregate liability for all claims
               arising out of or relating to these Terms or the Services shall
-              not exceed the amounts paid by you to Flow‑Forges during the three
+              not exceed the amounts paid by you to FlowForges (operated by AKS Forge Lab) during the three
               (3) months immediately preceding the event giving rise to the
               claim.
             </p>
@@ -210,9 +210,9 @@ export default function TermsPage() {
               13. Contact
             </h2>
             <p>
-              Flow‑Forges, Inc.
+              FlowForges (operated by AKS Forge Lab)
               <br />
-              3rd Floor, 27/3 Tech Park, Raipur, Chhattisgarh 490023, India
+              Raipur, Chhattisgarh, India
               <br />
               Email:{" "}
               <a

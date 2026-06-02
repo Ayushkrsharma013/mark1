@@ -68,6 +68,10 @@ export function Footer() {
         </div>
       </div>
 
+      <p className="text-[11px] text-center mb-6" style={{ color: 'var(--text-muted)' }}>
+        FlowForges is a brand operated by AKS Forge Lab, a sole proprietorship registered in India (Udyam &amp; GST registered).
+      </p>
+
       <div
         className="border-t pt-8 flex flex-col md:flex-row items-center justify-between gap-4"
         style={{ borderColor: 'var(--border-dim)' }}

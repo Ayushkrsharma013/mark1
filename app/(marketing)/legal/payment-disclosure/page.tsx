@@ -20,7 +20,7 @@ export default function PaymentDisclosurePage() {
             Payment Disclosure
           </h1>
           <p className="text-sm text-[#71717a] mt-2">
-            Last updated: 2025-08-15
+            Last updated: 2026-06-02
           </p>
         </div>
       </div>
@@ -32,12 +32,7 @@ export default function PaymentDisclosurePage() {
               1. Payment Methods
             </h2>
             <p>
-              We accept major credit and debit cards (Visa, Mastercard, American
-              Express), UPI, net‑banking, and other payment methods offered at
-              checkout by our payment processors. All charges will appear on
-              your statement as &ldquo;FLOWFORGES&rdquo; or
-              &ldquo;Flow‑Forges.&rdquo; All transactions are processed in
-              Indian Rupees (INR).
+              We accept major international credit and debit cards (Visa, Mastercard, American Express) and PayPal through our payment processor, Paddle. Paddle acts as the Merchant of Record for all transactions. All charges will appear on your statement as &ldquo;PADDLE.NET* FLOWFORGES&rdquo;. Transactions for international customers are processed in USD.
             </p>
           </section>
 
@@ -46,13 +41,7 @@ export default function PaymentDisclosurePage() {
               2. Payment Processors &amp; Security
             </h2>
             <p>
-              Payments are securely processed by PCI-DSS Level 1 compliant
-              providers, including Stripe and Razorpay. Flow‑Forges does not
-              store, process, or transmit full card numbers (Primary Account
-              Numbers) on its own systems. We store only limited payment
-              metadata — card brand, last four digits, and expiry date — for the
-              purpose of displaying receipts and managing your billing
-              preferences within the dashboard.
+              Payments are securely processed by Paddle.com, a PCI-DSS Level 1 compliant Merchant of Record. FlowForges does not store, process, or transmit any card information.
             </p>
             <p className="mt-3">
               All payment pages are served over TLS (HTTPS) with HSTS enabled,
@@ -134,12 +123,7 @@ export default function PaymentDisclosurePage() {
               6. Currency &amp; Exchange
             </h2>
             <p>
-              All prices are listed and charged in Indian Rupees (INR). If your
-              payment method is denominated in a different currency, your bank
-              or card issuer will convert the transaction at their prevailing
-              exchange rate, and additional foreign transaction fees may apply.
-              Flow‑Forges is not responsible for exchange rate fluctuations or
-              fees imposed by your financial institution.
+              Prices for international customers are listed and charged in USD via Paddle. Paddle handles all currency conversion and tax compliance for international transactions. Indian customers may be quoted prices in INR where applicable.
             </p>
           </section>
         </div>

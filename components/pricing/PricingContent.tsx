@@ -147,7 +147,7 @@ const faqs = [
   },
   {
     q: "What payment methods do you accept?",
-    a: "We accept major credit/debit cards, UPI, and net-banking. All payments are processed in INR through PCI-DSS compliant processors. See our Payment Disclosure for details.",
+    a: "International clients: We accept major credit/debit cards and PayPal via Paddle (USD). Indian clients: UPI and net-banking available. See our Payment Disclosure for details.",
   },
 ];
 

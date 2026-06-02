@@ -94,9 +94,9 @@ export function HeroSectionCinematic() {
                   <Star key={i} size={12} fill="#FBBF24" color="#FBBF24" />
                 ))}
               </div>
-              <span className="text-xs" style={{ color: 'rgba(255,255,255,0.4)' }}>
+              <Link href="/case-studies" className="text-xs hover:underline" style={{ color: 'rgba(255,255,255,0.4)' }}>
                 Trusted by 12+ agencies · US · UK · AU
-              </span>
+              </Link>
             </motion.div>
           </motion.div>
 
