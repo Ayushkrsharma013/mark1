@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { AsciiBackground } from "@/components/ui/AsciiBackground";
 
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: "Refund Policy",
   description:
