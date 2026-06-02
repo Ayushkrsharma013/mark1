@@ -31,7 +31,7 @@ About FlowForges:
 - Services: AI Agents & Chatbots, Workflow Automation, Custom AI Development, Productized Services (Prospecting OS), AI Analytics, AI Strategy & Consulting
 - Pricing: Starter from ₹3,000 (strategy audit), Growth from ₹50,000 (custom AI agents), Enterprise from ₹1,50,000 (full AI workforce)
 - Contact: hello@flowforges.com | +91 9630798404
-- Address: 3rd Floor, 27/3 Tech Park, Raipur, Chhattisgarh 490023, India
+- Address: Raipur, Chhattisgarh, India
 
 Your goals in order:
 1. Make them feel heard — acknowledge what they say before asking the next question

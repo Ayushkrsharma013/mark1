@@ -26,8 +26,8 @@ export default function PrivacyPage() {
       <div className="mx-auto max-w-3xl">
         <div className="mt-10 space-y-10 text-[#a1a1aa] leading-relaxed">
           <p>
-            This Privacy Policy explains how Flow‑Forges, Inc.
-            (&ldquo;Flow‑Forges&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;)
+            This Privacy Policy explains how FlowForges (operated by AKS Forge Lab)
+            (&ldquo;FlowForges&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;)
             collects, uses, discloses, and protects personal information when
             you use our website https://flow-forges.com, applications, and
             services (collectively, the &ldquo;Services&rdquo;).
@@ -194,9 +194,9 @@ export default function PrivacyPage() {
               9. Contact
             </h2>
             <p>
-              Flow‑Forges, Inc.
+              FlowForges (operated by AKS Forge Lab)
               <br />
-              3rd Floor, 27/3 Tech Park, Raipur, Chhattisgarh 490023, India
+              Raipur, Chhattisgarh, India
               <br />
               Email:{" "}
               <a
