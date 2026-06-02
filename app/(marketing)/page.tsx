@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "FlowForges — AI Automation Agency",
+  title: { absolute: "FlowForges — AI Automation Agency" },
   description:
     "Done-for-you AI agents for digital agencies and e-commerce brands. Prospecting, outreach, and support — fully automated. Live in 2 weeks.",
 };

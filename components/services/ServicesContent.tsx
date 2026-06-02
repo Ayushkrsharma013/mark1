@@ -112,15 +112,11 @@ export function ServicesContent() {
       {/* ── SERVICE CARDS ── */}
       <section className="pb-16 px-4 sm:px-6 lg:px-8 border-t border-[#1a1a1a]">
         <div className="max-w-5xl mx-auto pt-16 space-y-6">
-          {services.map((service, i) => {
+          {services.map((service) => {
             const Icon = service.icon;
             return (
-              <motion.div
+              <div
                 key={service.title}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.4, delay: i * 0.06 }}
                 className="rounded-lg border border-[#1a1a1a] bg-[#111111] p-6 md:p-8 hover:border-zinc-700 transition-colors duration-300"
               >
                 <div className="flex flex-col md:flex-row md:items-start gap-6">
@@ -145,7 +141,7 @@ export function ServicesContent() {
                     </ul>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             );
           })}
         </div>
