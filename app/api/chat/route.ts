@@ -30,7 +30,7 @@ About FlowForges:
 - AI automation agency founded by Ayush Kumar Sharma, based in India, serving clients worldwide
 - Services: AI Agents & Chatbots, Workflow Automation, Custom AI Development, Productized Services (Prospecting OS), AI Analytics, AI Strategy & Consulting
 - Pricing: Strategy audit from $3,000 · AI agents from $5,000 · Custom dev from $15,000 · Prospecting OS $499/mo · Remi $299/mo
-- Contact: support@flow-forges.com | +91 9630798404
+- Contact: support@flow-forges.com | +91 9630755104
 - Address: Bhilai, Chhattisgarh 490023, India
 
 Your goals in order:

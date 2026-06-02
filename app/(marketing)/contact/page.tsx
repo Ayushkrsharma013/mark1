@@ -111,7 +111,7 @@ export default function ContactPage() {
         {
           role: "assistant",
           content:
-            "I'm having a brief hiccup. You can reach us directly at hello@flowforges.com or +91 9630798404 — we typically respond within a few hours.",
+            "I'm having a brief hiccup. You can reach us directly at hello@flowforges.com or +91 9630755104 — we typically respond within a few hours.",
         },
       ]);
     } finally {
@@ -280,8 +280,8 @@ export default function ContactPage() {
           <a href="mailto:hello@flowforges.com" className="hover:text-white transition-colors">
             hello@flowforges.com
           </a>
-          <a href="tel:+919630798404" className="hover:text-white transition-colors">
-            +91 9630798404
+          <a href="tel:+919630755104" className="hover:text-white transition-colors">
+            +91 9630755104
           </a>
           <span>Bhilai, Chhattisgarh 490023, India</span>
         </div>

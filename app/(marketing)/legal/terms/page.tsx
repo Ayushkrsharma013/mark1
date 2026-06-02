@@ -226,10 +226,10 @@ export default function TermsPage() {
               <br />
               Phone:{" "}
               <a
-                href="tel:+919630798404"
+                href="tel:+919630755104"
                 className="text-[#00d4ff] hover:underline"
               >
-                +91 9630798404
+                +91 9630755104
               </a>
             </p>
           </section>
