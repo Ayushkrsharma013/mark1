@@ -1,147 +1,79 @@
-"use client";
+import type { Metadata } from "next";
+import Link from "next/link";
 
-import { motion } from "framer-motion";
-import { ArrowUpRight, TrendingUp, Clock, Users, Zap } from "lucide-react";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { GlowOrb } from "@/components/ui/GlowOrb";
-import { AsciiBackground } from "@/components/ui/AsciiBackground";
-
-const studies = [
-  {
-    title: "From 50 cold calls/day to 20 qualified meetings/week",
-    category: "Lead Generation",
-    client: "B2B SaaS — Series A",
-    result: "18x pipeline growth in 60 days",
-    icon: TrendingUp,
-    description:
-      "Built a multi-source lead scraping engine with AI ICP scoring and automated outreach sequences. Replaced manual research with a system that finds, scores, and messages ideal prospects 24/7.",
-    stats: [
-      { label: "Pipeline Growth", value: "18x" },
-      { label: "Time Saved", value: "35hr/wk" },
-      { label: "Meetings Booked", value: "20/wk" },
-    ],
-  },
-  {
-    title: "70% of support tickets resolved without human touch",
-    category: "AI Support",
-    client: "Fintech — Growth Stage",
-    result: "Response time: hours → seconds",
-    icon: Clock,
-    description:
-      "Deployed a custom AI support agent trained on 2+ years of help desk history and product documentation. Handles tier-1 and tier-2 queries with 94% accuracy, escalating only complex edge cases.",
-    stats: [
-      { label: "Auto-resolution", value: "70%" },
-      { label: "Response Time", value: "<30s" },
-      { label: "CSAT Score", value: "4.8/5" },
-    ],
-  },
-  {
-    title: "90% reduction in manual data processing",
-    category: "Workflow Automation",
-    client: "Logistics — Enterprise",
-    result: "$120K annual savings",
-    icon: Zap,
-    description:
-      "Automated a 12-step freight documentation workflow that previously required 4 full-time staff. AI handles document extraction, validation, and ERP entry with 99.2% accuracy.",
-    stats: [
-      { label: "Cost Savings", value: "$120K/yr" },
-      { label: "Processing Time", value: "-90%" },
-      { label: "Accuracy", value: "99.2%" },
-    ],
-  },
-];
+export const metadata: Metadata = {
+  title: "Case Studies",
+  description:
+    "Real results from FlowForges AI automation. See how agencies and e-commerce brands use AI to save time and generate revenue.",
+};
 
 export default function CaseStudiesPage() {
   return (
-    <div className="pt-24">
-      <section className="relative py-24 px-6 overflow-hidden">
-        <AsciiBackground mode="case-studies" className="absolute inset-0 w-full h-full" />
-        <GlowOrb color="green" size="md" className="top-1/3 right-0 opacity-40" />
-        <div className="relative z-10 mx-auto max-w-3xl text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+    <div style={{ background: "#0A0A0A" }}>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24">
+
+        <div className="mb-16">
+          <p className="text-xs font-medium text-[#e8420a] tracking-widest uppercase mb-3">CASE STUDIES</p>
+          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">Real results, real businesses</h1>
+          <p className="text-[#71717a] max-w-xl">
+            How agencies and e-commerce brands use FlowForges to automate their most time-consuming work.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+          {[
+            {
+              tag: "Prospecting OS",
+              client: "Digital Agency, US",
+              result: "50+ qualified leads delivered weekly",
+              detail:
+                "Replaced 6 hours of manual prospecting with a fully automated pipeline. Leads scored against ICP and delivered to Slack every Monday morning.",
+            },
+            {
+              tag: "Remi",
+              client: "Service Business, UK",
+              result: "$2,400 client recovered in week one",
+              detail:
+                "Remi responded to a missed after-hours call, qualified the lead, and booked a discovery call — all without human involvement.",
+            },
+            {
+              tag: "Workflow Automation",
+              client: "Logistics Company, AU",
+              result: "90% reduction in manual data processing",
+              detail:
+                "Automated a 12-step freight documentation workflow. AI handles document extraction, validation, and ERP entry with 99.2% accuracy — saving $120K/year.",
+            },
+            {
+              tag: "AI Agent",
+              client: "Fintech, US",
+              result: "70% of support tickets resolved without humans",
+              detail:
+                "Deployed a custom AI support agent trained on 2+ years of help desk history. Handles tier-1 and tier-2 queries with 94% accuracy, escalating only complex edge cases.",
+            },
+          ].map(({ tag, client, result, detail }) => (
+            <div key={result} className="p-8 rounded-lg bg-[#111111] border border-[#1a1a1a]">
+              <div className="flex items-center gap-3 mb-6">
+                <span className="px-2 py-0.5 rounded-full bg-[#1a0a00] border border-[#2a1500] text-[#e8420a] text-xs font-medium">
+                  {tag}
+                </span>
+                <span className="text-[#71717a] text-xs">{client}</span>
+              </div>
+              <h3 className="text-white font-bold text-lg mb-3">{result}</h3>
+              <p className="text-[#71717a] text-sm leading-relaxed">{detail}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="text-center p-12 rounded-lg bg-[#111111] border border-[#1a1a1a]">
+          <p className="text-[#71717a] mb-4">More case studies coming soon.</p>
+          <Link
+            href="/book"
+            className="inline-flex px-8 py-3.5 rounded-full bg-[#e8420a] text-white font-semibold text-sm hover:bg-[#cc3a08] transition-colors"
           >
-            <SectionHeading
-              label="Case Studies"
-              title="Results, not promises"
-              description="Every engagement ships measurable outcomes. Here are three of our favorites."
-            />
-          </motion.div>
+            Become a Case Study →
+          </Link>
         </div>
-      </section>
-
-      <section className="py-16 px-6">
-        <div className="mx-auto max-w-5xl space-y-12">
-          {studies.map((study, i) => {
-            const Icon = study.icon;
-            return (
-              <motion.div
-                key={study.title}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="rounded-2xl border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.02)] p-6 md:p-10 hover:border-[rgba(255,255,255,0.10)] transition-all duration-300"
-              >
-                <div className="flex flex-col lg:flex-row gap-8">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-3">
-                      <span className="text-xs font-semibold tracking-widest uppercase text-[#00ff88]">
-                        {study.category}
-                      </span>
-                      <span className="text-xs text-[#71717a]">&bull;</span>
-                      <span className="text-xs text-[#71717a]">{study.client}</span>
-                    </div>
-                    <h2 className="text-2xl font-bold text-white leading-tight">
-                      {study.title}
-                    </h2>
-                    <p className="mt-3 text-[#a1a1aa] leading-relaxed">
-                      {study.description}
-                    </p>
-                  </div>
-
-                  <div className="lg:w-72 shrink-0">
-                    <div className="rounded-xl border border-[rgba(0,255,136,0.10)] bg-[rgba(0,255,136,0.03)] p-5">
-                      <div className="flex items-center gap-2 mb-4">
-                        <Icon className="h-5 w-5 text-[#00ff88]" />
-                        <span className="text-sm font-semibold text-[#00ff88]">
-                          {study.result}
-                        </span>
-                      </div>
-                      <div className="space-y-3">
-                        {study.stats.map((stat) => (
-                          <div key={stat.label}>
-                            <div className="text-2xl font-bold text-white">{stat.value}</div>
-                            <div className="text-xs text-[#71717a]">{stat.label}</div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
-      </section>
-
-      <section className="py-16 px-6 text-center border-t border-[rgba(255,255,255,0.04)]">
-        <h3 className="text-2xl font-bold text-white">Want to be our next case study?</h3>
-        <p className="mt-2 text-[#a1a1aa]">
-          We&apos;re selective about the projects we take on, but when we commit, we deliver.
-        </p>
-        <div className="mt-6">
-          <a
-            href="/contact"
-            className="inline-flex items-center gap-2 rounded-full bg-white text-black font-medium px-8 py-3 hover:bg-[#e4e4e7] transition-colors"
-          >
-            Work With Us
-            <ArrowUpRight className="h-4 w-4" />
-          </a>
-        </div>
-      </section>
+      </div>
     </div>
   );
 }

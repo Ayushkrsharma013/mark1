@@ -1,132 +1,144 @@
-"use client";
+import type { Metadata } from "next";
+import Link from "next/link";
 
-import { motion } from "framer-motion";
-import { ArrowUpRight, Rocket, Construction, Lightbulb } from "lucide-react";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Button } from "@/components/ui/Button";
-import { GlowOrb } from "@/components/ui/GlowOrb";
-import { AsciiBackground } from "@/components/ui/AsciiBackground";
+export const metadata: Metadata = {
+  title: "Products",
+  description:
+    "Plug-and-play AI products. Prospecting OS and Remi — deployed in days, results from day one.",
+};
 
 export default function ProductsPage() {
   return (
-    <div className="pt-24">
-      {/* Hero */}
-      <section className="relative py-24 px-6 overflow-hidden">
-        <AsciiBackground mode="products" className="absolute inset-0 w-full h-full" />
-        <GlowOrb color="blue" size="md" className="top-1/3 left-1/2 -translate-x-1/2 opacity-50" />
-        <div className="relative z-10 mx-auto max-w-3xl text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <SectionHeading
-              label="Products"
-              title="Productized intelligence, ready to deploy"
-              description="Plug-and-play AI tools built for specific business functions. No custom dev timeline — just results."
-            />
-          </motion.div>
-        </div>
-      </section>
+    <div style={{ background: "#0A0A0A" }}>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24">
 
-      {/* Prospecting OS — flagship */}
-      <section className="py-16 px-6 border-t border-[rgba(255,255,255,0.04)]">
-        <div className="mx-auto max-w-5xl">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.02)] p-8 md:p-12"
-          >
-            <div className="flex items-start justify-between flex-wrap gap-4">
-              <div>
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-[rgba(0,255,136,0.10)] px-3 py-1 text-xs font-medium text-[#00ff88]">
-                  <Rocket className="h-3 w-3" />
-                  Live
+        <div className="mb-16">
+          <p className="text-xs font-medium text-[#e8420a] tracking-widest uppercase mb-3">PRODUCTS</p>
+          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">Plug-and-play AI agents</h1>
+          <p className="text-[#71717a] max-w-xl">
+            Pre-built, production-ready AI agents. Setup in days. No technical knowledge required from
+            your team.
+          </p>
+        </div>
+
+        {/* ── Prospecting OS — LIVE ── */}
+        <div className="p-8 rounded-lg bg-[#111111] border border-[#1a1a1a] mb-6">
+          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8">
+            <div className="flex-1">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="px-2 py-0.5 rounded-full bg-[#0a2a0a] border border-[#1a3a1a] text-[#4ade80] text-xs font-medium">
+                  ● LIVE
                 </span>
-                <h2 className="mt-4 text-3xl font-bold text-white">Prospecting OS</h2>
-                <p className="mt-3 text-[#a1a1aa] leading-relaxed max-w-xl">
-                  AI-powered B2B lead generation platform. Scrape, score, message, and
-                  manage leads from LinkedIn, Google Maps, and Amazon — all in one
-                  workspace. Built for sales teams and solo operators who want pipeline
-                  without the grind.
-                </p>
               </div>
-              <Button
-                href="https://app.flow-forges.com/prospecting-os"
-                variant="secondary"
-                size="lg"
-              >
-                Open App
-                <ArrowUpRight className="ml-2 h-4 w-4" />
-              </Button>
-            </div>
-
-            <div className="mt-8 grid sm:grid-cols-3 gap-4">
-              {[
-                { label: "Lead Scraping", desc: "LinkedIn, Google Maps, Amazon Seller Central" },
-                { label: "AI Scoring", desc: "ICP fit scoring with reasoning breakdown" },
-                { label: "Pipeline", desc: "Kanban board with drag-and-drop deal tracking" },
-              ].map((f) => (
-                <div
-                  key={f.label}
-                  className="rounded-xl border border-[rgba(255,255,255,0.04)] bg-[rgba(255,255,255,0.01)] p-4"
-                >
-                  <div className="text-sm font-semibold text-white">{f.label}</div>
-                  <div className="text-xs text-[#71717a] mt-1">{f.desc}</div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Coming soon */}
-      <section className="py-16 px-6">
-        <div className="mx-auto max-w-5xl">
-          <h3 className="text-sm font-semibold tracking-widest uppercase text-[#71717a] text-center mb-8">
-            Coming Soon
-          </h3>
-          <div className="grid sm:grid-cols-2 gap-6">
-            {[
-              {
-                icon: Construction,
-                title: "Support OS",
-                desc: "AI customer support agent that learns from your docs and handles tickets autonomously.",
-              },
-              {
-                icon: Lightbulb,
-                title: "Content Engine",
-                desc: "Automated content pipeline — research, draft, optimize, and publish with AI.",
-              },
-            ].map((product) => {
-              const Icon = product.icon;
-              return (
-                <motion.div
-                  key={product.title}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4 }}
-                  className="rounded-2xl border border-dashed border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.01)] p-8"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-[rgba(124,58,237,0.08)] flex items-center justify-center mb-4">
-                    <Icon className="h-5 w-5 text-[#7c3aed]" />
+              <h2 className="text-2xl font-bold text-white mb-3">Prospecting OS</h2>
+              <p className="text-[#71717a] leading-relaxed mb-6 max-w-lg">
+                AI-powered B2B lead generation. Scrapes LinkedIn, Google Maps, and Amazon. Scores leads
+                against your ICP. Delivers qualified prospects to Slack with icebreakers — automatically,
+                every day.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                {[
+                  { label: "Lead Scraping", detail: "LinkedIn, Google Maps, Amazon" },
+                  { label: "AI Scoring", detail: "ICP fit with reasoning" },
+                  { label: "Auto Delivery", detail: "Slack & Telegram" },
+                ].map(({ label, detail }) => (
+                  <div key={label} className="p-4 rounded-lg bg-[#0d0d0d] border border-[#1a1a1a]">
+                    <p className="text-white text-sm font-medium mb-1">{label}</p>
+                    <p className="text-[#71717a] text-xs">{detail}</p>
                   </div>
-                  <h4 className="text-lg font-semibold text-white">{product.title}</h4>
-                  <p className="mt-2 text-sm text-[#a1a1aa] leading-relaxed">
-                    {product.desc}
-                  </p>
-                  <span className="inline-block mt-4 text-xs font-medium text-[#71717a] bg-[rgba(255,255,255,0.03)] rounded-full px-3 py-1">
-                    In development
-                  </span>
-                </motion.div>
-              );
-            })}
+                ))}
+              </div>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link
+                  href="https://app.flow-forges.com/prospecting-os"
+                  className="px-6 py-3 rounded-full bg-[#e8420a] text-white font-semibold text-sm hover:bg-[#cc3a08] transition-colors text-center"
+                >
+                  Open App
+                </Link>
+                <Link
+                  href="/pricing"
+                  className="px-6 py-3 rounded-full border border-[#1a1a1a] text-[#71717a] font-semibold text-sm hover:text-white hover:border-zinc-600 transition-colors text-center"
+                >
+                  View Pricing →
+                </Link>
+              </div>
+            </div>
+            <div className="lg:w-48 text-center p-6 rounded-lg bg-[#0d0d0d] border border-[#1a1a1a]">
+              <p className="text-3xl font-bold text-white">$499</p>
+              <p className="text-[#71717a] text-xs">/month</p>
+              <p className="text-[#71717a] text-xs mt-1">+ $1,499 setup</p>
+            </div>
           </div>
         </div>
-      </section>
+
+        {/* ── Remi — LIVE ── */}
+        <div className="p-8 rounded-lg bg-[#111111] border border-[#1a1a1a] mb-16">
+          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8">
+            <div className="flex-1">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="px-2 py-0.5 rounded-full bg-[#0a2a0a] border border-[#1a3a1a] text-[#4ade80] text-xs font-medium">
+                  ● LIVE
+                </span>
+                <span className="px-2 py-0.5 rounded-full bg-[#111111] border border-[#1a1a1a] text-[#71717a] text-xs">
+                  New
+                </span>
+              </div>
+              <h2 className="text-2xl font-bold text-white mb-3">Remi — Missed Call Recovery</h2>
+              <p className="text-[#71717a] leading-relaxed mb-6 max-w-lg">
+                AI agent that responds to missed calls instantly via SMS. Qualifies the lead, answers
+                questions, and books appointments — while you&apos;re busy. Never lose a client to voicemail
+                again.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                {[
+                  { label: "Instant SMS", detail: "Responds in seconds" },
+                  { label: "Lead Qualification", detail: "AI-powered conversations" },
+                  { label: "Booking", detail: "Auto appointment scheduling" },
+                ].map(({ label, detail }) => (
+                  <div key={label} className="p-4 rounded-lg bg-[#0d0d0d] border border-[#1a1a1a]">
+                    <p className="text-white text-sm font-medium mb-1">{label}</p>
+                    <p className="text-[#71717a] text-xs">{detail}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link
+                  href="https://agent.flow-forges.com"
+                  className="px-6 py-3 rounded-full bg-[#e8420a] text-white font-semibold text-sm hover:bg-[#cc3a08] transition-colors text-center"
+                >
+                  Learn More
+                </Link>
+                <Link
+                  href="/pricing"
+                  className="px-6 py-3 rounded-full border border-[#1a1a1a] text-[#71717a] font-semibold text-sm hover:text-white hover:border-zinc-600 transition-colors text-center"
+                >
+                  View Pricing →
+                </Link>
+              </div>
+            </div>
+            <div className="lg:w-48 text-center p-6 rounded-lg bg-[#0d0d0d] border border-[#1a1a1a]">
+              <p className="text-3xl font-bold text-white">$299</p>
+              <p className="text-[#71717a] text-xs">/month</p>
+              <p className="text-[#71717a] text-xs mt-1">+ $999 setup</p>
+            </div>
+          </div>
+        </div>
+
+        {/* ── Coming Soon ── */}
+        <p className="text-xs font-medium text-[#71717a] tracking-widest uppercase mb-6">COMING SOON</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {[
+            { name: "Support OS", desc: "AI customer support that learns from your docs." },
+            { name: "Content Engine", desc: "Automated content pipeline — research to publish." },
+          ].map(({ name, desc }) => (
+            <div key={name} className="p-6 rounded-lg bg-[#0d0d0d] border border-[#1a1a1a] opacity-60">
+              <span className="text-xs text-[#71717a] tracking-widest uppercase">In Development</span>
+              <h3 className="text-white font-semibold mt-2 mb-1">{name}</h3>
+              <p className="text-[#71717a] text-sm">{desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

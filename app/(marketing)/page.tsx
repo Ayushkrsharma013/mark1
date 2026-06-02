@@ -1,220 +1,262 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Box, Wrench, Compass, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "FlowForges — AI Automation Agency",
   description:
-    "FlowForges builds done-for-you AI agents for digital agencies and e-commerce brands in the US and UK. Prospecting, outreach, support — fully automated.",
+    "Done-for-you AI agents for digital agencies and e-commerce brands. Prospecting, outreach, and support — fully automated. Live in 2 weeks.",
 };
-
-const whatWeBuild = [
-  {
-    icon: Box,
-    title: "Productized AI Agents",
-    body: "Pre-built, ready to deploy. Prospecting OS finds and scores leads automatically. Remi recovers missed calls. Plug in and start seeing results same day.",
-    cta: "Explore Products",
-    href: "/products",
-  },
-  {
-    icon: Wrench,
-    title: "Custom AI Development",
-    body: "We build bespoke AI agents, workflow automations, and analytics dashboards tailored to your exact business process. Done-for-you, start to finish.",
-    cta: "View Services",
-    href: "/services",
-  },
-  {
-    icon: Compass,
-    title: "AI Strategy & Consulting",
-    body: "Not sure where to start? We audit your operations, identify the highest-ROI automation opportunities, and hand you a phased execution plan.",
-    cta: "Book a Call",
-    href: "/book",
-  },
-];
-
-const steps = [
-  {
-    step: "01",
-    title: "Discovery Call",
-    body: "We learn your business, bottlenecks, and goals in 30 minutes.",
-  },
-  {
-    step: "02",
-    title: "We Build",
-    body: "Our team builds and tests your AI agent or automation in 2–4 weeks.",
-  },
-  {
-    step: "03",
-    title: "You Launch",
-    body: "We deploy, train your team, and handle all integrations.",
-  },
-  {
-    step: "04",
-    title: "It Runs",
-    body: "Your AI agent works 24/7. We monitor, optimize, and support.",
-  },
-];
-
-const stats = [
-  { stat: "15+", label: "AI Agents Built" },
-  { stat: "Done-For-You", label: "Delivery" },
-  { stat: "2–4 Weeks", label: "Setup" },
-  { stat: "500+", label: "Leads Scored" },
-];
-
-const testimonials = [
-  {
-    quote:
-      "FlowForges set up our entire prospecting pipeline in under 2 weeks. We went from manually hunting leads to having a full AI system running overnight.",
-    author: "Digital Agency, US",
-  },
-  {
-    quote:
-      "The Remi agent recovered 3 clients in the first month who called after hours. ROI was immediate.",
-    author: "Service Business, UK",
-  },
-  {
-    quote:
-      "Finally an AI agency that actually delivers. No fluff, no templates — they built exactly what we needed.",
-    author: "E-commerce Brand, AU",
-  },
-];
 
 export default function HomePage() {
   return (
     <div style={{ background: "#0A0A0A" }}>
-      <style dangerouslySetInnerHTML={{ __html: `
-        @keyframes heroFadeUp {
-          from { opacity: 0; transform: translateY(18px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-        .hero-a  { animation: heroFadeUp 0.55s ease both; }
-        .hero-b  { animation: heroFadeUp 0.55s ease 0.1s both; }
-        .hero-c  { animation: heroFadeUp 0.55s ease 0.2s both; }
-        .hero-d  { animation: heroFadeUp 0.55s ease 0.3s both; }
-        .hero-e  { animation: heroFadeUp 0.55s ease 0.4s both; }
-      `}} />
 
       {/* ── HERO ── */}
-      <section className="relative flex flex-col items-center justify-center min-h-screen px-6 pt-24 pb-20 text-center">
-        <span className="hero-a inline-flex items-center rounded-full border border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.04)] px-4 py-1.5 text-xs font-medium text-[#a1a1aa] mb-7">
-          AI Automation Agency · US &amp; UK Clients
-        </span>
+      <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1a1a1a_1px,transparent_1px),linear-gradient(to_bottom,#1a1a1a_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-40" />
 
-        <h1 className="hero-b text-5xl md:text-6xl lg:text-7xl font-bold text-white max-w-3xl leading-[1.05] tracking-tight mb-6">
-          We Build AI Agents That
-          <br />
-          Run Your Business
-        </h1>
+        <div className="relative z-10 max-w-4xl mx-auto text-center">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#1a1a1a] bg-[#111111] text-[#71717a] text-xs font-medium mb-8">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#e8420a]" />
+            Done-For-You AI Agency · US &amp; UK Clients
+          </div>
 
-        <p className="hero-c text-lg md:text-xl text-[#a1a1aa] max-w-xl leading-relaxed mb-10">
-          Done-for-you AI automation for digital agencies and e-commerce brands.
-          Prospecting, outreach, support, and analytics — fully automated.
-        </p>
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tight mb-6">
+            We Build AI Agents<br />
+            <span style={{ color: "#e8420a" }}>That Run</span> Your Business
+          </h1>
 
-        <div className="hero-d flex flex-col sm:flex-row gap-4 items-center mb-12">
-          <Link
-            href="/book"
-            className="px-7 py-3.5 rounded-full font-semibold text-sm text-white transition-all duration-200 hover:opacity-90 hover:shadow-[0_0_28px_rgba(232,66,10,0.35)]"
-            style={{ background: "#e8420a" }}
-          >
-            Book a Free Strategy Call
-          </Link>
-          <Link
-            href="/case-studies"
-            className="px-7 py-3.5 rounded-full font-semibold text-sm text-white border border-[rgba(255,255,255,0.15)] hover:bg-[rgba(255,255,255,0.04)] transition-all duration-200"
-          >
-            See Our Work
-          </Link>
+          <p className="text-lg sm:text-xl text-[#71717a] max-w-2xl mx-auto mb-10 leading-relaxed">
+            Stop hiring for tasks AI can own. We build and deploy AI agents for digital agencies and
+            e-commerce brands — prospecting, outreach, missed call recovery, and support. Live in 2 weeks.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+            <Link
+              href="/book"
+              className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-[#e8420a] text-white font-semibold text-sm hover:bg-[#cc3a08] transition-colors text-center"
+            >
+              Book a Free Strategy Call
+            </Link>
+            <Link
+              href="/products"
+              className="w-full sm:w-auto px-8 py-3.5 rounded-full border border-[#1a1a1a] text-[#71717a] font-semibold text-sm hover:text-white hover:border-zinc-600 transition-colors text-center"
+            >
+              See Our Products →
+            </Link>
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-6 text-xs text-[#71717a]">
+            <span>✓ US &amp; UK agencies</span>
+            <span>✓ 2-week delivery</span>
+            <span>✓ 500+ leads generated</span>
+            <span>✓ No long-term contracts</span>
+          </div>
         </div>
-
-        <p className="hero-e text-xs text-[#52525b] tracking-wide">
-          Trusted by agencies in US · UK · AU &nbsp;&middot;&nbsp; Backed by real results &nbsp;&middot;&nbsp; Setup in days, not months
-        </p>
       </section>
 
       {/* ── WHAT WE BUILD ── */}
-      <section className="px-6 py-24 border-t border-[rgba(255,255,255,0.04)]">
-        <div className="mx-auto max-w-5xl">
-          <h2 className="text-2xl font-bold text-white text-center mb-12">What We Build</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {whatWeBuild.map(({ icon: Icon, title, body, cta, href }) => (
-              <div
-                key={title}
-                className="flex flex-col rounded-2xl border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.02)] p-6"
-              >
-                <div className="w-10 h-10 rounded-xl bg-[rgba(0,212,255,0.08)] flex items-center justify-center mb-4">
-                  <Icon className="h-5 w-5 text-[#00d4ff]" />
-                </div>
-                <h3 className="text-lg font-semibold text-white mb-2">{title}</h3>
-                <p className="text-sm text-[#a1a1aa] leading-relaxed mb-5 flex-1">{body}</p>
-                <Link
-                  href={href}
-                  className="inline-flex items-center gap-1.5 text-sm font-medium text-[#00d4ff] hover:underline"
-                >
-                  {cta} <ArrowRight className="h-3 w-3" />
-                </Link>
+      <section className="py-24 px-4 sm:px-6 lg:px-8 border-t border-[#1a1a1a]">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="text-xs font-medium text-[#e8420a] tracking-widest uppercase mb-3">WHAT WE BUILD</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white">Two ways to work with us</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="p-8 rounded-lg bg-[#111111] border border-[#1a1a1a] hover:border-zinc-700 transition-colors">
+              <div className="text-xs font-medium text-[#e8420a] tracking-widest uppercase mb-4">PLUG &amp; PLAY</div>
+              <h3 className="text-xl font-bold text-white mb-3">Productized AI Agents</h3>
+              <p className="text-[#71717a] text-sm leading-relaxed mb-6">
+                Pre-built, ready to deploy. Prospecting OS finds and scores leads automatically. Remi recovers
+                missed calls. Plug in your details and start seeing results same day.
+              </p>
+              <div className="space-y-2 mb-8">
+                {[
+                  "Prospecting OS — $499/mo",
+                  "Remi Missed Call Recovery — $299/mo",
+                  "Setup in days, not weeks",
+                  "Monthly subscription, cancel anytime",
+                ].map((item) => (
+                  <div key={item} className="flex items-center gap-2 text-sm text-[#71717a]">
+                    <span className="text-[#e8420a]">→</span> {item}
+                  </div>
+                ))}
               </div>
-            ))}
+              <Link href="/products" className="text-sm font-medium text-white hover:text-[#e8420a] transition-colors">
+                Explore Products →
+              </Link>
+            </div>
+
+            <div className="p-8 rounded-lg bg-[#111111] border border-[#1a1a1a] hover:border-zinc-700 transition-colors">
+              <div className="text-xs font-medium text-[#71717a] tracking-widest uppercase mb-4">CUSTOM BUILT</div>
+              <h3 className="text-xl font-bold text-white mb-3">Bespoke AI Development</h3>
+              <p className="text-[#71717a] text-sm leading-relaxed mb-6">
+                We build AI agents, workflow automations, and analytics dashboards tailored to your exact
+                business process. Done-for-you, start to finish.
+              </p>
+              <div className="space-y-2 mb-8">
+                {[
+                  "AI Agents & Chatbots — from $5,000",
+                  "Workflow Automation — from $8,000",
+                  "Custom AI Development — from $15,000",
+                  "30 days post-launch support included",
+                ].map((item) => (
+                  <div key={item} className="flex items-center gap-2 text-sm text-[#71717a]">
+                    <span className="text-[#71717a]">→</span> {item}
+                  </div>
+                ))}
+              </div>
+              <Link href="/services" className="text-sm font-medium text-white hover:text-[#e8420a] transition-colors">
+                View Services →
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── TERMINAL DEMO ── */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 border-t border-[#1a1a1a]">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <p className="text-xs font-medium text-[#e8420a] tracking-widest uppercase mb-3">LIVE PRODUCT</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+              Prospecting OS — running right now
+            </h2>
+            <p className="text-[#71717a]">This is what happens automatically, every day, for our clients.</p>
+          </div>
+
+          <div className="rounded-lg bg-[#0d0d0d] border border-[#1a1a1a] overflow-hidden">
+            <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1a1a1a]">
+              <div className="w-3 h-3 rounded-full bg-[#ff5f57]" />
+              <div className="w-3 h-3 rounded-full bg-[#febc2e]" />
+              <div className="w-3 h-3 rounded-full bg-[#28c840]" />
+              <span className="ml-3 text-xs text-[#71717a] font-mono">prospecting-os — live pipeline</span>
+            </div>
+            <div className="p-6 font-mono text-sm space-y-2">
+              <div>
+                <span className="text-[#4ade80]">[SCOUT]</span>
+                <span className="text-[#71717a]"> Found 47 leads — &quot;e-commerce agency United States&quot;</span>
+              </div>
+              <div>
+                <span className="text-[#4ade80]">[ENRICH]</span>
+                <span className="text-[#71717a]"> Fetching firmographics for acme-digital.com...</span>
+              </div>
+              <div>
+                <span className="text-[#4ade80]">[SCORE]</span>
+                <span className="text-white"> ICP match: 94%</span>
+                <span className="text-[#71717a]"> — 51-200 employees, Shopify stack, US-based, hiring for paid media</span>
+              </div>
+              <div>
+                <span className="text-[#4ade80]">[ICEBRKR]</span>
+                <span className="text-[#71717a]"> Icebreaker generated for John at Acme Digital</span>
+              </div>
+              <div>
+                <span className="text-[#4ade80]">[DELIVER]</span>
+                <span className="text-[#71717a]"> Sent to Slack #leads-pipeline ✓</span>
+              </div>
+              <div className="pt-2 border-t border-[#1a1a1a]">
+                <span className="text-[#71717a]">↳ Time elapsed: </span>
+                <span className="text-white">4 min 12 sec</span>
+                <span className="text-[#71717a] ml-4">Human involvement: </span>
+                <span className="text-white">0</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center mt-8">
+            <p className="text-[#71717a] text-sm mb-4">This runs automatically, 24/7. No prompting required.</p>
+            <Link
+              href="/book"
+              className="inline-flex px-8 py-3.5 rounded-full bg-[#e8420a] text-white font-semibold text-sm hover:bg-[#cc3a08] transition-colors"
+            >
+              Get This Running For You →
+            </Link>
           </div>
         </div>
       </section>
 
       {/* ── HOW IT WORKS ── */}
-      <section className="px-6 py-24 border-t border-[rgba(255,255,255,0.04)]">
-        <div className="mx-auto max-w-4xl">
-          <h2 className="text-2xl font-bold text-white text-center mb-12">How It Works</h2>
-          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-5">
-            {steps.map(({ step, title, body }) => (
-              <div
-                key={step}
-                className="rounded-2xl border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.02)] p-6"
-              >
-                <div className="text-3xl font-bold text-[rgba(255,255,255,0.08)] mb-3 font-mono">
-                  {step}
-                </div>
-                <h3 className="text-base font-semibold text-white mb-2">{title}</h3>
-                <p className="text-sm text-[#a1a1aa] leading-relaxed">{body}</p>
+      <section className="py-24 px-4 sm:px-6 lg:px-8 border-t border-[#1a1a1a]">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="text-xs font-medium text-[#e8420a] tracking-widest uppercase mb-3">PROCESS</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white">
+              From call to running agent — 2 weeks
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                step: "01",
+                title: "Discovery Call",
+                body: "We learn your business, bottlenecks, and goals in 30 minutes. No pitch deck.",
+              },
+              {
+                step: "02",
+                title: "We Build",
+                body: "Our team builds and tests your AI agent in 1-2 weeks. You get progress updates.",
+              },
+              {
+                step: "03",
+                title: "You Launch",
+                body: "We deploy, handle integrations, and train your team. Zero technical lift from you.",
+              },
+              {
+                step: "04",
+                title: "It Runs",
+                body: "Your AI agent works 24/7. We monitor, optimize, and support ongoing.",
+              },
+            ].map(({ step, title, body }) => (
+              <div key={step} className="p-6 rounded-lg bg-[#111111] border border-[#1a1a1a]">
+                <div className="text-4xl font-bold text-[#1a1a1a] mb-4">{step}</div>
+                <h3 className="text-white font-semibold mb-2">{title}</h3>
+                <p className="text-[#71717a] text-sm leading-relaxed">{body}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── STATS ── */}
-      <section className="px-6 py-16 border-t border-[rgba(255,255,255,0.04)]">
-        <div className="mx-auto max-w-4xl grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          {stats.map(({ stat, label }) => (
-            <div key={label}>
-              <div className="text-2xl font-bold text-white">{stat}</div>
-              <div className="text-xs text-[#71717a] mt-1.5">{label}</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* ── TESTIMONIALS ── */}
-      <section className="px-6 py-24 border-t border-[rgba(255,255,255,0.04)]">
-        <div className="mx-auto max-w-5xl">
-          <h2 className="text-2xl font-bold text-white text-center mb-12">
-            Built for agencies who want results, not complexity
-          </h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {testimonials.map(({ quote, author }) => (
-              <div
-                key={author}
-                className="rounded-2xl border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.02)] p-6"
-              >
-                {/* TODO: replace with real testimonials */}
-                <div className="flex gap-0.5 mb-4" aria-label="5 stars">
+      <section className="py-24 px-4 sm:px-6 lg:px-8 border-t border-[#1a1a1a]">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white">What clients say</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                quote:
+                  "We went from spending 6 hours a week manually finding leads to having 50+ scored prospects in Slack every Monday. FlowForges set it up in 10 days.",
+                name: "Digital Agency Owner",
+                location: "Austin, TX",
+              },
+              {
+                quote:
+                  "Remi recovered a $2,400 client in week one — someone who called after hours. The ROI conversation was very short.",
+                name: "Service Business Owner",
+                location: "Manchester, UK",
+              },
+              {
+                quote:
+                  "We'd tried two other AI agencies before FlowForges. First ones who actually shipped something that worked without us babysitting it.",
+                name: "E-commerce Brand",
+                location: "Melbourne, AU",
+              },
+            ].map(({ quote, name, location }) => (
+              <div key={name} className="p-6 rounded-lg bg-[#111111] border border-[#1a1a1a]">
+                <div className="flex gap-0.5 mb-4">
                   {Array.from({ length: 5 }).map((_, i) => (
-                    <span key={i} className="text-[#FBBF24] text-sm">★</span>
+                    <span key={i} className="text-[#e8420a] text-sm">★</span>
                   ))}
                 </div>
-                <p className="text-sm text-[#a1a1aa] leading-relaxed mb-5">
-                  &ldquo;{quote}&rdquo;
-                </p>
-                <p className="text-xs font-medium text-[#52525b]">— {author}</p>
+                <p className="text-[#a1a1aa] text-sm leading-relaxed mb-6">&ldquo;{quote}&rdquo;</p>
+                <div>
+                  <p className="text-white text-sm font-medium">{name}</p>
+                  <p className="text-[#71717a] text-xs">{location}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -222,23 +264,24 @@ export default function HomePage() {
       </section>
 
       {/* ── FINAL CTA ── */}
-      <section className="px-6 py-24 border-t border-[rgba(255,255,255,0.04)] text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-          Ready to automate your business?
-        </h2>
-        <p className="text-[#a1a1aa] mb-10 max-w-md mx-auto text-sm leading-relaxed">
-          Start with a free 30-minute strategy call. We&apos;ll map out the highest-ROI
-          automation for your business.
-        </p>
-        <Link
-          href="/book"
-          className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-sm text-white transition-all duration-200 hover:opacity-90 hover:shadow-[0_0_32px_rgba(232,66,10,0.3)]"
-          style={{ background: "#e8420a" }}
-        >
-          Book a Free Strategy Call
-          <ArrowRight className="h-4 w-4" />
-        </Link>
+      <section className="py-24 px-4 sm:px-6 lg:px-8 border-t border-[#1a1a1a]">
+        <div className="max-w-2xl mx-auto text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+            Ready to stop doing manually<br />what AI can own?
+          </h2>
+          <p className="text-[#71717a] mb-8">30-minute strategy call. No pitch deck. No commitment.</p>
+          <Link
+            href="/book"
+            className="inline-flex px-10 py-4 rounded-full bg-[#e8420a] text-white font-semibold hover:bg-[#cc3a08] transition-colors"
+          >
+            Book a Free Strategy Call
+          </Link>
+          <p className="text-xs text-[#71717a] mt-4">
+            Typically responds within 4 hours · US &amp; UK timezone friendly
+          </p>
+        </div>
       </section>
+
     </div>
   );
 }

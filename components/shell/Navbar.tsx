@@ -33,16 +33,10 @@ export function Navbar() {
           className={cn(
             "mx-auto flex items-center gap-8 transition-all duration-500 ease-out",
             scrolled
-              ? "mt-2 max-w-5xl h-14 rounded-2xl border border-white/[0.06] bg-[#04040a]/80 backdrop-blur-2xl shadow-[0_1px_40px_rgba(0,0,0,0.4)] px-6"
-              : "mt-0 max-w-7xl h-20 rounded-none border-transparent bg-transparent backdrop-blur-0 px-6"
+              ? "mt-0 max-w-7xl h-16 rounded-none border-b border-[#1a1a1a] bg-[#0A0A0A] px-6"
+              : "mt-0 max-w-7xl h-20 rounded-none border-b border-[#1a1a1a] bg-[#0A0A0A] px-6"
           )}
         >
-          {/* Top edge glow line — only visible on scroll */}
-          <div
-            className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#00d4ff]/15 to-transparent transition-opacity duration-500"
-            style={{ opacity: scrolled ? 1 : 0 }}
-          />
-
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 flex-shrink-0 group">
             <img
@@ -92,7 +86,7 @@ export function Navbar() {
             </Link>
             <Link
               href="/book"
-              className="text-sm font-semibold px-5 py-2 rounded-full bg-[#00d4ff] text-[#04040a] hover:bg-[#00d4ff]/90 transition-all duration-200 hover:shadow-[0_0_24px_rgba(0,212,255,0.25)]"
+              className="text-sm font-semibold px-5 py-2 rounded-full bg-[#e8420a] text-white hover:bg-[#cc3a08] transition-all duration-200"
             >
               Book a Demo
             </Link>
@@ -186,7 +180,7 @@ export function Navbar() {
             <Link
               href="/book"
               onClick={() => setOpen(false)}
-              className="w-full max-w-xs text-center py-3.5 rounded-2xl bg-[#00d4ff] text-[#04040a] font-semibold text-[15px] hover:bg-[#00d4ff]/90 transition-all"
+              className="w-full max-w-xs text-center py-3.5 rounded-2xl bg-[#e8420a] text-white font-semibold text-[15px] hover:bg-[#cc3a08] transition-all"
             >
               Book a Demo
             </Link>

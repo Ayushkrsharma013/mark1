@@ -1,14 +1,12 @@
 import type { Metadata } from "next";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 import { BlogCard } from "@/components/blog/BlogCard";
-import { AsciiBackground } from "@/components/ui/AsciiBackground";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { mapSupabasePost, blogPosts } from "@/lib/blog-data";
 
 export const metadata: Metadata = {
   title: "Blog",
   description:
-    "Thoughts on AI, automation, and building products that matter. By the team at FlowForges.",
+    "AI automation insights, tutorials, and agency growth strategies from FlowForges.",
 };
 
 export const revalidate = 60;
@@ -32,25 +30,28 @@ export default async function BlogPage() {
   }
 
   return (
-    <div className="pt-24">
-      <section className="relative py-24 px-6 overflow-hidden">
-        <AsciiBackground mode="blog" className="absolute inset-0 w-full h-full" />
-        <div className="relative z-10 mx-auto max-w-3xl text-center">
-          <SectionHeading
-            label="Blog"
-            title="Thoughts on AI, automation, and shipping"
-            description="We write about what we're building and what we're learning along the way."
-          />
-        </div>
-      </section>
+    <div style={{ background: "#0A0A0A" }}>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24">
 
-      <section className="py-16 px-6 border-t border-[rgba(255,255,255,0.04)]">
-        <div className="mx-auto max-w-4xl grid gap-6 md:grid-cols-2">
-          {posts.map((post) => (
-            <BlogCard key={post.slug} post={post} />
-          ))}
+        <div className="mb-16">
+          <p className="text-xs font-medium text-[#e8420a] tracking-widest uppercase mb-3">BLOG</p>
+          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">AI automation insights</h1>
+          <p className="text-[#71717a]">Practical guides on AI automation, agency growth, and building with AI.</p>
         </div>
-      </section>
+
+        {posts.length > 0 ? (
+          <div className="grid gap-6 md:grid-cols-2">
+            {posts.map((post) => (
+              <BlogCard key={post.slug} post={post} />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-24 border border-[#1a1a1a] rounded-lg bg-[#111111]">
+            <p className="text-[#71717a] text-lg mb-2">First posts coming soon.</p>
+            <p className="text-sm text-[#52525b]">Subscribe to get notified when we publish.</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

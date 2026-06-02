@@ -35,13 +35,24 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.flow-forges.com"),
   title: {
     default: "FlowForges — AI Automation Agency",
     template: "%s | FlowForges",
   },
   description:
-    "We build AI-powered products that transform how businesses operate. From lead generation to workflow automation, we ship intelligence.",
-  metadataBase: new URL("https://flowforges.com"),
+    "Done-for-you AI agents for digital agencies and e-commerce brands. Prospecting, outreach, and support — fully automated. Live in 2 weeks.",
+  keywords: [
+    "AI automation",
+    "AI agents",
+    "done for you AI",
+    "lead generation AI",
+    "digital agency automation",
+    "e-commerce AI",
+    "prospecting automation",
+  ],
+  authors: [{ name: "FlowForges" }],
+  creator: "FlowForges",
   icons: {
     icon: [
       { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
@@ -51,18 +62,19 @@ export const metadata: Metadata = {
   },
   manifest: "/site.webmanifest",
   openGraph: {
-    title: "FlowForges — AI Automation Agency",
-    description:
-      "We build AI-powered products that transform how businesses operate.",
-    siteName: "FlowForges",
     type: "website",
-    images: [{ url: "/Logo.png", width: 512, height: 512 }],
+    locale: "en_US",
+    url: "https://www.flow-forges.com",
+    siteName: "FlowForges",
+    title: "FlowForges — Done-For-You AI Agents",
+    description:
+      "We build AI agents that run your business. Prospecting, outreach, support — automated.",
+    images: [{ url: "/Logo.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "FlowForges — AI Automation Agency",
-    description:
-      "We build AI-powered products that transform how businesses operate.",
+    title: "FlowForges — Done-For-You AI Agents",
+    description: "We build AI agents that run your business.",
     images: ["/Logo.png"],
   },
   robots: {
