@@ -1,10 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import { AsciiBackground } from "@/components/ui/AsciiBackground";
-import { QuoteBuilder } from "@/components/pricing/QuoteBuilder";
-import type { CurrencyCode } from "@/lib/currency";
 import {
   ArrowRight,
   Check,
@@ -14,260 +11,235 @@ import {
   Truck,
   Ban,
   CreditCard,
-  Globe,
 } from "lucide-react";
 
-interface Tier {
-  name: string;
-  price: string;
-  period: string;
-  description: string;
-  features: string[];
-  highlighted: boolean;
-  cta: string;
-  href: string;
-}
-
-const FALLBACK_TIERS: Tier[] = [
+const products = [
   {
-    name: "Starter",
-    price: "From ₹3,000",
-    period: "per engagement",
+    name: "Prospecting OS",
+    badge: "Most Popular",
+    badgeStyle: "bg-[#00d4ff] text-[#04040a]",
+    price: "$499",
+    period: "/month",
+    setup: "+ $1,499 one-time setup",
     description:
-      "AI strategy and readiness audit. One-off engagements that give you a clear automation roadmap.",
+      "AI-powered B2B lead generation. Scrape, score, and manage leads from LinkedIn, Google Maps, and Amazon.",
     features: [
-      "Operations deep-dive & audit",
-      "High-ROI opportunity sizing report",
-      "Phased implementation roadmap",
-      "Vendor & tool recommendations",
-      "Delivered in 2–3 weeks",
-    ],
-    highlighted: false,
-    cta: "Book a Call",
-    href: "/book",
-  },
-  {
-    name: "Growth",
-    price: "From ₹50,000",
-    period: "per engagement",
-    description:
-      "Custom AI agents and workflow automation. We build, deploy, and optimize for 30 days post-launch.",
-    features: [
-      "Custom conversational AI agent",
-      "Multi-channel deployment (web, Slack, WhatsApp)",
-      "Workflow automation scripts",
-      "Integration with your existing stack",
-      "30 days of optimization & support",
-      "Documentation & team training",
+      "Unlimited lead scraping",
+      "AI ICP scoring with reasoning",
+      "Slack & Telegram delivery",
+      "Dedicated pipeline dashboard",
+      "Icebreaker generation",
+      "Monthly performance report",
     ],
     highlighted: true,
-    cta: "Book a Demo",
     href: "/book",
   },
   {
-    name: "Enterprise",
-    price: "From ₹1,50,000",
-    period: "per engagement",
+    name: "Remi — Missed Call Recovery",
+    badge: "New",
+    badgeStyle: "bg-[rgba(0,255,136,0.12)] text-[#00ff88]",
+    price: "$299",
+    period: "/month",
+    setup: "+ $999 one-time setup",
     description:
-      "Full AI workforce. Multiple agents, custom models, end-to-end process automation. Ongoing retainer available.",
+      "AI agent that recovers missed calls 24/7. Texts back instantly, qualifies leads, books appointments automatically.",
     features: [
-      "Everything in Growth, plus:",
-      "Multiple AI agents working in parallel",
-      "Custom ML model development",
-      "Predictive analytics dashboards",
-      "Dedicated AI strategist",
-      "Quarterly model refresh & audit",
-      "Priority Slack/phone support",
+      "Instant SMS response to missed calls",
+      "AI lead qualification",
+      "Appointment booking",
+      "CRM integration",
+      "Call analytics dashboard",
+      "US phone number included",
     ],
     highlighted: false,
-    cta: "Contact Sales",
-    href: "/home#contact",
+    href: "/book",
   },
 ];
 
+const services = [
+  { name: "AI Agent / Chatbot", price: "From $5,000", timeline: "3–4 weeks" },
+  { name: "Workflow Automation", price: "From $8,000", timeline: "4–6 weeks" },
+  { name: "Custom AI Development", price: "From $15,000", timeline: "6–8 weeks" },
+  { name: "AI Analytics Dashboard", price: "From $6,000", timeline: "3–5 weeks" },
+  { name: "AI Strategy & Consulting", price: "From $3,000", timeline: "2–3 weeks" },
+];
+
 const legalLinks = [
-  {
-    icon: Shield,
-    title: "Privacy Policy",
-    desc: "How we protect your data",
-    href: "/legal/privacy",
-  },
-  {
-    icon: FileText,
-    title: "Terms of Service",
-    desc: "Rules for using our services",
-    href: "/legal/terms",
-  },
-  {
-    icon: RotateCcw,
-    title: "Refund Policy",
-    desc: "Our refund terms",
-    href: "/legal/refund",
-  },
-  {
-    icon: Truck,
-    title: "Shipping Policy",
-    desc: "Digital delivery timelines",
-    href: "/legal/shipping",
-  },
-  {
-    icon: Ban,
-    title: "Cancellation Policy",
-    desc: "How to cancel services",
-    href: "/legal/cancellation",
-  },
-  {
-    icon: CreditCard,
-    title: "Payment Disclosure",
-    desc: "Processors & security",
-    href: "/legal/payment-disclosure",
-  },
+  { icon: Shield, title: "Privacy Policy", desc: "How we protect your data", href: "/legal/privacy" },
+  { icon: FileText, title: "Terms of Service", desc: "Rules for using our services", href: "/legal/terms" },
+  { icon: RotateCcw, title: "Refund Policy", desc: "Our refund terms", href: "/legal/refund" },
+  { icon: Truck, title: "Shipping Policy", desc: "Digital delivery timelines", href: "/legal/shipping" },
+  { icon: Ban, title: "Cancellation Policy", desc: "How to cancel services", href: "/legal/cancellation" },
+  { icon: CreditCard, title: "Payment Disclosure", desc: "Processors & security", href: "/legal/payment-disclosure" },
 ];
 
 const faqs = [
   {
-    q: "Why no fixed prices?",
-    a: "Every engagement is custom. Two clients might both want an AI agent — but one needs a simple FAQ bot and the other needs a multi-agent system integrated with their ERP. We scope first, then price. The ranges above are based on past engagements.",
-  },
-  {
-    q: "Do you offer retainers?",
-    a: "Yes. After the initial build, many clients move to a monthly retainer for ongoing optimization, monitoring, and new feature development. Retainers start at ₹25,000/month.",
-  },
-  {
-    q: "How long does a typical engagement take?",
-    a: "Starter audits: 2–3 weeks. Growth engagements: 4–8 weeks. Enterprise: 8–16 weeks. Timelines depend on scope, data availability, and integration complexity.",
-  },
-  {
-    q: "What if I need changes after delivery?",
-    a: "Growth and Enterprise engagements include 30 days of post-launch optimization. After that, changes are scoped as a new engagement or covered under a retainer.",
+    q: "What payment methods do you accept?",
+    a: "International clients: Credit/debit cards and PayPal via Paddle (USD). Indian clients: UPI and net-banking available. All subscriptions auto-renew monthly.",
   },
   {
     q: "Do you work with startups?",
-    a: "Yes. We've worked with companies from pre-seed to post-IPO. For early-stage startups, we can structure engagements with flexible payment terms.",
+    a: "Yes. We work with early-stage startups and scaling agencies. For startups, we can structure milestone-based payment terms. Book a call to discuss.",
   },
   {
-    q: "What payment methods do you accept?",
-    a: "International clients: We accept major credit/debit cards and PayPal via Paddle (USD). Indian clients: UPI and net-banking available. See our Payment Disclosure for details.",
+    q: "Do you offer retainers?",
+    a: "Yes. After your initial build, retainers start at $2,000/month for ongoing optimization, monitoring, and new feature development.",
+  },
+  {
+    q: "How long does a typical engagement take?",
+    a: "Strategy audits: 2–3 weeks. AI agent builds: 3–6 weeks. Enterprise projects: 6–12 weeks. Timelines depend on scope and integration complexity.",
+  },
+  {
+    q: "What if I need changes after delivery?",
+    a: "All engagements include 30 days of post-launch support. After that, changes are scoped as a new engagement or covered under a monthly retainer.",
+  },
+  {
+    q: "Why no fixed prices on custom work?",
+    a: "Every engagement is different. A simple FAQ bot and a multi-agent ERP integration are both 'AI agents' — but the scope is very different. We scope first, then price. Book a call and we'll give you a clear estimate.",
   },
 ];
 
 export function PricingContent() {
-  const [tiers, setTiers] = useState<Tier[]>(FALLBACK_TIERS);
-  const [currency, setCurrency] = useState<CurrencyCode>("USD");
-
-  useEffect(() => {
-    fetch("/api/pricing/tiers")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.currency) {
-          setCurrency(data.currency);
-        }
-        if (data.tiers && !data.fallback) {
-          const normalized = data.tiers.map((t: any) => ({
-            ...t,
-            features: typeof t.features === "string"
-              ? JSON.parse(t.features)
-              : t.features,
-          }));
-          setTiers(normalized);
-        }
-      })
-      .catch(() => {
-        // Use fallback tiers already set (default USD)
-      });
-  }, []);
-
   return (
     <div className="pt-24 pb-16 px-6">
-      {/* Hero */}
+      {/* Header */}
       <div className="relative overflow-hidden rounded-2xl border border-[rgba(255,255,255,0.04)] bg-[rgba(255,255,255,0.01)] p-8 md:p-12 mb-10">
         <AsciiBackground
           mode="legal"
           className="absolute inset-0 w-full h-full opacity-40"
         />
         <div className="relative z-10 text-center">
-          <h1 className="text-3xl font-bold text-white">Pricing</h1>
+          <h1 className="text-3xl font-bold text-white">
+            Simple, Transparent Pricing
+          </h1>
           <p className="text-sm text-[#71717a] mt-2 max-w-lg mx-auto">
-            Custom AI automation — scoped to your business, priced for your
-            scale. No templates. No hidden fees.
+            Choose between our ready-to-deploy AI products or custom-built
+            solutions. All prices in USD.
           </p>
-          {currency !== "INR" && (
-            <div className="inline-flex items-center gap-1.5 mt-3 rounded-full border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.03)] px-3 py-1 text-xs text-[#a1a1aa]">
-              <Globe className="w-3 h-3" />
-              Showing prices in {currency} for your region
-            </div>
-          )}
         </div>
       </div>
 
       <div className="mx-auto max-w-5xl">
-        {/* Tiers */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
-          {tiers.map((tier) => (
-            <div
-              key={tier.name}
-              className={`relative flex flex-col rounded-2xl border p-6 ${
-                tier.highlighted
-                  ? "border-[rgba(0,212,255,0.3)] bg-[rgba(0,212,255,0.03)] ring-1 ring-[rgba(0,212,255,0.1)]"
-                  : "border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.02)]"
-              }`}
-            >
-              {tier.highlighted && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[#00d4ff] text-[#04040a] text-xs font-semibold px-3 py-1">
-                  Most Popular
-                </span>
-              )}
-              <h2 className="text-lg font-semibold text-white">{tier.name}</h2>
-              <p className="mt-2 text-2xl font-bold text-white">
-                {tier.price}
-              </p>
-              <p className="text-xs text-[#52525b]">{tier.period}</p>
-              <p className="mt-3 text-sm text-[#a1a1aa] leading-relaxed">
-                {tier.description}
-              </p>
 
-              <ul className="mt-6 space-y-2.5 flex-1">
-                {tier.features.map((f) => (
-                  <li
-                    key={f}
-                    className="flex items-start gap-2 text-sm text-[#a1a1aa]"
-                  >
-                    <Check className="w-4 h-4 text-[#00ff88] flex-shrink-0 mt-0.5" />
-                    <span>{f}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <Link
-                href={tier.href}
-                className={`mt-8 block text-center py-2.5 rounded-full text-sm font-semibold transition-all duration-200 ${
-                  tier.highlighted
-                    ? "bg-[#00d4ff] text-[#04040a] hover:bg-[#00d4ff]/90 hover:shadow-[0_0_24px_rgba(0,212,255,0.25)]"
-                    : "border border-[rgba(255,255,255,0.1)] text-white hover:bg-white/[0.04]"
+        {/* ── Products ── */}
+        <div className="mb-16">
+          <p className="text-xs font-bold tracking-widest uppercase text-[#52525b] text-center mb-8">
+            AI PRODUCTS — PLUG &amp; PLAY
+          </p>
+          <div className="grid md:grid-cols-2 gap-6">
+            {products.map((product) => (
+              <div
+                key={product.name}
+                className={`relative flex flex-col rounded-2xl border p-6 ${
+                  product.highlighted
+                    ? "border-[rgba(0,212,255,0.3)] bg-[rgba(0,212,255,0.03)] ring-1 ring-[rgba(0,212,255,0.1)]"
+                    : "border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.02)]"
                 }`}
               >
-                {tier.cta}
-              </Link>
-            </div>
-          ))}
-        </div>
-
-        {/* Quote Builder */}
-        <div className="mt-16">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold text-white">
-              Scope Your Project
-            </h2>
-            <p className="text-sm text-[#71717a] mt-2 max-w-md mx-auto">
-              Not sure which tier fits? Tell us what you need and get a
-              personalized estimate in under 60 seconds.
-            </p>
+                <span
+                  className={`inline-flex items-center self-start rounded-full px-3 py-1 text-xs font-semibold mb-4 ${product.badgeStyle}`}
+                >
+                  {product.badge}
+                </span>
+                <h2 className="text-xl font-bold text-white mb-1">{product.name}</h2>
+                <div className="flex items-baseline gap-1 mb-1">
+                  <span className="text-3xl font-bold text-white">{product.price}</span>
+                  <span className="text-sm text-[#52525b]">{product.period}</span>
+                </div>
+                <p className="text-xs text-[#52525b] mb-4">{product.setup}</p>
+                <p className="text-sm text-[#a1a1aa] leading-relaxed mb-6">
+                  {product.description}
+                </p>
+                <ul className="space-y-2.5 flex-1 mb-8">
+                  {product.features.map((f) => (
+                    <li key={f} className="flex items-start gap-2 text-sm text-[#a1a1aa]">
+                      <Check className="w-4 h-4 text-[#00ff88] flex-shrink-0 mt-0.5" />
+                      <span>{f}</span>
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  href={product.href}
+                  className={`block text-center py-3 rounded-full text-sm font-semibold transition-all duration-200 ${
+                    product.highlighted
+                      ? "bg-[#00d4ff] text-[#04040a] hover:bg-[#00d4ff]/90 hover:shadow-[0_0_20px_rgba(0,212,255,0.2)]"
+                      : "border border-[rgba(255,255,255,0.1)] text-white hover:bg-white/[0.04]"
+                  }`}
+                >
+                  Get Started
+                </Link>
+              </div>
+            ))}
           </div>
-          <QuoteBuilder currency={currency} />
         </div>
 
-        {/* Legal trust strip */}
-        <div className="mt-16">
+        {/* ── Custom Services ── */}
+        <div className="mb-16">
+          <p className="text-xs font-bold tracking-widest uppercase text-[#52525b] text-center mb-8">
+            CUSTOM SERVICES — BUILT FOR YOU
+          </p>
+          <div className="rounded-2xl border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.02)] overflow-hidden">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-[rgba(255,255,255,0.04)]">
+                  <th className="text-left p-4 text-xs font-semibold uppercase tracking-wider text-[#52525b]">
+                    Service
+                  </th>
+                  <th className="text-left p-4 text-xs font-semibold uppercase tracking-wider text-[#52525b]">
+                    Starting Price
+                  </th>
+                  <th className="text-left p-4 text-xs font-semibold uppercase tracking-wider text-[#52525b]">
+                    Timeline
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {services.map((s, i) => (
+                  <tr
+                    key={s.name}
+                    className={i < services.length - 1 ? "border-b border-[rgba(255,255,255,0.04)]" : ""}
+                  >
+                    <td className="p-4 font-medium text-white">{s.name}</td>
+                    <td className="p-4 text-[#00d4ff] font-medium">{s.price}</td>
+                    <td className="p-4 text-[#a1a1aa]">{s.timeline}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="text-sm text-[#71717a] text-center mt-4">
+            All custom engagements include 30 days post-launch support. Monthly
+            retainers available from $2,000/month.
+          </p>
+          <div className="text-center mt-6">
+            <Link
+              href="/book"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[rgba(255,255,255,0.1)] text-white text-sm font-semibold hover:bg-white/[0.04] transition-all duration-200"
+            >
+              Discuss Your Project
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+
+        {/* ── Scope CTA (replaces QuoteBuilder) ── */}
+        <div className="mb-16 rounded-2xl border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.02)] p-8 text-center">
+          <p className="text-white font-medium mb-2">Not sure which fits?</p>
+          <p className="text-sm text-[#a1a1aa] mb-6">
+            Book a 30-min call — we&apos;ll scope it together.
+          </p>
+          <Link
+            href="/book"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#00d4ff] text-[#04040a] text-sm font-semibold hover:bg-[#00d4ff]/90 hover:shadow-[0_0_20px_rgba(0,212,255,0.2)] transition-all duration-200"
+          >
+            Book a Free Call
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+
+        {/* ── Legal trust strip ── */}
+        <div className="mb-16">
           <h2 className="text-xl font-semibold text-white text-center mb-6">
             Everything you need to know before you start
           </h2>
@@ -299,8 +271,8 @@ export function PricingContent() {
           </p>
         </div>
 
-        {/* FAQ */}
-        <div className="mt-16 max-w-2xl mx-auto">
+        {/* ── FAQ ── */}
+        <div className="max-w-2xl mx-auto mb-16">
           <h2 className="text-xl font-semibold text-white text-center mb-6">
             Frequently asked questions
           </h2>
@@ -324,14 +296,14 @@ export function PricingContent() {
           </div>
         </div>
 
-        {/* Bottom CTA */}
-        <div className="mt-16 text-center">
-          <p className="text-[#a1a1aa] text-sm">Ready to scope your project?</p>
+        {/* ── Bottom CTA ── */}
+        <div className="text-center">
+          <p className="text-[#a1a1aa] text-sm mb-3">Ready to get started?</p>
           <Link
             href="/book"
-            className="inline-flex items-center gap-2 mt-3 px-6 py-3 rounded-full bg-[#00d4ff] text-[#04040a] font-semibold text-sm hover:bg-[#00d4ff]/90 hover:shadow-[0_0_24px_rgba(0,212,255,0.25)] transition-all duration-200"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#00d4ff] text-[#04040a] font-semibold text-sm hover:bg-[#00d4ff]/90 hover:shadow-[0_0_24px_rgba(0,212,255,0.25)] transition-all duration-200"
           >
-            Book a Demo
+            Book a Free Strategy Call
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

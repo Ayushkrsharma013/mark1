@@ -4,7 +4,7 @@ import { PricingContent } from "@/components/pricing/PricingContent";
 export const metadata: Metadata = {
   title: "Pricing",
   description:
-    "Transparent pricing for AI automation services — custom-built solutions starting at ₹3,000. Use our interactive quote builder for a personalized estimate.",
+    "Transparent pricing for AI automation. Productized agents from $299/month or custom builds from $3,000. No hidden fees.",
 };
 
 export default function PricingPage() {
