@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { dodo } from "@/lib/dodo";
+import { getDodoClient } from "@/lib/dodo";
 
 export async function POST(req: NextRequest) {
   try {
@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "productId required" }, { status: 400 });
     }
 
-    const payment = await dodo.payments.create({
+    const payment = await getDodoClient().payments.create({
       billing: {
         city: "N/A",
         country: "US",
