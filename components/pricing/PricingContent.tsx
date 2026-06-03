@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { Shield, FileText, RotateCcw, Truck, Ban, CreditCard } from "lucide-react";
-import { CheckoutButton } from "@/components/paddle/CheckoutButton";
-import { PADDLE_PRICES } from "@/lib/paddle-prices";
+import { CheckoutButton } from "@/components/dodo/CheckoutButton";
+import { DODO_PRODUCTS } from "@/lib/dodo-products";
 
 const prospectingFeatures = [
   "Unlimited lead scraping",
@@ -23,13 +23,6 @@ const remiFeatures = [
   "US phone number included",
 ];
 
-const services = [
-  { name: "AI Agent / Chatbot", price: "From $5,000", time: "3–4 weeks" },
-  { name: "Workflow Automation", price: "From $8,000", time: "4–6 weeks" },
-  { name: "Custom AI Development", price: "From $15,000", time: "6–8 weeks" },
-  { name: "AI Analytics Dashboard", price: "From $6,000", time: "3–5 weeks" },
-  { name: "AI Strategy & Consulting", price: "From $3,000", time: "2–3 weeks" },
-];
 
 const legalLinks = [
   { icon: Shield, title: "Privacy Policy", desc: "How we protect your data", href: "/legal/privacy" },
@@ -43,7 +36,7 @@ const legalLinks = [
 const faqs = [
   {
     q: "What payment methods do you accept?",
-    a: "International clients: Credit/debit cards and PayPal via Paddle (USD). Indian clients: UPI and net-banking available. All subscriptions auto-renew monthly.",
+    a: "Credit/debit cards, PayPal, Apple Pay, and Google Pay via Dodo Payments (USD). All subscriptions auto-renew monthly. Custom projects are invoiced via wire transfer.",
   },
   {
     q: "Do you work with startups?",
@@ -117,8 +110,8 @@ export function PricingContent() {
               ))}
             </div>
             <CheckoutButton
-              priceId={PADDLE_PRICES.PROSPECTING_OS_MONTHLY}
-              label="Get Started"
+              productId={DODO_PRODUCTS.PROSPECTING_OS_MONTHLY}
+              label="Get Started — $499/mo"
               className="block w-full text-center py-3.5 rounded-full bg-[#e8420a] text-white font-semibold text-sm hover:bg-[#cc3a08] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             />
           </div>
@@ -150,55 +143,27 @@ export function PricingContent() {
               ))}
             </div>
             <CheckoutButton
-              priceId={PADDLE_PRICES.REMI_MONTHLY}
-              label="Get Started"
+              productId={DODO_PRODUCTS.REMI_MONTHLY}
+              label="Get Started — $299/mo"
               className="block w-full text-center py-3.5 rounded-full border border-[#1a1a1a] text-white font-semibold text-sm hover:border-zinc-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             />
           </div>
         </div>
 
-        {/* ── CUSTOM SERVICES ── */}
-        <p className="text-xs font-medium text-[#71717a] tracking-widest uppercase mb-8">
-          CUSTOM SERVICES — BUILT FOR YOU
-        </p>
-
-        <div className="rounded-lg bg-[#111111] border border-[#1a1a1a] overflow-hidden mb-8">
-          {services.map(({ name, price, time }, i) => (
-            <div
-              key={name}
-              className={`flex flex-col sm:flex-row sm:items-center justify-between p-6 gap-2 ${
-                i < services.length - 1 ? "border-b border-[#1a1a1a]" : ""
-              }`}
-            >
-              <span className="text-white font-medium">{name}</span>
-              <div className="flex items-center gap-6">
-                <span className="text-[#71717a] text-sm">{time}</span>
-                <span className="text-white font-semibold">{price}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <p className="text-[#71717a] text-sm mb-6">
-          All custom engagements include 30 days post-launch support. Monthly retainers available from $2,000/month.
-        </p>
-
-        <Link
-          href="/book"
-          className="inline-flex px-8 py-3.5 rounded-full bg-[#e8420a] text-white font-semibold text-sm hover:bg-[#cc3a08] transition-colors"
-        >
-          Discuss Your Project
-        </Link>
-
-        {/* ── SCOPE CTA ── */}
-        <div className="mt-16 p-8 rounded-lg border border-[#1a1a1a] bg-[#111111] text-center">
-          <p className="text-white font-medium mb-2">Not sure which fits?</p>
-          <p className="text-sm text-[#71717a] mb-6">Book a 30-min call — we&apos;ll scope it together.</p>
+        {/* ── CUSTOM PROJECTS CTA ── */}
+        <div className="mt-4 p-8 rounded-lg bg-[#111111] border border-[#1a1a1a] text-center">
+          <p className="text-xs font-medium text-[#e8420a] tracking-widest uppercase mb-3">
+            CUSTOM PROJECTS
+          </p>
+          <h3 className="text-white font-semibold text-xl mb-3">Need something bespoke?</h3>
+          <p className="text-[#71717a] text-sm mb-6 max-w-sm mx-auto">
+            Custom AI agents and workflow automations scoped on a call. Every project is different — no pricing page needed.
+          </p>
           <Link
             href="/book"
             className="inline-flex px-8 py-3.5 rounded-full bg-[#e8420a] text-white font-semibold text-sm hover:bg-[#cc3a08] transition-colors"
           >
-            Book a Free Call
+            Book a Scoping Call
           </Link>
         </div>
 

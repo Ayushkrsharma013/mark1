@@ -34,7 +34,7 @@ export default function ShippingPage() {
             <h2 className="text-xl font-semibold text-white mb-3">1. Digital Delivery — General</h2>
             <p>
               All FlowForges products and services are delivered electronically. Upon completing
-              a purchase, you will receive an order confirmation from Paddle (our payment processor) to
+              a purchase, you will receive an order confirmation from Dodo Payments (our payment processor) to
               your registered email address. Access and onboarding instructions from FlowForges will
               follow separately as described below.
             </p>

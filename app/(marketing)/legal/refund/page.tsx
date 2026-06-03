@@ -25,7 +25,7 @@ export default function RefundPage() {
           <p>
             FlowForges aims to be fair and transparent with its billing practices. This Refund Policy
             applies to all purchases made through our website at <em>flow-forges.com</em>, processed via
-            Paddle as our Merchant of Record. By purchasing, you accept this policy.
+            Dodo Payments as our Merchant of Record. By purchasing, you accept this policy.
           </p>
 
           {/* 1 */}
@@ -136,10 +136,10 @@ export default function RefundPage() {
                 Email <a href="mailto:support@flow-forges.com" className="text-[#00d4ff] hover:underline">support@flow-forges.com</a> with
                 subject: &ldquo;Refund Request — [your email / order ID]&rdquo;.
               </li>
-              <li>Include your order ID (found in your Paddle receipt email), the reason for the request, and any supporting information.</li>
+              <li>Include your order ID (found in your Dodo Payments receipt email), the reason for the request, and any supporting information.</li>
               <li>We will acknowledge your request within <strong className="text-white">1 business day</strong> and
                 resolve it within <strong className="text-white">5 business days</strong>.</li>
-              <li>Approved refunds are processed back to the original payment method by Paddle within
+              <li>Approved refunds are processed back to the original payment method by Dodo Payments within
                 <strong className="text-white"> 5–10 business days</strong>, depending on your bank or card issuer.</li>
             </ol>
           </section>

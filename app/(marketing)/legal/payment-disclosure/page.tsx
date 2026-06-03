@@ -5,7 +5,7 @@ export const revalidate = 0;
 
 export const metadata: Metadata = {
   title: "Payment Disclosure",
-  description: "Payment methods, Paddle as Merchant of Record, taxes, billing security, and recurring billing authorisation for FlowForges.",
+  description: "Payment methods, Dodo Payments as Merchant of Record, taxes, billing security, and recurring billing authorisation for FlowForges.",
 };
 
 export default function PaymentDisclosurePage() {
@@ -31,24 +31,23 @@ export default function PaymentDisclosurePage() {
 
           {/* 1 */}
           <section>
-            <h2 className="text-xl font-semibold text-white mb-3">1. Merchant of Record — Paddle</h2>
+            <h2 className="text-xl font-semibold text-white mb-3">1. Merchant of Record — Dodo Payments</h2>
             <p className="mb-3">
               All payments for FlowForges products and subscriptions are processed by{" "}
-              <strong className="text-white">Paddle.com Market Limited</strong> (&ldquo;Paddle&rdquo;),
-              a company registered in Ireland (Company No. 645396), acting as our
-              <strong className="text-white"> Merchant of Record</strong>.
+              <strong className="text-white">Dodo Payments Inc.</strong> (&ldquo;Dodo Payments&rdquo;),
+              acting as our <strong className="text-white">Merchant of Record</strong>.
             </p>
             <p className="mb-3">
-              As Merchant of Record, Paddle is the legally responsible seller for your purchase. This means:
+              As Merchant of Record, Dodo Payments is the legally responsible seller for your purchase. This means:
             </p>
             <ul className="list-disc pl-5 space-y-2">
-              <li>Paddle&apos;s name appears on your bank or card statement as <strong className="text-white">&ldquo;PADDLE.NET* FLOWFORGES&rdquo;</strong>.</li>
-              <li>Paddle handles all payment processing, tax collection, and regulatory compliance on a global basis.</li>
-              <li>Paddle issues your receipt and VAT/GST invoice where applicable.</li>
-              <li>Disputes with Paddle regarding payment processing can be directed to <a href="https://www.paddle.com" className="text-[#00d4ff] hover:underline" target="_blank" rel="noopener noreferrer">paddle.com</a>.</li>
+              <li>Dodo Payments&apos; name appears on your bank or card statement as <strong className="text-white">&ldquo;DODO* FLOWFORGES&rdquo;</strong>.</li>
+              <li>Dodo Payments handles all payment processing, tax collection, and regulatory compliance on a global basis.</li>
+              <li>Dodo Payments issues your receipt and VAT/GST invoice where applicable.</li>
+              <li>Disputes with Dodo Payments regarding payment processing can be directed to <a href="https://dodopayments.com" className="text-[#00d4ff] hover:underline" target="_blank" rel="noopener noreferrer">dodopayments.com</a>.</li>
             </ul>
             <p className="mt-3">
-              Paddle&apos;s terms of service and privacy policy apply to the payment transaction itself.
+              Dodo Payments&apos; terms of service and privacy policy apply to the payment transaction itself.
               FlowForges&apos;s Terms of Service govern your use of our software and services.
             </p>
           </section>
@@ -56,20 +55,15 @@ export default function PaymentDisclosurePage() {
           {/* 2 */}
           <section>
             <h2 className="text-xl font-semibold text-white mb-3">2. Accepted Payment Methods</h2>
-            <p className="mb-3">Via Paddle, we accept the following for international customers:</p>
+            <p className="mb-3">Via Dodo Payments, we accept the following:</p>
             <ul className="list-disc pl-5 space-y-2">
-              <li><strong className="text-white">Credit / Debit Cards:</strong> Visa, Mastercard, American Express, Discover, Maestro.</li>
+              <li><strong className="text-white">Credit / Debit Cards:</strong> Visa, Mastercard, American Express, and other major cards.</li>
               <li><strong className="text-white">PayPal</strong></li>
               <li><strong className="text-white">Apple Pay</strong> (on supported devices and browsers)</li>
               <li><strong className="text-white">Google Pay</strong> (on supported devices and browsers)</li>
             </ul>
-            <p className="mt-3 mb-3">For Indian customers, additional methods are available:</p>
-            <ul className="list-disc pl-5 space-y-2">
-              <li><strong className="text-white">UPI</strong> (Unified Payments Interface)</li>
-              <li><strong className="text-white">Net Banking</strong></li>
-            </ul>
             <p className="mt-3">
-              Payment method availability may vary by country. Paddle will display the available options
+              Payment method availability may vary by country. Dodo Payments will display the available options
               at checkout based on your location.
             </p>
           </section>
@@ -79,17 +73,11 @@ export default function PaymentDisclosurePage() {
             <h2 className="text-xl font-semibold text-white mb-3">3. Currency</h2>
             <ul className="list-disc pl-5 space-y-2">
               <li>
-                <strong className="text-white">International customers</strong> (US, UK, EU, AU, and others):
                 All prices are listed and charged in <strong className="text-white">USD</strong>.
               </li>
               <li>
-                <strong className="text-white">Indian customers:</strong> Prices may be displayed and charged
-                in INR. Paddle handles the conversion and ensures compliance with the Foreign Exchange
-                Management Act (FEMA) and RBI guidelines.
-              </li>
-              <li>
-                Currency conversion is handled by Paddle. The exchange rate applied is Paddle&apos;s rate
-                at the time of transaction. FlowForges does not add a currency conversion surcharge.
+                If your card or account is in a different currency, your bank or payment provider applies
+                the conversion at their standard exchange rate. FlowForges does not add a currency conversion surcharge.
               </li>
             </ul>
           </section>
@@ -99,25 +87,25 @@ export default function PaymentDisclosurePage() {
             <h2 className="text-xl font-semibold text-white mb-3">4. Taxes &amp; VAT / GST</h2>
             <ul className="list-disc pl-5 space-y-2">
               <li>
-                <strong className="text-white">EU customers:</strong> VAT is collected by Paddle at the
-                applicable rate for your country. Paddle is registered for VAT across the EU.
+                <strong className="text-white">EU customers:</strong> VAT is collected by Dodo Payments at the
+                applicable rate for your country.
               </li>
               <li>
-                <strong className="text-white">UK customers:</strong> UK VAT (20%) is collected by Paddle
-                where applicable. Paddle is registered with HMRC.
+                <strong className="text-white">UK customers:</strong> UK VAT (20%) is collected by Dodo Payments
+                where applicable.
               </li>
               <li>
                 <strong className="text-white">Australian customers:</strong> GST (10%) is collected by
-                Paddle where applicable.
+                Dodo Payments where applicable.
               </li>
               <li>
                 <strong className="text-white">US customers:</strong> Sales tax is collected where required
-                by state law, calculated by Paddle automatically.
+                by state law, calculated by Dodo Payments automatically.
               </li>
               <li>
                 <strong className="text-white">Indian customers:</strong> 18% GST is applicable on SaaS
                 services. Our GSTIN is <strong className="text-white">22MGSPS6643B1ZY</strong>.
-                Tax invoices are issued by Paddle on our behalf.
+                Tax invoices are issued by Dodo Payments on our behalf.
               </li>
             </ul>
             <p className="mt-3">
@@ -132,14 +120,14 @@ export default function PaymentDisclosurePage() {
           <section>
             <h2 className="text-xl font-semibold text-white mb-3">5. Recurring Billing Authorisation</h2>
             <p>
-              By subscribing to a FlowForges plan and completing checkout, you authorise Paddle (as our
+              By subscribing to a FlowForges plan and completing checkout, you authorise Dodo Payments (as our
               Merchant of Record) to charge your selected payment method on a recurring monthly basis at
               the price displayed at checkout, until you cancel your subscription. Key terms:
             </p>
             <ul className="list-disc pl-5 space-y-2 mt-3">
               <li>Charges occur at the start of each billing period (monthly).</li>
-              <li>You will receive a receipt email from Paddle for each successful charge.</li>
-              <li>If a payment fails, Paddle will retry up to three times over seven days before suspending access.</li>
+              <li>You will receive a receipt email from Dodo Payments for each successful charge.</li>
+              <li>If a payment fails, Dodo Payments will retry before suspending access.</li>
               <li>You may cancel recurring billing at any time — see our <a href="/legal/cancellation" className="text-[#00d4ff] hover:underline">Cancellation Policy</a>.</li>
               <li>Price changes will be communicated with at least 30 days&apos; notice before taking effect on your subscription.</li>
             </ul>
@@ -150,15 +138,15 @@ export default function PaymentDisclosurePage() {
             <h2 className="text-xl font-semibold text-white mb-3">6. Payment Security</h2>
             <ul className="list-disc pl-5 space-y-2">
               <li>
-                Paddle is certified as <strong className="text-white">PCI-DSS Level 1</strong> compliant —
-                the highest level of payment card industry security standard.
+                Dodo Payments is PCI-DSS compliant, meeting the highest levels of payment card industry
+                security standards.
               </li>
               <li>
                 FlowForges does <strong className="text-white">not</strong> store, process, or transmit your
                 card number, CVV, or full payment credentials on our servers.
               </li>
               <li>
-                All checkout pages are served over TLS 1.3 (HTTPS). Payment data is tokenised by Paddle
+                All checkout pages are served over TLS 1.3 (HTTPS). Payment data is tokenised by Dodo Payments
                 before any interaction with our systems.
               </li>
               <li>
@@ -169,9 +157,23 @@ export default function PaymentDisclosurePage() {
 
           {/* 7 */}
           <section>
-            <h2 className="text-xl font-semibold text-white mb-3">7. Chargebacks &amp; Disputes</h2>
+            <h2 className="text-xl font-semibold text-white mb-3">7. Wire Transfer (Custom Projects)</h2>
             <p>
-              If you do not recognise a charge from <strong className="text-white">PADDLE.NET* FLOWFORGES</strong> on
+              Custom development projects and bespoke engagements are invoiced directly via wire transfer.
+              You will receive a detailed invoice by email with wire transfer instructions to our
+              JPMorgan Chase USD account. Payment reference, amount, and due date will be specified in each invoice.
+            </p>
+            <p className="mt-3">
+              For wire transfer enquiries, contact{" "}
+              <a href="mailto:support@flow-forges.com" className="text-[#00d4ff] hover:underline">support@flow-forges.com</a>.
+            </p>
+          </section>
+
+          {/* 8 */}
+          <section>
+            <h2 className="text-xl font-semibold text-white mb-3">8. Chargebacks &amp; Disputes</h2>
+            <p>
+              If you do not recognise a charge from <strong className="text-white">DODO* FLOWFORGES</strong> on
               your statement, or believe a charge is incorrect, please contact us first:
             </p>
             <p className="mt-3">
@@ -185,9 +187,9 @@ export default function PaymentDisclosurePage() {
             </p>
           </section>
 
-          {/* 8 */}
+          {/* 9 */}
           <section>
-            <h2 className="text-xl font-semibold text-white mb-3">8. Contact</h2>
+            <h2 className="text-xl font-semibold text-white mb-3">9. Contact</h2>
             <p>
               <strong className="text-white">FlowForges</strong> (operated by AKS Forge Lab)<br />
               Bhilai, Chhattisgarh 490023, India<br />

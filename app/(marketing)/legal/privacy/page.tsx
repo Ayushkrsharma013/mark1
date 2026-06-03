@@ -52,9 +52,9 @@ export default function PrivacyPage() {
 
             <h3 className="text-base font-semibold text-white mb-2">1C. Payment Data</h3>
             <p className="mb-4">
-              All payment processing is handled exclusively by <strong className="text-white">Paddle</strong>,
-              our PCI-DSS Level 1 certified Merchant of Record. FlowForges does not store, process, or transmit
-              your card number, CVV, or full payment details. Paddle shares with us only transaction ID,
+              All payment processing is handled exclusively by <strong className="text-white">Dodo Payments</strong>,
+              our PCI-DSS certified Merchant of Record. FlowForges does not store, process, or transmit
+              your card number, CVV, or full payment details. Dodo Payments shares with us only transaction ID,
               subscription status, and billing email.
             </p>
 
@@ -116,7 +116,7 @@ export default function PrivacyPage() {
             <h2 className="text-xl font-semibold text-white mb-3">5. Data Sharing &amp; Processors</h2>
             <p className="mb-3">We share data only with trusted processors under contractual data-protection obligations:</p>
             <ul className="list-disc pl-5 space-y-2">
-              <li><strong className="text-white">Paddle</strong> (Dublin, Ireland) — payment processing and tax compliance as Merchant of Record.</li>
+              <li><strong className="text-white">Dodo Payments</strong> (US) — payment processing and tax compliance as Merchant of Record.</li>
               <li><strong className="text-white">Supabase</strong> (AWS ap-south-1, India) — database and authentication hosting.</li>
               <li><strong className="text-white">Vercel</strong> (US) — web application hosting and edge delivery.</li>
               <li><strong className="text-white">Resend</strong> (US) — transactional email delivery.</li>

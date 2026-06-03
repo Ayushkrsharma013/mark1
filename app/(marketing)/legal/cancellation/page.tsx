@@ -45,8 +45,8 @@ export default function CancellationPage() {
                 and confirm via email.
               </li>
               <li>
-                <strong className="text-white">Via Paddle:</strong> Access your subscription management
-                link (included in every Paddle receipt email) to cancel directly through Paddle&apos;s portal.
+                <strong className="text-white">Via Dodo Payments:</strong> Access your subscription management
+                link (included in every Dodo Payments receipt email) to cancel directly through the Dodo customer portal.
               </li>
             </ol>
             <p className="mt-3">
