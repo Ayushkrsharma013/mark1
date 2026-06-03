@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { Shield, FileText, RotateCcw, Truck, Ban, CreditCard } from "lucide-react";
+import { CheckoutButton } from "@/components/paddle/CheckoutButton";
+import { PADDLE_PRICES } from "@/lib/paddle-prices";
 
 const prospectingFeatures = [
   "Unlimited lead scraping",
@@ -114,12 +116,11 @@ export function PricingContent() {
                 </div>
               ))}
             </div>
-            <Link
-              href="/book"
-              className="block w-full text-center py-3.5 rounded-full bg-[#e8420a] text-white font-semibold text-sm hover:bg-[#cc3a08] transition-colors"
-            >
-              Get Started
-            </Link>
+            <CheckoutButton
+              priceId={PADDLE_PRICES.PROSPECTING_OS_MONTHLY}
+              label="Get Started"
+              className="block w-full text-center py-3.5 rounded-full bg-[#e8420a] text-white font-semibold text-sm hover:bg-[#cc3a08] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            />
           </div>
 
           {/* Remi */}
@@ -148,12 +149,11 @@ export function PricingContent() {
                 </div>
               ))}
             </div>
-            <Link
-              href="/book"
-              className="block w-full text-center py-3.5 rounded-full border border-[#1a1a1a] text-white font-semibold text-sm hover:border-zinc-600 transition-colors"
-            >
-              Get Started
-            </Link>
+            <CheckoutButton
+              priceId={PADDLE_PRICES.REMI_MONTHLY}
+              label="Get Started"
+              className="block w-full text-center py-3.5 rounded-full border border-[#1a1a1a] text-white font-semibold text-sm hover:border-zinc-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            />
           </div>
         </div>
 
